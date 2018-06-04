@@ -1,0 +1,10 @@
+<div style="border: 1px solid black; width:500px; margin: 10px auto; padding:20px;">
+    <form action="add" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="add_what" value="dbHis">
+        <h4>Veritabanı Versiyonu </h4><br>
+        Veritabanı Id :  <input type="text" name="db_id" /><br>
+        Veritabanı Versiyonu :  <input type="text" name="dbVer_name" /><br><br>
+        <input type="submit">
+    </form>
+</div>

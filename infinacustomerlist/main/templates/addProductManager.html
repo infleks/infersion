@@ -1,0 +1,13 @@
+<div style="border: 1px solid black; width:500px; margin: 10px auto; padding:20px;">
+    <form action="add" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="add_what" value="prodMan">
+        <h4>Ürün Sorumlusu</h4><br>
+        Müşteri Id :  <input type="text" name="cus_id" /><br>
+        Ürün Temsilcisi Adı : <input type="text" name="prodMan_name" /><br>
+        Ürün Temsilcisi Mail : <input type="email" name="prodMan_email" /><br>
+        Ürün Temsilcisi Telefon No : <input type="text" name="prodMan_phone" /><br>
+        Ürün Temsilcisi Zaman : <input type="date" name="prodMan_date" /><br><br>
+        <input type="submit">
+    </form>
+</div>

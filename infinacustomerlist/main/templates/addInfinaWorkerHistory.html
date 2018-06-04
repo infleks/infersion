@@ -1,0 +1,13 @@
+<div style="border: 1px solid black; width:500px; margin: 10px auto; padding:20px;">
+    <form action="add" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="add_what" value="infHis">
+        <h4>Infina Çalışanı Tarihçesi</h4><br>
+        Ürün Versiyonu Id:  <input type="text" name="prodHis_id" /><br>
+        Test Ürün Versiyonu Id:  <input type="text" name="tprodHis_id" /><br>
+        Infina Çalışanı Adı :  <input type="text" name="infHis_name" /><br>
+        Infina Çalışanı Soyadı :  <input type="text" name="infHis_surname" /><br>
+        Infina Çalışanı Kaydetme Zamanı : <input type="date" name="infHis_date" /><br><br>
+        <input type="submit">
+    </form>
+</div>

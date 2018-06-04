@@ -1,0 +1,10 @@
+<div style="border: 1px solid black; width:500px; margin: 10px auto; padding:20px;">
+    <form action="add" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="add_what" value="svHis">
+        <h4>Sunucu Versiyonu</h4><br>
+        Sunucu Id :  <input type="text" name="sv_id" /><br>
+        Sunucu Versiyon Adı : <input type="text" name="svVer_name" /><br><br>
+        <input type="submit">
+    </form>
+</div>
