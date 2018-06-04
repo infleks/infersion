@@ -1,0 +1,10 @@
+<div style="border: 1px solid black; width:500px; margin: 10px auto; padding:20px;">
+    <form action="add" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="add_what" value="prodMod">
+        <h4>Ürün Modulü</h4><br>
+        Ürün Id :  <input type="text" name="prod_id" /><br>
+        Ürün Modul adı : <input type="text" name="prodMod_name" /><br><br>
+        <input type="submit">
+    </form>
+</div>
