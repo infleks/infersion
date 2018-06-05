@@ -1,9 +1,0 @@
-<div style="border: 1px solid black; width:500px; margin: 10px auto; padding:20px;">
-    <form action="add" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="add_what" value="server">
-        <h4>Sunucu</h4><br>
-        Sunucu Adı : <input type="text" name="server_name" /><br><br>
-        <input type="submit">
-    </form>
-</div>

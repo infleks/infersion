@@ -1,0 +1,42 @@
+<div class="container2">
+  <form id="contact" action="add" method="post">
+      {% csrf_token %}
+    <h3>Teknik Sorumlu Ekle</h3>
+    <h4>Lütfen teknik sorumlu bilgilerini giriniz.</h4>
+      <input type="hidden" name="add_what" value="techMan">
+
+    <fieldset>
+                <h4>Müşteri Adı :</h4>
+      <select name="cus_id" class="form-control">
+          {% for c in cus %}
+    <option value={{c.pk}}>{{ c.customerName }}</option>
+   {% endfor %}
+    </select>
+    </fieldset>
+
+                <h4>Ürün Versiyon Adı :</h4>
+      <select name="prodVers_id" class="form-control">
+          {% for p in prodVer %}
+    <option value={{p.pk}}>{{ p.productVersionName }}</option>
+   {% endfor %}
+</select>
+    </fieldset>
+    <fieldset>
+        <br>
+      <input placeholder="Teknik Sorumlu Adı" type="text" tabindex="2" name="techMan_name" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Mail Adresi" type="email" tabindex="3" name="techMan_email" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Telefon Numarası" type="text" tabindex="4" name="techMan_phone" required>
+    </fieldset>
+       <fieldset>
+      <input placeholder="Zaman" type="date" tabindex="5" name="techMan_date" required>
+    </fieldset>
+
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    </fieldset>
+  </form>
+</div>

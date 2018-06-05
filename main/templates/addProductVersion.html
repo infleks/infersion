@@ -1,0 +1,28 @@
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<div class="container2">
+  <form id="contact" action="add" method="post">
+         {% csrf_token %}
+    <h3>Ürün Versiyonu Ekle</h3>
+    <h4>Lütfen ürün versiyon bilgilerini giriniz.</h4>
+    <fieldset>
+      <input type="hidden" tabindex="1" name="add_what" value="prodVer" required autofocus>
+    </fieldset>
+      <fieldset>
+                <h4>Ürün Modül Adı :</h4>
+      <select name="prodMod_id" class="form-control">
+          {% for pr in prodMod %}
+    <option value={{pr.pk}}>{{ pr.moduleName }}</option>
+
+   {% endfor %}
+
+</select>
+
+    </fieldset>
+    <fieldset>
+      <input placeholder="Ürün Versiyonu Adı" type="text" tabindex="2" name="prodVer_name" required>
+    </fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    </fieldset>
+  </form>
+</div>
+

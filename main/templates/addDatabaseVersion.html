@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<div class="container2">
+  <form id="contact" action="add" method="post">
+         {% csrf_token %}
+    <h3>Veritabanı Versiyonu Ekle</h3>
+    <h4>Lütfen veritabanı versiyon bilgilerini giriniz.</h4>
+    <fieldset>
+      <input type="hidden" tabindex="1" name="add_what" value="dbHis" required autofocus>
+    </fieldset>
+      <fieldset>
+                <h4>Veritabanı Adı :</h4>
+      <select name="db_id" class="form-control">
+          {% for d in db %}
+    <option value={{d.pk}}>{{ d.databaseName }}</option>
+
+   {% endfor %}
+
+</select>
+
+    </fieldset>
+    <fieldset>
+      <input placeholder="Veritabanı Versiyonu Adı" type="text" tabindex="2" name="dbVer_name" required>
+    </fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    </fieldset>
+  </form>
+</div>
