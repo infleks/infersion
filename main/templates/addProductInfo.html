@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<div class="container2">
+  <form id="contact" action="add" method="post" style="height:305px;">
+         {% csrf_token %}
+    <h3>Ürün Ekle</h3>
+    <h4>Lütfen ürün bilgilerini giriniz.</h4>
+    <fieldset>
+      <input type="hidden" tabindex="1" name="add_what" value="prod" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Ürün Adı" type="text" tabindex="2" name="prod_name" required>
+    </fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    </fieldset>
+  </form>
+</div>

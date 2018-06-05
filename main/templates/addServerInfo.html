@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<div class="container2">
+  <form id="contact" action="add" method="post" style="height:335px;">
+         {% csrf_token %}
+    <h3>Sunucu Ekleme</h3>
+    <h4>Lütfen sunucu bilgilerini giriniz.</h4>
+    <fieldset>
+      <input type="hidden" tabindex="1" name="add_what" value="server" required autofocus>
+    </fieldset>
+
+    <fieldset>
+      <input placeholder="Sunucu Adı" type="text" tabindex="2" name="server_name" required>
+    </fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    </fieldset>
+  </form>
+</div>

@@ -1,0 +1,53 @@
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<div class="container2">
+  <form id="contact" action="add" method="post">
+         {% csrf_token %}
+    <h3>Satış Ürün</h3>
+    <h4>Lütfen satış bilgilerini giriniz.</h4>
+
+      <fieldset>
+                <h4>Müşteri Adı :</h4>
+      <select name="cus_id" class="form-control">
+          {% for c in cus %}
+    <option value={{c.pk}}>{{ c.customerName }}</option>
+   {% endfor %}
+</select>
+
+    </fieldset>
+    <fieldset>
+      <input type="hidden" tabindex="1" name="add_what" value="prodLoadTime" required autofocus>
+    </fieldset>
+      <fieldset>
+                <h4>Ürün Versiyon Adı :</h4>
+      <select name="prodVers_id" class="form-control">
+          {% for p in prodVer %}
+    <option value={{p.pk}}>{{ p.productVersionName }}</option>
+   {% endfor %}
+</select>
+    </fieldset>
+
+            <fieldset>
+                <h4>Veritabanı Versiyon Adı :</h4>
+      <select name="dbVer_id" class="form-control">
+          {% for d in dbHis %}
+    <option value={{d.pk}}>{{ d.databaseVersionName }}</option>
+   {% endfor %}
+</select>
+                <fieldset>
+                <h4>Sunucu Versiyon Adı :</h4>
+      <select name="svVer_id" class="form-control">
+          {% for sv in svHis %}
+    <option value={{sv.pk}}>{{ sv.serverVersionName }}</option>
+   {% endfor %}
+</select>
+<br>
+    </fieldset>
+
+        <h4>Satış Tarihi: </h4>
+      <input placeholder="Satış Tarihi" type="date" tabindex="2" name="prodLoadTime_date" required>
+    </fieldset>
+                    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    </fieldset>
+  </form>
+</div>
