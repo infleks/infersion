@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/main/static/css/style.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    {% include 'partials/header_add_display.html' %}
-    <h2>Müşteriler</h2>
-      {% for d in data %}
-      <button style="background-color:#be5254; width:100%; border-color:white; " type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{d.cus.pk}}">{{ d.cus.customerName }}</button>
-  <div id="demo{{d.cus.pk}}" class="collapse">
-        <ul>
-            {% for k,ph in d.prodHist.items %}
-                <li>Prod << >> {{ph.productversion.productVersionName}} << >> {{ph.prodInstallationTime}}</li>
-            {% endfor %}
+        {% include 'partials/header_add_display.html' %}
+        <h2>Müşteriler</h2>
+        {% for d in data %}
+        <button style="background-color:#be5253; width:100%; border-color:white; " type="button" class="btn btn-info" data-toggle="collapse"
+            data-target="#demo{{d.cus.pk}}">{{ d.cus.customerName }}</button>
+        <div id="demo{{d.cus.pk}}" class="collapse">
+            <ul>
+                {% for k,ph in d.prodHist.items %}
+                <li>Prod
+                    <<>> {{ph.productversion.productVersionName}}
+                        <<>> {{ph.prodInstallationTime}}</li>
+                {% endfor %} {% for k,ph in d.testProdHist.items %}
+                <li>Test
+                    <<>> {{ph.productversion.productVersionName}}
+                        <<>> {{ph.testInstallationTime}}</li>
+                {% endfor %}
+            </ul>
+        </div>
 
-            {% for k,ph in d.testProdHist.items %}
-                <li>Test << >> {{ph.productversion.productVersionName}} << >> {{ph.testInstallationTime}}</li>
-            {% endfor %}
-        </ul>
-  </div>
+        {% endfor %} {% include 'partials/footer.html' %}
 
-   {% endfor %}
-{% include 'partials/footer.html' %}
-
-</div>
+    </div>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
