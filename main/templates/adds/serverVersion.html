@@ -1,27 +1,26 @@
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 <div class="container2">
-  <form id="contact" action="add" method="post" style="height:370px; margin-top: 5px;">
-         {% csrf_token %}
+  <form class="contact" action="add" method="post" style="height:370px; margin-top: 5px;">
+    {% csrf_token %}
     <h3>Sunucu Versiyonu Ekle</h3>
     <h4>Lütfen sunucu versiyon bilgilerini giriniz.</h4>
     <fieldset>
       <input type="hidden" tabindex="1" name="add_what" value="svHis" required autofocus>
     </fieldset>
-      <fieldset>
-                <h4>Sunucu Adı :</h4>
+    <fieldset>
+      <h4>Sunucu Adı :</h4>
       <select name="sv_id" class="form-control">
-          {% for s in server %}
-    <option value={{s.pk}}>{{ s.serverName }}</option>
+        {% for s in server %}
+        <option value={{s.pk}}>{{ s.serverName }}</option>
 
-   {% endfor %}
+        {% endfor %}
 
-</select>
+      </select>
 
     </fieldset>
     <fieldset>
       <input placeholder="Sunucu Versiyonu Adı" type="text" tabindex="2" name="svVer_name" required>
     </fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
     </fieldset>
   </form>
 </div>

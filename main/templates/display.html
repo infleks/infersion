@@ -1,56 +1,51 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %} {% block content %}
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-<body>
-
-    <div class="container">
-
-        {% include 'partials/header_add_display.html' %}
-        <h2>Müşteriler</h2>
-        {% for d in data %}
-        <button style="background-color:#be5253; width:100%; border-color:white; " type="button" class="btn btn-info" data-toggle="collapse"
-            data-target="#demo{{d.cus.pk}}"><h4><b>{{ d.cus.customerName }}</b></h4> [ Ürün Sorumlusu: {{ d.prodMan.prodManName }} - {{d.prodMan.prodManPhoneNumber}}  /  Teknik Sorumlu: {{ d.techMan.techManName }} - {{d.techMan.techManPhoneNumber}} ]</button>
-        <div id="demo{{d.cus.pk}}" class="collapse">
-            <table class="table">
-                <thead>
-                  <tr>
+<div class="container">
+    <h2>Müşteriler</h2>
+    {% for d in data %}
+    <button class="displayHeaderButton" type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{d.cus.pk}}">
+        <h4>
+            <b>{{ d.cus.customerName }}</b>
+        </h4> [ Ürün Sorumlusu: {{ d.prodMan.prodManName }} - {{d.prodMan.prodManPhoneNumber}} / Teknik Sorumlu: {{ d.techMan.techManName }} - {{d.techMan.techManPhoneNumber}} ]</button>
+    
+    <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 20px 0px;">
+        <table class="table">
+            <thead>
+                <tr>
                     <th scope="col">Ürün Tipi</th>
                     <th scope="col">Ürün</th>
                     <th scope="col">Tarihi</th>
-                    <th scope="col"><a onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', '', 'width=700, height=400');">Geçmiş Kayıtlar</a></th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {% for k,ph in d.prodHist.items %}
-                  <tr>
+                </tr>
+            </thead>
+            <tbody>
+                {% for k,ph in d.prodHist.items %}
+                <tr>
                     <td>Ürün</td>
-                    <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}}, {{ph.productversion.productVersionName}}</td>
+                    <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
+                        {{ph.productversion.productVersionName}}
+                    </td>
                     <td>{{ph.prodInstallationTime}}</td>
-                    {% endfor %} 
-                    </tr>
-                    <tr>
-                    {% for k,ph in d.testProdHist.items %}
+                </tr>
+                {% endfor %}
+
+                {% for k,ph in d.testProdHist.items %}
+                <tr>
                     <td>Test</td>
-                    <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}}, {{ph.productversion.productVersionName}}</td>
+                    <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
+                        {{ph.productversion.productVersionName}}
+                    </td>
                     <td>{{ph.testInstallationTime}}</td>
-                    </tr>
-                    {% endfor %}
-                    
-                  </tr>
-                  
-                </tbody>
-              </table>
+                </tr>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="width: 100%; text-align: right; padding: 0px 50px;">
+            <a onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', '', 'width=700, height=400');">Geçmiş Kayıtlar</a>
         </div>
-
-        {% endfor %} {% include 'partials/footer.html' %}
-
     </div>
+    {% endfor %}
+</div>
 
-</body>
-
-</html>
+{% endblock %}

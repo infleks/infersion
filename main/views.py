@@ -4,8 +4,7 @@ from .models import *
 # Create your views here.
 
 
-def display(request):
-
+def display(request):   
     data = []
 
     cuss = CustomerInfo.objects.all()
@@ -28,25 +27,44 @@ def display(request):
         tempHist = ProductHistory.objects.filter(customer=c)
         tempDict['prodHist'] = {}
         for t in tempHist:
-            if t.productversion.pk not in tempDict['prodHist']:
-                tempDict['prodHist'][t.productversion.pk] = t
+            if t.productversion.productmodule.pk not in tempDict['prodHist']:
+                tempDict['prodHist'][t.productversion.productmodule.pk] = t
 
-            if str(tempDict['prodHist'][t.productversion.pk].prodInstallationTime) > str(t.prodInstallationTime):
-                tempDict['prodHist'][t.productversion.pk] = t
+            if str(tempDict['prodHist'][t.productversion.productmodule.pk].prodInstallationTime) > str(t.prodInstallationTime):
+                tempDict['prodHist'][t.productversion.productmodule.pk] = t
 
         tempHist = TestProductHistory.objects.filter(customer=c)
         tempDict['testProdHist'] = {}
         for t in tempHist:
-            if t.productversion.pk not in tempDict['testProdHist']:
-                tempDict['testProdHist'][t.productversion.pk] = t
+            if t.productversion.productmodule.pk not in tempDict['testProdHist']:
+                tempDict['testProdHist'][t.productversion.productmodule.pk] = t
 
-            if str(tempDict['testProdHist'][t.productversion.pk].testInstallationTime) > str(t.testInstallationTime):
-                tempDict['testProdHist'][t.productversion.pk] = t
+            if str(tempDict['testProdHist'][t.productversion.productmodule.pk].testInstallationTime) > str(t.testInstallationTime):
+                tempDict['testProdHist'][t.productversion.productmodule.pk] = t
 
         data.append(tempDict)
 
     return render(request, 'display.html', {'data': data})
 
+
+def manage(request):
+    dataToSend = {
+        'cus': CustomerInfo.objects.all(),
+        'prodMan': ProductManagerHistory.objects.all(),
+        'techMan': TechnicalManagerHistory.objects.all(),
+        'db': DatabaseInfo.objects.all(),
+        'dbHis': DatabaseVersion.objects.all(),
+        'server': ServerInfo.objects.all(),
+        'svHis': ServerVersion.objects.all(),
+        'prod': ProductInfo.objects.all(),
+        'prodMod': ProductModule.objects.all(),
+        'prodVer': ProductVersion.objects.all(),
+        'prodLoadTime': ProductHistory.objects.all(),
+        'testLoadTime': TestProductHistory.objects.all(),
+        'infHis': InfinaWorkerHistory.objects.all(),
+    }
+
+    return render(request, 'add.html', dataToSend)
 
 def add(request):
     if(request.method == 'POST'):
@@ -103,20 +121,6 @@ def add(request):
             pV.productmodule = ProductModule.objects.get(pk=p['prodMod_id'])
             pV.productVersionName = p['prodVer_name']
             pV.save()
-            '''
-        elif p['add_what'] == 'prodVer':
-            v = ProductVersion()
-            v.module = ProductModule.objects.get(pk=p['module_id'])
-            v.versionName = p['prodVer_name']
-            v.prodVersionUpdateTime = ['prodVer_date']
-            v.save()
-        elif p['add_what'] == 'tprodVer':
-            tV = TestProductVersion()
-            tV.module = ProductModule.objects.get(pk=p['module_id'])
-            tV.testProductVersionName = p['tprodVer_name']
-            tV.testProductVersionUpdateTime = p['tprodVer_date']
-            tV.save()
-            '''
         elif p['add_what'] == 'prodLoadTime':
             pH = ProductHistory()
             pH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
@@ -142,27 +146,10 @@ def add(request):
             iH.workerSurname = p['infHis_surname']
             iH.savingTime = p['infHis_date']
             iH.save()
+        
+    return redirect('manage')
 
-    dataToSend = {
-        'cus': CustomerInfo.objects.all(),
-        'prodMan': ProductManagerHistory.objects.all(),
-        'techMan': TechnicalManagerHistory.objects.all(),
-        'db': DatabaseInfo.objects.all(),
-        'dbHis': DatabaseVersion.objects.all(),
-        'server': ServerInfo.objects.all(),
-        'svHis': ServerVersion.objects.all(),
-        'prod': ProductInfo.objects.all(),
-        'prodMod': ProductModule.objects.all(),
-        'prodVer': ProductVersion.objects.all(),
-        'prodLoadTime': ProductHistory.objects.all(),
-        'testLoadTime': TestProductHistory.objects.all(),
-        'infHis': InfinaWorkerHistory.objects.all(),
-    }
-
-    return render(request, 'add.html', dataToSend)
-
-
-def display_detail(request):
+def detail(request):
 
     if request.method != "GET":
         return redirect('display')
@@ -173,10 +160,12 @@ def display_detail(request):
     pk1 = request.GET['id']
     cusData = CustomerInfo.objects.get(pk=pk1)
     prodData= ProductHistory.objects.filter(customer=cusData)
+    testData= TestProductHistory.objects.filter(customer=cusData)
 
 
     dataToSend = {
-        'prodData': prodData
+        'prodData': prodData,
+        'testData': testData
     }
 
-    return render(request, 'display_detail.html', dataToSend)
+    return render(request, 'detail.html', dataToSend)

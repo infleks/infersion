@@ -1,7 +1,6 @@
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 <div class="container2">
-  <form id="contact" action="add" method="post" style="height:320px; ">
-         {% csrf_token %}
+  <form class="contact" action="add" method="post" style="height:320px; ">
+    {% csrf_token %}
     <h3>Ürün Ekle</h3>
     <h4>Lütfen ürün bilgilerini giriniz.</h4>
     <fieldset>
@@ -10,7 +9,7 @@
     <fieldset>
       <input placeholder="Ürün Adı" type="text" tabindex="2" name="prod_name" required>
     </fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
     </fieldset>
   </form>
 </div>

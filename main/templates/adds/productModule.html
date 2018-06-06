@@ -1,27 +1,26 @@
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 <div class="container2">
-  <form id="contact" action="add" method="post">
-         {% csrf_token %}
+  <form class="contact" action="add" method="post">
+    {% csrf_token %}
     <h3>Ürün Modülü Ekle</h3>
     <h4>Lütfen ürün modül bilgilerini giriniz.</h4>
     <fieldset>
       <input type="hidden" tabindex="1" name="add_what" value="prodMod" required autofocus>
     </fieldset>
-      <fieldset>
-                <h4>Ürün Adı :</h4>
+    <fieldset>
+      <h4>Ürün Adı :</h4>
       <select name="prod_id" class="form-control">
-          {% for pr in prod %}
-    <option value={{pr.pk}}>{{ pr.productName }}</option>
+        {% for pr in prod %}
+        <option value={{pr.pk}}>{{ pr.productName }}</option>
 
-   {% endfor %}
+        {% endfor %}
 
-</select>
+      </select>
 
     </fieldset>
     <fieldset>
       <input placeholder="Ürün Modülü Adı" type="text" tabindex="2" name="prodMod_name" required>
     </fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
     </fieldset>
   </form>
 </div>

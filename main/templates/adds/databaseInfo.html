@@ -1,7 +1,6 @@
-<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 <div class="container2">
-  <form id="contact" action="add" method="post" style="height:370px; margin-top: 5px;">
-         {% csrf_token %}
+  <form class="contact" action="add" method="post" style="height:370px; margin-top: 5px;">
+    {% csrf_token %}
     <h3>Veritabanı Ekle</h3>
     <h4>Lütfen veritabanı bilgilerini giriniz.</h4>
     <fieldset>
@@ -11,7 +10,7 @@
     <fieldset>
       <input placeholder="Veritabanı Adı" type="text" tabindex="2" name="db_name" required>
     </fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
     </fieldset>
   </form>
 </div>

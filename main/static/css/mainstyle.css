@@ -1,0 +1,56 @@
+:root {
+    --color1:#be5254;
+    --color2: #63372c;
+    --color3: #ffd5c2;
+}
+
+nav {
+    background: var(--color1) none repeat scroll 0 0 !important;
+    border: medium none !important;
+    border-radius: 151px !important;
+}
+
+#headerNav .nav-item .nav-link {
+    color: white;
+    font-size: 20px;
+}
+
+#headerNav .nav-item .nav-link:hover {
+    color: whitesmoke;
+    font-weight: 900;
+
+}
+
+.navbar-inverse .navbar-brand {
+    background: #fff none repeat scroll 0 0 !important;
+    border-radius: 50px;
+    color: var(--color1) !important;
+    height: auto;
+    margin: 3px 0 2px -12px !important;
+    padding: 12px 20px !important;
+}
+.btn-lg, .btn-group-lg > .btn {
+    border-radius: 153px;
+    font-size: 29px;
+}
+.btn-site {
+    background: var(--color1) none repeat scroll 0 0;
+    color: #fff !important;
+}
+
+#containerManageTabs .nav-item a {
+    color: var(--color2);
+    font-size: 20px;
+}
+
+#containerManageTabs .nav-item a:focus {
+    outline: 0px;
+}
+
+.displayHeaderButton {
+    width:100%; 
+    border-color:var(--color1);
+    margin: 5px 0px;
+    border-radius: 20px;
+    color: var(--color2);
+}
