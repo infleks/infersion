@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 # Create your views here.
 
+
 def display(request):
 
     data = []
@@ -12,6 +13,18 @@ def display(request):
         tempDict = {}
         tempDict['cus'] = c
 
+        tempDict['prodMan'] = ProductManagerHistory.objects.filter(customer=c)
+        tempDict['techMan'] = TechnicalManagerHistory.objects.filter(
+            customer=c)
+
+        if len(tempDict['prodMan']) > 0:
+            tempDict['prodMan'] = tempDict['prodMan'][len(
+                tempDict['prodMan'])-1]
+
+        if len(tempDict['techMan']) > 0:
+            tempDict['techMan'] = tempDict['techMan'][len(
+                tempDict['techMan'])-1]
+
         tempHist = ProductHistory.objects.filter(customer=c)
         tempDict['prodHist'] = {}
         for t in tempHist:
@@ -20,8 +33,6 @@ def display(request):
 
             if str(tempDict['prodHist'][t.productversion.pk].prodInstallationTime) > str(t.prodInstallationTime):
                 tempDict['prodHist'][t.productversion.pk] = t
-
-            print(tempDict['prodHist'][t.productversion.pk].productversion.productVersionName)
 
         tempHist = TestProductHistory.objects.filter(customer=c)
         tempDict['testProdHist'] = {}
@@ -34,10 +45,8 @@ def display(request):
 
         data.append(tempDict)
 
+    return render(request, 'display.html', {'data': data})
 
-
-
-    return render(request, 'display.html', {'data' : data})
 
 def add(request):
     if(request.method == 'POST'):
@@ -107,7 +116,7 @@ def add(request):
             tV.testProductVersionName = p['tprodVer_name']
             tV.testProductVersionUpdateTime = p['tprodVer_date']
             tV.save()
-            '''                    
+            '''
         elif p['add_what'] == 'prodLoadTime':
             pH = ProductHistory()
             pH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
@@ -127,29 +136,47 @@ def add(request):
         elif p['add_what'] == 'infHis':
             iH = InfinaWorkerHistory()
             iH.producthistory = ProductHistory.objects.get(pk=p['prodHis_id'])
-            iH.testhistory = TestProductHistory.objects.get(pk=p['tprodHis_id'])
+            iH.testhistory = TestProductHistory.objects.get(
+                pk=p['tprodHis_id'])
             iH.workerName = p['infHis_name']
             iH.workerSurname = p['infHis_surname']
             iH.savingTime = p['infHis_date']
             iH.save()
 
     dataToSend = {
-        'cus' : CustomerInfo.objects.all(),
+        'cus': CustomerInfo.objects.all(),
         'prodMan': ProductManagerHistory.objects.all(),
-        'techMan' : TechnicalManagerHistory.objects.all(),
-        'db'  : DatabaseInfo.objects.all(),
-        'dbHis'  : DatabaseVersion.objects.all(),
-        'server' : ServerInfo.objects.all(),
-        'svHis' : ServerVersion.objects.all(),
-        'prod' : ProductInfo.objects.all(),
-        'prodMod' : ProductModule.objects.all(),
-        'prodVer' : ProductVersion.objects.all(),
-        'prodLoadTime' : ProductHistory.objects.all(),
-        'testLoadTime' : TestProductHistory.objects.all(),
-        'infHis' : InfinaWorkerHistory.objects.all(),
+        'techMan': TechnicalManagerHistory.objects.all(),
+        'db': DatabaseInfo.objects.all(),
+        'dbHis': DatabaseVersion.objects.all(),
+        'server': ServerInfo.objects.all(),
+        'svHis': ServerVersion.objects.all(),
+        'prod': ProductInfo.objects.all(),
+        'prodMod': ProductModule.objects.all(),
+        'prodVer': ProductVersion.objects.all(),
+        'prodLoadTime': ProductHistory.objects.all(),
+        'testLoadTime': TestProductHistory.objects.all(),
+        'infHis': InfinaWorkerHistory.objects.all(),
     }
 
     return render(request, 'add.html', dataToSend)
 
-    if (request.method == 'GET'):
-            p_get=request.GET['id']
+
+def display_detail(request):
+
+    if request.method != "GET":
+        return redirect('display')
+
+    if 'id' not in request.GET.keys():
+        return redirect('display')
+
+    pk1 = request.GET['id']
+    cusData = CustomerInfo.objects.get(pk=pk1)
+    prodData= ProductHistory.objects.filter(customer=cusData)
+
+
+    dataToSend = {
+        'prodData': prodData
+    }
+
+    return render(request, 'display_detail.html', dataToSend)

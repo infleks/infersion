@@ -7,69 +7,33 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="container">
-  <h2>Simple Collapsible</h2>
-  <p>Click on the button to toggle between showing and hiding content.</p>
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
-  <div id="demo" class="collapse">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </div>
-</div>
-
-</body>
-</html>
-
-
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-
-<style>
-table {
-    text-align: center;
-    width:40%;
-}
-table, th, td {
-    border-collapse: collapse;
-
-}
-th, td {
-    padding: 15px;
-    text-align: center;
-}
-table#t01 tr:nth-child(even) {
-    background-color: #EED2D3;
-    height:50px;
-}
-table#t01 tr:nth-child(odd) {
-   background-color: #F7EAEA;
-   height:50px;
-
-}
-table#t01 th {
-    background-color: #DCA0A2;
-    color: black;
-        text-align: center;
-}
-</style>
-</head>
-<body>
-<table id="t01" align="center">
-  <th>Müşteriler</th>
-{% include 'partials/header_add_display.html' %}
-      {% for c in cus %}
-  <tr>
-    <td><a href="/main?id={{c.pk}}">{{ c.customerName }}</a></td>
-  </tr>
-   {% endfor %}
-{% include 'partials/footer.html' %}
-</table>
+    {% include 'partials/header_add_display.html' %}
+    <table class="table">
+        <tr>
+            <th scope="col">Ürün Tipi</th>
+            <th scope="col">Ürün</th>
+            <th scope="col">Tarihi</th>
+            <th scope="col">Database</th>
+            <th scope="col">Database Versiyonu</th>
+            <th scope="col">Server</th>
+            <th scope="col">Server Versiyonu</th>
+            <th scope="col">Ürün Sorumlusu</th>
+            <th scope="col">Teknik Sorumlu</th>
+        </tr>
+        {% for d in prodData %}
+        <tr>
+            <th>Ürün</th>
+            <th>{{d.productversion.productmodule.product.productName}}</th>
+            <th>{{d.prodInstallationTime}}</th>
+            <th>{{d.databaseversion.database.databaseName}}</th>
+            <th>{{d.databaseversion.databaseVersionName}}</th>
+            <th>{{d.serverversion.server.serverName}}</th>
+            <th>{{d.serverversion.serverVersionName}}</th>
+            <th>{{prodMan.prodManName}}</th>
+            <th>{{techMan.techManName}}</th>
+        </tr>
+        {% endfor %}
+    </table>
 
 </body>
 </html>
