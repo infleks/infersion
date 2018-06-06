@@ -1,0 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+    background: #be5254 none repeat scroll 0 0 !important;
+    border: medium none !important;
+    border-radius: 151px !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+    font-size: 20px;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: gainsboro;
+}
+
+.navbar-inverse .navbar-brand {
+    background: #fff none repeat scroll 0 0 !important;
+    border-radius: 50px;
+    color: #be5254 !important;
+    height: auto;
+    margin: 3px 0 2px -12px !important;
+    padding: 12px 20px !important;
+}
+
+.btn-lg,
+.btn-group-lg>.btn {
+    border-radius: 153px;
+    font-size: 29px;
+}
+
+.btn-site {
+    background: #be5254 none repeat scroll 0 0;
+    color: #fff !important;
+}
+
+.container {
+    padding: 10px;
+}
+

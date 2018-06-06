@@ -1,20 +1,19 @@
 <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 <div class="container2">
-  <form id="contact" action="add" method="post" style="height:520px;">
-      {% csrf_token %}
+  <form id="contact" action="add" method="post" style="height:520px; margin-top: 5px;">
+    {% csrf_token %}
     <h3>Ürün Sorumlusu Ekle</h3>
     <h4>Lütfen ürün sorumlusu bilgilerini giriniz.</h4>
-      <input type="hidden" name="add_what" value="prodMan">
+    <input type="hidden" name="add_what" value="prodMan">
 
     <fieldset>
-        <h4>Müşteri Adı :</h4>
+      <h4>Müşteri Adı :</h4>
       <select name="cus_id" class="form-control">
-          {% for c in cus %}
-    <option value={{c.pk}}>{{ c.customerName }}</option>
+        {% for c in cus %}
+        <option value={{c.pk}}>{{ c.customerName }}</option>
+        {% endfor %}
 
-   {% endfor %}
-
-</select>
+      </select>
 
     </fieldset>
     <fieldset>
@@ -26,7 +25,7 @@
     <fieldset>
       <input placeholder="Telefon Numarası" type="text" tabindex="4" name="prodMan_phone" required>
     </fieldset>
-       <fieldset>
+    <fieldset>
       <input placeholder="Zaman" type="date" tabindex="5" name="prodMan_date" required>
     </fieldset>
 
@@ -35,4 +34,3 @@
     </fieldset>
   </form>
 </div>
-

@@ -1,65 +1,68 @@
 {% include 'partials/header_add_display.html' %}
 
-  <div style="width: 100%; margin: 0px auto; float: left;">
-    <div class="container">
+
+
+<div style="width: 100%; margin: 0px auto; float: left;">
+  <div class="container">
     <div class="row">
       <div class="col-md-4">
-    {% include  'addCustomerInfo.html' %}
+        {% include 'addCustomerInfo.html' %}
       </div>
-        <div class="col-md-4">
-    {% include  'addProductManager.html' %}
-        </div>
-          <div class="col-md-4">
-    {% include  'addTechnicalManager.html' %}
-      </div>
-    </div>
-      </div>
-
-    <div class="container">
-    <div class="row">
       <div class="col-md-4">
-{% include  'addProductInfo.html' %}      </div>
-        <div class="col-md-4">
-    {% include  'addProductModule.html' %}
-        </div>
-          <div class="col-md-4">
-    {% include  'addProductVersion.html' %}
+        {% include 'addProductManager.html' %}
       </div>
-    </div>
-      </div>
-
-
-    <div class="container">
-    <div class="row">
       <div class="col-md-4">
-    {% include  'addDatabaseInfo.html' %}
-      </div>
-        <div class="col-md-4">
-    {% include  'addDatabaseVersion.html' %}
-        </div>
-          <div class="col-md-4">
-    {% include  'addServerInfo.html' %}
+        {% include 'addTechnicalManager.html' %}
       </div>
     </div>
-      </div>
-
-
-    <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-    {% include  'addServerVersion.html' %}
-      </div>
-        <div class="col-md-4">
-    {% include  'addProductHistory.html' %}
-        </div>
-          <div class="col-md-4">
-    {% include  'addTestProductHistory.html' %}
-      </div>
-    </div>
-      </div>
-    {% include  'addInfinaWorkerHistory.html' %}
   </div>
 
- 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        {% include 'addProductInfo.html' %} </div>
+      <div class="col-md-4">
+        {% include 'addProductModule.html' %}
+      </div>
+      <div class="col-md-4">
+        {% include 'addProductVersion.html' %}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        {% include 'addDatabaseInfo.html' %}
+      </div>
+      <div class="col-md-6">
+        {% include 'addDatabaseVersion.html' %}
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        {% include 'addServerInfo.html' %}
+      </div>
+      <div class="col-md-6">
+        {% include 'addServerVersion.html' %}
+      </div>
+      <div class="col-md-6">
+        {% include 'addProductHistory.html' %}
+      </div>
+      <div class="col-md-6">
+        {% include 'addTestProductHistory.html' %}
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
 
 {% include 'partials/footer.html' %}
