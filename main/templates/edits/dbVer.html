@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container2">
+        <form class="contact" action="edit" method="post" style="height:370px; margin-top: 5px;">
+          {% csrf_token %}
+          <h3>Veritabanı Versiyonu Düzenle</h3>
+          <h4>Lütfen veritabanı versiyon bilgilerini giriniz.</h4>
+          <fieldset>
+            <input type="hidden" tabindex="1" name="edit_what" value="editDbVer" required autofocus>
+          </fieldset>
+          <fieldset>
+            <h4>Veritabanı Adı :</h4>
+            <select name="db_id" class="form-control">
+              {% for d in dbDatas %}
+              <option value={{d.pk}}>{{ d.databaseName }}</option>
+      
+              {% endfor %}
+      
+            </select>
+      
+          </fieldset>
+          <fieldset>
+            <input value="{{dbVerData.databaseVersionName}}" type="text" tabindex="2" name="dbVer_name" required>
+            <input value="{{dbVerData.pk}}" type="hidden" tabindex="2" name="id" required>
+
+          </fieldset>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+          </fieldset>
+        </form>
+      </div>
+{% endblock %}

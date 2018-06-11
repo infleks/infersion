@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container2">
+        <form class="contact" action="edit" method="post" style="height:370px; margin-top: 5px;">
+          {% csrf_token %}
+          <h3>Sunucu Versiyonu Ekle</h3>
+          <h4>Lütfen sunucu versiyon bilgilerini giriniz.</h4>
+          <fieldset>
+            <input type="hidden" tabindex="1" name="edit_what" value="editServerVer" required autofocus>
+          </fieldset>
+          <fieldset>
+            <h4>Sunucu Adı :</h4>
+            <select name="server" class="form-control">
+              {% for s in server %}
+              <option value={{s.pk}}>{{ s.serverName }}</option>
+      
+              {% endfor %}
+      
+            </select>
+      
+          </fieldset>
+          <fieldset>
+            <input value="{{serverVer.serverVersionName}}" type="text" tabindex="2" name="svVer_name" required>
+            <input type="hidden" tabindex="1" name="id" value="{{serverVer.pk}}" required autofocus>
+
+          </fieldset>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+          </fieldset>
+        </form>
+      </div>
+{% endblock %}

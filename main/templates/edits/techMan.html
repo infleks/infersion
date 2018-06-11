@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container2">
+        <form class="contact" action="edit" method="post" style="height:520px; margin-top: 5px;">
+          {% csrf_token %}
+          <h3>Ürün Yöneticisi Düzenle</h3>
+          {% for t in techData %}
+          <input value="editTechMan" type="hidden" tabindex="2" name="edit_what" required/>
+          <input value="{{t.pk}}" type="hidden" tabindex="2" name="pk" required/>
+          
+          <fieldset>
+              <input value="{{t.techManName}}" type="text" tabindex="2" name="techMan_name" required>
+            </fieldset>
+            <fieldset>
+              <input value="{{t.techManEmail}}" type="email" tabindex="3" name="techMan_email" required>
+            </fieldset>
+            <fieldset>
+              <input value="{{t.techManPhoneNumber}}" type="text" tabindex="4" name="techMan_phone" required>
+            </fieldset>
+            <fieldset>
+              <input value="{{whenIsTechManResponsible}}" type="date" tabindex="5" name="techMan_date" required>
+            </fieldset>
+        
+            <fieldset>
+              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Düzenle</button>
+            </fieldset>
+          {% endfor %}
+        </form>
+      </div>
+{% endblock %}

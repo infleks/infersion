@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container2">
+        <form class="contact" action="edit" method="post" style="height:520px; margin-top: 5px;">
+          {% csrf_token %}
+          <h3>Ürün Yöneticisi Düzenle</h3>
+          {% for p in prodData %}
+          <input value="editProdMan" type="hidden" tabindex="2" name="edit_what" required/>
+          <input value="{{p.pk}}" type="hidden" tabindex="2" name="pk" required/>
+          
+          <fieldset>
+              <input value="{{p.prodManName}}" type="text" tabindex="2" name="prodMan_name" required>
+            </fieldset>
+            <fieldset>
+              <input value="{{p.prodManEmail}}" type="email" tabindex="3" name="prodMan_email" required>
+            </fieldset>
+            <fieldset>
+              <input value="{{p.prodManPhoneNumber}}" type="text" tabindex="4" name="prodMan_phone" required>
+            </fieldset>
+            <fieldset>
+              <input value="{{whenIsProdManResponsible}}" type="date" tabindex="5" name="prodMan_date" required>
+            </fieldset>
+        
+            <fieldset>
+              <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Düzenle</button>
+            </fieldset>
+          {% endfor %}
+        </form>
+      </div>
+{% endblock %}

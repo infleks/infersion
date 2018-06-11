@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container2">
+        <form class="contact" action="edit" method="post" style="height:370px; margin-top: 5px;">
+          {% csrf_token %}
+          <h3>Sunucu Düzenleme</h3>
+          <h4>Lütfen sunucu bilgilerini giriniz.</h4>
+          <fieldset>
+            <input type="hidden" tabindex="1" name="edit_what" value="editServer" required autofocus>
+          </fieldset>
+      
+          <fieldset>
+            <input value="{{server.serverName}}" type="text" tabindex="2" name="server_name" required>
+            <input type="hidden" tabindex="1" name="id" value="{{server.pk}}" required autofocus>
+          </fieldset>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+          </fieldset>
+        </form>
+      </div>
+{% endblock %}

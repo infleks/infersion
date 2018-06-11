@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container2">
+  <form class="contact" action="edit" method="post">
+    {% csrf_token %}
+    <h3>Ürün Versiyonu Düzenle</h3>
+    <h4>Lütfen ürün versiyon bilgilerini giriniz.</h4>
+    <fieldset>
+      <input type="hidden" tabindex="1" name="edit_what" value="editProdVer" required autofocus>
+      <input type="hidden" tabindex="1" name="id" value="{{prodVerData.pk}}" required autofocus>
+
+    </fieldset>
+    
+    <fieldset>
+      <h4>Ürün Modül Adı :</h4>
+      <select name="prodMod" class="form-control">
+
+        {% for pr in prodMods %}
+        <option value={{pr.pk}} {% if prodVerData.productmodule.pk == pr.pk %} selected {% endif %}  >{{ pr.moduleName }}</option>
+        {% endfor %}
+
+      </select>
+
+    </fieldset>
+    <fieldset>
+      <input value="{{prodVerData.productVersionName}}" type="text" tabindex="2" name="prodVerName" required>
+    </fieldset>
+
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+    </fieldset>
+  </form>
+</div>
+{% endblock %}

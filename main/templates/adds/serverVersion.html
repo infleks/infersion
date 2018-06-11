@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <div class="container2">
   <form class="contact" action="add" method="post" style="height:370px; margin-top: 5px;">
     {% csrf_token %}
@@ -9,7 +10,7 @@
     <fieldset>
       <h4>Sunucu Adı :</h4>
       <select name="sv_id" class="form-control">
-        {% for s in server %}
+        {% for s in servers %}
         <option value={{s.pk}}>{{ s.serverName }}</option>
 
         {% endfor %}
@@ -24,3 +25,4 @@
     </fieldset>
   </form>
 </div>
+{% endblock %}

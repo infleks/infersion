@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container2">
+        <form class="contact" action="edit" method="post" style="height:320px; ">
+          {% csrf_token %}
+          <h3>Ürün Ekle</h3>
+          <h4>Lütfen ürün bilgilerini giriniz.</h4>
+          <fieldset>
+            <input type="hidden" tabindex="1" name="edit_what" value="editProd" required autofocus>
+            
+          </fieldset>
+          {% for p in prodData %}
+          <fieldset>
+                <input type="hidden" tabindex="1" name="pk" value="{{p.pk}}" required autofocus>
+            <input value="{{p.productName}}" type="text" tabindex="2" name="prodName" required>
+          </fieldset>
+          {% endfor %}
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+          </fieldset>
+        </form>
+      </div>
+{% endblock %}

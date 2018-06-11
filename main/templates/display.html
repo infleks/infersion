@@ -20,7 +20,7 @@
             <tbody>
                 {% for k,ph in d.prodHist.items %}
                 <tr>
-                    <td>Ürün</td>
+                    <td>Canlı</td>
                     <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
                         {{ph.productversion.productVersionName}}
                     </td>
@@ -42,7 +42,7 @@
         </table>
         
         <div style="width: 100%; text-align: right; padding: 0px 50px;">
-            <a onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', '', 'width=700, height=400');">Geçmiş Kayıtlar</a>
+            <a href="#" onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=700, height=400');">Geçmiş Kayıtlar</a>
         </div>
     </div>
     {% endfor %}
