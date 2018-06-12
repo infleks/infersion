@@ -1,0 +1,12 @@
+{% extends 'base_for_registration.html' %} {% block content %}
+
+<div class="container2">
+    <form class="contact"  action="logout_view" style="height:200px; margin-top: 5px;">
+      {% csrf_token %}
+      
+      <h3>Başarılı bir şekilde çıkış gerçekleşti.</h3>
+      
+    </form>
+  </div>
+
+{% endblock %}

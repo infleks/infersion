@@ -2,9 +2,31 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 # Create your views here.
-
-
+def login_view(request):
+    if request.method == "POST":
+        p = request.POST
+        userr = UserInfo.objects.filter(
+            userEmail=p['user_email'], userPassword=p['user_password'])
+        print(userr)
+        if(len(userr) > 0):
+            user = userr[0]
+            request.session['user_id'] = user.pk
+            return redirect('display')
+        else:
+            print("Kayit yok")
+            return redirect('login')
+    else:
+        return render(request, 'registration/login.html', {})
+def logout_view(request):
+    try:
+        del request.session['user_id']
+    except KeyError:
+        pass
+    return render(request, 'registration/logout.html', {})
 def display(request):   
+    if 'user_id' not in request.session.keys():
+        print("if e girdi")
+        return redirect('login')
     data = []
 
     cuss = CustomerInfo.objects.all()
@@ -48,7 +70,9 @@ def display(request):
 
 
 def manage(request):
-    
+    if 'user_id' not in request.session.keys():
+        print("if e girdi")
+        return redirect('login')
     data = []
 
     cuss = CustomerInfo.objects.all()
@@ -180,8 +204,7 @@ def add(request):
         elif p['add_what'] == 'infHis':
             iH = InfinaWorkerHistory()
             iH.producthistory = ProductHistory.objects.get(pk=p['prodHis_id'])
-            iH.testhistory = TestProductHistory.objects.get(
-                pk=p['tprodHis_id'])
+            iH.testhistory = TestProductHistory.objects.get(pk=p['tprodHis_id'])
             iH.workerName = p['infHis_name']
             iH.workerSurname = p['infHis_surname']
             iH.savingTime = p['infHis_date']
@@ -199,8 +222,8 @@ def detail(request):
 
     pk1 = request.GET['id']
     cusData = CustomerInfo.objects.get(pk=pk1)
-    prodData= ProductHistory.objects.filter(customer=cusData)
-    testData= TestProductHistory.objects.filter(customer=cusData)
+    prodData = ProductHistory.objects.filter(customer=cusData)
+    testData = TestProductHistory.objects.filter(customer=cusData)
 
 
     dataToSend = {

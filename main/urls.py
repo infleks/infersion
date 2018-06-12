@@ -6,7 +6,8 @@ from main.views import *
 from django.conf.urls import include, url
 
 urlpatterns = [
-    url(r'^$', views.display, name='display'),
+    url(r'^login/$', views.login_view, name='login'),
+    url(r'^logout/$', views.logout_view, name='logout'),
     url(r'^manage', views.manage, name='manage'),
     url(r'^add$', views.add, name='add'),
     url(r'^edit', views.edit, name='edit'),
@@ -19,5 +20,9 @@ urlpatterns = [
     url(r'^addServer$', views.addServer, name='addServer'),
     url(r'^addServerVer$', views.addServerVer, name='addServerVer'),
     url(r'^addProd$', views.addProd, name='addProd'),
-    url(r'^detay', views.detail, name='detail')
+    url(r'^detay', views.detail, name='detail'),
+    url(r'^add', views.add, name='add'),
+    url(r'^detay', views.detail, name='detail'),
+    url(r'^$', views.display, name='display'),
+    
 ]

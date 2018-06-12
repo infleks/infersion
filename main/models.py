@@ -104,14 +104,16 @@ class InfinaWorkerHistory(models.Model):
 
     def __str__(self):
         return self.workerName + " " + self.workerSurname 
-'''
-class User(models.Model):
-    userName = models.CharField(max_length=50)
-    userSurname = models.CharField(max_length=50)
-    userPassword = models.CharField(max_length=100)
 
-class UserPermission(models.Model):
-    permissionNumber = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    module = models.ForeignKey(ProductModule, on_delete=models.CASCADE)
-'''
+class UserInfo(models.Model):
+    userEmail = models.EmailField()
+    userPassword = models.CharField(max_length=100)
+    userPermission = models.CharField(max_length=2)
+
+    def __str__(self):
+        return self.userEmail 
+
+class UserModuleAuthentication(models.Model):
+    userr = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+    productmodule = models.ForeignKey(ProductModule, on_delete=models.CASCADE)
+

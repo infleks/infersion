@@ -1,0 +1,22 @@
+{% extends 'base_for_registration.html' %} {% block content %}
+<div class="container2">
+
+  <form class="contact"  method="post" style="height:300px; margin-top: 130px;">
+    {% csrf_token %}
+
+    <h2>Kullanıcı Giriş Bilgileri</h2>
+    <fieldset>
+      <input type="hidden" tabindex="1" name="sec_id" value="userPermission" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Kullanıcı Mail" type="email" tabindex="2" name="user_email" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Kullanıcı Şifresi" type="password" tabindex="2" name="user_password" style="width: 100%;" required>
+    </fieldset>
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Giriş</button>
+    </fieldset>
+  </form>
+</div>
+
+{% endblock %}
