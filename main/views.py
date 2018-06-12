@@ -25,7 +25,6 @@ def logout_view(request):
     return render(request, 'registration/logout.html', {})
 def display(request):   
     if 'user_id' not in request.session.keys():
-        print("if e girdi")
         return redirect('login')
     data = []
 
@@ -70,8 +69,8 @@ def display(request):
 
 
 def manage(request):
+    dataToSend = {}
     if 'user_id' not in request.session.keys():
-        print("if e girdi")
         return redirect('login')
     data = []
 
@@ -131,6 +130,8 @@ def manage(request):
     return render(request, 'add.html', dataToSend)
 
 def add(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     if(request.method == 'POST'):
         p = request.POST
         if p['add_what'] == "cus":
@@ -391,7 +392,8 @@ def addTechMan(request):
 
 
 def edit(request):
-
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     if request.method == "POST":
         req=request.POST
         if req['edit_what'] == "editCustomer":
