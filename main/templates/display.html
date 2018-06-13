@@ -37,6 +37,10 @@
                     <td>{{ph.testInstallationTime}}</td>
                 </tr>
                 {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="cursor: pointer;" onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=700, height=400');"><i class="fas fa-file-alt"></i>Geçmiş Kayıtlar</td>
                 </tr>
             </tbody>
         </table>

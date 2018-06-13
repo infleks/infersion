@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
+import datetime
 # Create your views here.
+
+
 def login_view(request):
     if request.method == "POST":
         p = request.POST
@@ -303,22 +306,58 @@ def addProd(request):
     return render(request, 'adds/productInfo.html')
 
 def addProdMod(request):
-    return render(request, 'adds/productModule.html')
+    prods=ProductInfo.objects.all()
+    dataToSend={
+        'prods' : prods
+    }
+    return render(request, 'adds/productModule.html', dataToSend)
 
 def addServer(request):
     return render(request, 'adds/serverInfo.html')
+
+def addProdHis(request):
+    cus=CustomerInfo.objects.all()
+    prodVer= ProductVersion.objects.all()
+    dbHis= DatabaseVersion.objects.all()
+    svHis=ServerVersion.objects.all()
+
+    dataToSend={
+        'cus':cus,
+        'prodVer':prodVer,
+        'dbHis': dbHis,
+        'svHis':svHis
+
+
+    }
+
+    return render(request, 'adds/productHistory.html', dataToSend)
+def addTestHis(request):
+    cus=CustomerInfo.objects.all()
+    prodVer= ProductVersion.objects.all()
+    dbHis= DatabaseVersion.objects.all()
+    svHis=ServerVersion.objects.all()
+
+    dataToSend={
+        'cus':cus,
+        'prodVer':prodVer,
+        'dbHis': dbHis,
+        'svHis':svHis
+
+
+    }
+    return render(request, 'adds/testProductHistory.html', dataToSend)
 
 def addProdVer(request):
     prodMod=ProductModule.objects.all()
     dataToSend={
         'prodMod' : prodMod
     }
-    return render(request, 'adds/productVersion.html')
+    return render(request, 'adds/productVersion.html', dataToSend)
 
 def addDbVer(request):
     db=DatabaseInfo.objects.all()
     dataToSend={
-        'db' : db
+        'db' : db,
     }
     return render(request, 'adds/databaseVersion.html', dataToSend)
     
@@ -409,12 +448,13 @@ def edit(request):
             p.prodManName = req['prodMan_name']
             p.prodManEmail = req['prodMan_email']
             p.prodManPhoneNumber = req['prodMan_phone']
+            p.customer=CustomerInfo.objects.get(pk=req['cus_id'])
             p.whenIsProdManResponsible = req['prodMan_date']
             p.save()
             return redirect('add')
 
-        elif req['edit_what'] == "techMan":
-            pk1=req['pk']
+        elif req['edit_what'] == "editTechMan":
+            pk1=req['id']
             t = TechnicalManagerHistory.objects.get(pk=pk1)
             t.techManName = req['techMan_name']
             t.techManEmail = req['techMan_email']
@@ -473,6 +513,44 @@ def edit(request):
 
             d.save()
             return redirect('add')
+        elif req['edit_what'] == "editProdHis":
+            pk1=req['id']
+            pk2=req['server']
+            pk3=req['db']
+            pk4=req['cus_id']
+            d=ProductHistory.objects.get(pk=pk1)
+            d.customer=CustomerInfo.objects.get(pk=pk4)
+            prodVer=req['prodVers_id']
+            prodversion=ProductVersion.objects.get(pk=prodVer)
+            prod=prodversion.productmodule.product
+            s=ServerVersion.objects.get(pk=pk2)
+            db=DatabaseVersion.objects.get(pk=pk3)
+            d.serverversion=s
+            d.databaseversion=db
+            d.prodInstallationTime=req['prodLoadTime_date']
+            d.productversion=prodversion
+
+            d.save()
+            return redirect('add')
+        elif req['edit_what'] == "editTestHis":
+            pk1=req['id']
+            pk2=req['server']
+            pk3=req['db']
+            pk4=req['cus_id']
+            d=TestProductHistory.objects.get(pk=pk1)
+            d.customer=CustomerInfo.objects.get(pk=pk4)
+            prodVer=req['prodVers_id']
+            prodversion=ProductVersion.objects.get(pk=prodVer)
+            prod=prodversion.productmodule.product
+            s=ServerVersion.objects.get(pk=pk2)
+            db=DatabaseVersion.objects.get(pk=pk3)
+            d.serverversion=s
+            d.databaseversion=db
+            d.testInstallationTime=req['testLoadTime_date']
+            d.productversion=prodversion
+
+            d.save()
+            return redirect('add')
 
     what = request.GET['what']
     if what == 'cus':
@@ -484,16 +562,24 @@ def edit(request):
         return render(request, 'edits/customer.html', dataToSend)
     elif what == 'prodMan':
         pk1 = request.GET['id']
-        prodData = ProductManagerHistory.objects.filter(pk=pk1)
+        prodData = ProductManagerHistory.objects.get(pk=pk1)
+        tarih = datetime.datetime.strftime(prodData.whenIsProdManResponsible, "%Y-%m-%d")        
+        cus=CustomerInfo.objects.all()
         dataToSend = {
-            'prodData': prodData
+            'prodData': prodData,
+            'cus' : cus,
+            'tarih': tarih
         }
         return render(request, 'edits/prodMan.html', dataToSend)
     elif what == 'techMan':
         pk1 = request.GET['id']
-        techData = TechnicalManagerHistory.objects.filter(pk=pk1)
+        techData = TechnicalManagerHistory.objects.get(pk=pk1)
+        tarih = datetime.datetime.strftime(techData.whenIsTechManResponsible, "%Y-%m-%d")  
+        cus=CustomerInfo.objects.all()
         dataToSend = {
-            'techData': techData
+            'techData': techData,
+            'tarih' : tarih,
+            'cus': cus
         }
         return render(request, 'edits/techMan.html', dataToSend)
     elif what == 'prod':
@@ -505,7 +591,7 @@ def edit(request):
         return render(request, 'edits/prod.html', dataToSend)
     elif what == 'prodMod':
         pk1 = request.GET['id']
-        prodModData = ProductModule.objects.filter(pk=pk1)
+        prodModData = ProductModule.objects.get(pk=pk1)
         prodMods=ProductModule.objects.all()
         dataToSend = {
             'prodModData': prodModData,
@@ -534,6 +620,7 @@ def edit(request):
         pk1 = request.GET['id']
         dbVerData = DatabaseVersion.objects.get(pk=pk1)
         dbDatas=DatabaseInfo.objects.all()
+        
         dataToSend = {
             'dbVerData': dbVerData,
             'dbDatas' : dbDatas
@@ -555,3 +642,110 @@ def edit(request):
             'serverVer' : serverVer
             }
         return render(request, 'edits/serverVer.html', dataToSend)
+    elif what == 'prodHis':
+        pk1 = request.GET['id']
+        prodHis = ProductHistory.objects.get(pk=pk1)
+        prodHisDate = datetime.datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%m-%d")
+        svHis = ServerVersion.objects.all()
+        dbHis= DatabaseVersion.objects.all()
+        c=CustomerInfo.objects.get(pk=pk1)
+        cus=CustomerInfo.objects.all()
+        prodMan = ProductManagerHistory.objects.filter(customer=c)
+        techMan = TechnicalManagerHistory.objects.filter(customer=c)
+        prodVer= ProductVersion.objects.all()
+
+        
+        dataToSend = {
+            'svHis': svHis,
+            'prodMan' : prodMan,
+            'techMan' : techMan,
+            'dbHis' : dbHis,
+            'cus' : cus,
+            'prodVer' : prodVer,
+            'prodHis' : prodHis,
+            'prodHisDate' : prodHisDate
+            }
+        return render(request, 'edits/prodHis.html', dataToSend)
+    elif what == 'testHis':
+        pk1 = request.GET['id']
+        testHis = TestProductHistory.objects.get(pk=pk1)
+        testHisDate = datetime.datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%m-%d")
+        svHis = ServerVersion.objects.all()
+        dbHis= DatabaseVersion.objects.all()
+        c=CustomerInfo.objects.get(pk=pk1)
+        cus=CustomerInfo.objects.all()
+        prodMan = ProductManagerHistory.objects.filter(customer=c)
+        techMan = TechnicalManagerHistory.objects.filter(customer=c)
+        prodVer= ProductVersion.objects.all()
+
+        
+        dataToSend = {
+            'svHis': svHis,
+            'prodMan' : prodMan,
+            'techMan' : techMan,
+            'dbHis' : dbHis,
+            'cus' : cus,
+            'prodVer' : prodVer,
+            'testHis' : testHis,
+            'testHisDate' : testHisDate
+            }
+       
+        return render(request, 'edits/testHis.html', dataToSend)
+
+def delete(request):
+    if request.method == "GET":
+        req=request.GET
+        what=req['what']
+        pk1=req['id']
+        if what=="cus":
+            d=CustomerInfo.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="db":
+            d=DatabaseInfo.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="dbVer":
+            d=DatabaseVersion.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="prodHis":
+            d=ProductHistory.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="prod":
+            d=ProductInfo.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="prodMan":
+            d=ProductManagerHistory.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="prodMod":
+            d=ProductModule.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="prodVer":
+            d=ProductVersion.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="sv":
+            d=ServerInfo.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="svVer":
+            d=ServerVersion.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="techMan":
+            d=TechnicalManagerHistory.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+        elif what=="testProd":
+            d=TestProductHistory.objects.get(pk=pk1)
+            d.delete()
+            return redirect('manage')
+
+
+
+        

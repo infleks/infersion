@@ -11,7 +11,7 @@
             <h4>Veritabanı Adı :</h4>
             <select name="db_id" class="form-control">
               {% for d in dbDatas %}
-              <option value={{d.pk}}>{{ d.databaseName }}</option>
+              <option value={{d.pk}} {% if dbVerData.pk == d.pk %} selected {% endif %}>{{ d.databaseName }}</option>
       
               {% endfor %}
       

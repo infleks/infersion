@@ -29,13 +29,15 @@
           <table class="table">
             <tr>
               <th scope="col">Müşteri Adı</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addCus', 'Düzenle', 'width=700, height=400');">Ekle</a></th>
+              <th></th>
+              <th onclick="var myWindow = window.open('/main/addCus', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
             </tr>
             {% for c in cus %}
             <tr>
                 <td>{{c.customerName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=cus&id={{c.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=cus&id={{c.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td onclick="var myWindow = window.open('/main/delete?what=cus&id={{c.pk}}', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;" ><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
+                
             </tr>
             {% endfor %}
           </table>
@@ -55,7 +57,8 @@
               <th scope="col">Telefon</th>
               <th scope="col">Tarihi</th>
               <th scope="col">Müşterisi</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addProdMan', 'Düzenle', 'width=700, height=400');">Ekle</a></th>
+              <th scope="col"></th>
+              <th onclick="var myWindow = window.open('/main/addProdMan', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
             </tr>
             {% for p in prodMan %}
             <tr>
@@ -64,8 +67,8 @@
                 <td>{{p.prodManPhoneNumber}}</td>
                 <td>{{p.whenIsProdManResponsible}}</td>
                 <td>{{p.customer.customerName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=prodMan&id={{p.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodMan&id={{p.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
             </tr>
             {% endfor %}
           </table>
@@ -87,7 +90,8 @@
               <th scope="col">Telefon</th>
               <th scope="col">Tarihi</th>
               <th scope="col">Müşterisi</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addTechMan', 'Düzenle', 'width=700, height=400');">Ekle</a></th>
+              <th scope="col"></th>
+              <th onclick="var myWindow = window.open('/main/addTechMan', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
             </tr>
             {% for t in techMan %}
             <tr>
@@ -96,8 +100,8 @@
                 <td>{{t.techManPhoneNumber}}</td>
                 <td>{{t.whenIsTechManResponsible}}</td>
                 <td>{{t.customer.customerName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=techMan&id={{t.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=techMan&id={{t.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
             </tr>
             {% endfor %}
           </table>
@@ -121,13 +125,15 @@
           <table class="table">
             <tr>
               <th scope="col">Ürün Adı</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addProd', 'Ekle', 'width=700, height=400');">Ekle</a></th>
+              <th></th>
+              <th onclick="var myWindow = window.open('/main/addProd', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
             </tr>
             {% for p in prod %}
             <tr>
                 <td>{{p.productName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=prod&id={{p.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prod&id={{p.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
             </tr>
             {% endfor %}
           </table>
@@ -144,14 +150,16 @@
               <tr>
                 <th scope="col">Modül Adı</th>
                 <th scope="col">Ürün</th>
-                <th><a href="#" onclick="var myWindow = window.open('/main/addProdMod', 'Ekle', 'width=700, height=400');">Ekle</a></th>
+                <th></th>
+                <th onclick="var myWindow = window.open('/main/addProdMod', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
               </tr>
               {% for pm in prodMod %}
               <tr>
                   <td>{{pm.moduleName}}</td>
                   <td>{{pm.product.productName}}</td>
-                  <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=prodMod&id={{pm.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                  <td><a href="#">Sil</a></td>
+                  <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodMod&id={{pm.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
               </tr>
               {% endfor %}
             </table>
@@ -170,14 +178,16 @@
               <tr>
                 <th scope="col">Versiyon Adı</th>
                 <th scope="col">Modülü</th>
-                <th><a href="#" onclick="var myWindow = window.open('/main/addProdVer', 'Düzenle', 'width=700, height=400');">Ekle</a></th>
+                <th></th>
+                <th onclick="var myWindow = window.open('/main/addProdVer', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
               </tr>
               {% for pv in prodVer %}
               <tr>
                   <td>{{pv.productVersionName}}</td>
                   <td>{{pv.productmodule.moduleName}}</td>
-                  <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=prodVer&id={{pv.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                  <td><a href="#">Sil</a></td>
+                  <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodVer&id={{pv.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                  <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
               </tr>
               {% endfor %}
             </table>
@@ -187,20 +197,7 @@
   </div>
 
   <div class="container tab-pane fade" id="environmentContainer">
-    <!--<div class="row">
-      <div class="col-md-6">
-        {% include 'adds/databaseInfo.html' %}
-      </div>
-      <div class="col-md-6">
-        {% include 'adds/databaseVersion.html' %}
-      </div>
-      <div class="col-md-6">
-        {% include 'adds/serverInfo.html' %}
-      </div>
-      <div class="col-md-6">
-        {% include 'adds/serverVersion.html' %}
-      </div>
-    </div>-->
+
     <button class="displayHeaderButton" type="button" class="btn btn-info" data-toggle="collapse" data-target="#databases"><h4><b>Veritabanları</b></h4></button>
     
     <div id="databases" class="collapse" style="margin: 20px 0px;">
@@ -210,13 +207,15 @@
           <table class="table">
             <tr>
               <th scope="col">Veritabanı Adı</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addDB', 'Ekle', 'width=700, height=400');">Ekle</a></th>
+              <th></th>
+              <th onclick="var myWindow = window.open('/main/addDB', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
             </tr>
             {% for d in db %}
             <tr>
                 <td>{{d.databaseName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=db&id={{d.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=db&id={{d.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
             </tr>
             {% endfor %}
           </table>
@@ -236,14 +235,16 @@
             <tr>
               <th scope="col">Versiyon Adı</th>
               <th scope="col">Veritabanı</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addDbVer', 'Ekle', 'width=700, height=400');">Ekle</a></th>
+              <th></th>
+              <th onclick="var myWindow = window.open('/main/addDbVer', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
             </tr>
             {% for dv in dbHis %}
             <tr>
                 <td>{{dv.databaseVersionName}}</td>
                 <td>{{dv.database.databaseName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=dbVer&id={{dv.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=dbVer&id={{dv.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
             </tr>
             {% endfor %}
           </table>
@@ -261,13 +262,15 @@
           <table class="table">
             <tr>
               <th scope="col">Sunucu Adı</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addServer', 'Ekle', 'width=700, height=400');">Ekle</a></th>
+              <th></th>
+              <th onclick="var myWindow = window.open('/main/addServer', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
             </tr>
             {% for s in server %}
             <tr>
                 <td>{{s.serverName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=server&id={{s.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=server&id={{s.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
             </tr>
             {% endfor %}
           </table>
@@ -286,14 +289,16 @@
             <tr>
               <th scope="col">Versiyon Adı</th>
               <th scope="col">Sunucu</th>
-              <th><a href="#" onclick="var myWindow = window.open('/main/addServerVer', 'Ekle', 'width=700, height=400');">Ekle</a></th>
+              <th></th>
+              <th onclick="var myWindow = window.open('/main/addServerVer', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
             </tr>
             {% for sv in svHis %}
             <tr>
                 <td>{{sv.serverVersionName}}</td>
                 <td>{{sv.server.serverName}}</td>
-                <td><a href="#" onclick="var myWindow = window.open('/main/edit?what=serverVer&id={{sv.pk}}', 'Düzenle', 'width=700, height=400');">Düzenle</a></td>
-                <td><a href="#">Sil</a></td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=serverVer&id={{sv.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
             </tr>
             {% endfor %}
           </table>
@@ -307,14 +312,91 @@
 
 
   <div class="container tab-pane fade" id="actionContainer">
-    <div class="row">
-      <div class="col-md-6">
-        {% include 'adds/productHistory.html' %}
+
+    <button class="displayHeaderButton" type="button" class="btn btn-info" data-toggle="collapse" data-target="#prodHis"><h4><b>Ürün Geçmişi</b></h4></button>
+    
+    <div id="prodHis" class="collapse" style="margin: 20px 0px;">
+        
+        
+        <div style="width: 100%; text-align: left; padding: 0px 50px;">
+          <table class="table">
+            <tr>
+              <th scope="col">Müşteri</th>
+              <th scope="col">Ürün Tipi</th>
+              <th scope="col">Ürün</th>
+              <th scope="col">Yükleme Tarihi</th>
+              <th scope="col">Sunucu</th>
+              <th scope="col">Veritabanı</th>
+              <th></th>
+              <th onclick="var myWindow = window.open('/main/addProdHis', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
+            </tr>
+            {% for d in data %}
+            {% for k,ph in d.prodHist.items %}
+            <tr>
+                <td>{{d.cus.customerName}}</td>
+                <td>Canlı</td>
+                <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
+                    {{ph.productversion.productVersionName}}
+                </td>
+                <td>{{ph.prodInstallationTime}}</td>
+                <td>{{ph.serverversion.serverVersionName}}</td>
+                <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodHis&id={{ph.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+            
+          </table>
+           
+        </div>
       </div>
-      <div class="col-md-6">
-        {% include 'adds/testProductHistory.html' %}
-      </div>
-    </div>
+
+      <button class="displayHeaderButton" type="button" class="btn btn-info" data-toggle="collapse" data-target="#testHis"><h4><b>Test Ürün Geçmişi</b></h4></button>
+    
+      <div id="testHis" class="collapse" style="margin: 20px 0px;">
+          
+          
+          <div style="width: 100%; text-align: left; padding: 0px 50px;">
+            <table>
+              <tr>
+                <th class="text-left">Müşteri</th>
+                <th class="text-left">Ürün Tipi</th>
+                <th class="text-left">Ürün</th>
+                <th class="text-left">Yükleme Tarihi</th>
+                <th class="text-left">Sunucu</th>
+                <th class="text-left">Veritabanı</th>
+                <th></th>
+                <th onclick="var myWindow = window.open('/main/addTestHis', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+
+              </tr>
+             
+
+              {% for d in data %}
+            {% for k,th in d.testProdHist.items %}
+            <tr>
+                <td class="text-left">{{d.cus.customerName}}</td>
+                <td class="text-left">Test</td>
+                <td class="text-left">{{th.productversion.productmodule.product.productName}}, {{th.productversion.productmodule.moduleName}},
+                  {{th.productversion.productVersionName}}
+                </td>
+                <td class="text-left">{{th.testInstallationTime}}</td>
+                <td class="text-left">{{th.serverversion.serverVersionName}}</td>
+                <td class="text-left">{{th.databaseversion.database.databaseName}}, {{th.databaseversion.databaseVersionName}}</td>
+                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=testHis&id={{th.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+ 
+              
+            </table>
+             
+          </div>
+        </div>
+  
+
   </div>
 
 </div>

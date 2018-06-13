@@ -3,27 +3,36 @@
         <form class="contact" action="edit" method="post" style="height:520px; margin-top: 5px;">
           {% csrf_token %}
           <h3>Ürün Yöneticisi Düzenle</h3>
-          {% for t in techData %}
           <input value="editTechMan" type="hidden" tabindex="2" name="edit_what" required/>
-          <input value="{{t.pk}}" type="hidden" tabindex="2" name="pk" required/>
+          <input value="{{techData.pk}}" type="hidden" tabindex="2" name="id" required/>
           
           <fieldset>
-              <input value="{{t.techManName}}" type="text" tabindex="2" name="techMan_name" required>
+              <input value="{{techData.techManName}}" type="text" tabindex="2" name="techMan_name" required>
             </fieldset>
             <fieldset>
-              <input value="{{t.techManEmail}}" type="email" tabindex="3" name="techMan_email" required>
+              <input value="{{techData.techManEmail}}" type="email" tabindex="3" name="techMan_email" required>
             </fieldset>
             <fieldset>
-              <input value="{{t.techManPhoneNumber}}" type="text" tabindex="4" name="techMan_phone" required>
+              <input value="{{techData.techManPhoneNumber}}" type="text" tabindex="4" name="techMan_phone" required>
             </fieldset>
-            <fieldset>
-              <input value="{{whenIsTechManResponsible}}" type="date" tabindex="5" name="techMan_date" required>
-            </fieldset>
+            <select name="cus_id" class="form-control">
+                {% for c in cus %}
+                <option value={{c.pk}} {% if techData.customer.pk == c.pk %} selected {% endif %}>{{ c.customerName }}</option>
         
+                {% endfor %}
+                </select><br>
+            <fieldset>
+              <input type="date" tabindex="5" name="techMan_date" id="tarihi" required>
+            </fieldset>
+            
             <fieldset>
               <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Düzenle</button>
             </fieldset>
-          {% endfor %}
         </form>
       </div>
+      <script>
+        window.onload = function () {
+            document.getElementById("tarihi").defaultValue = "{{tarih}}";
+        }
+    </script>
 {% endblock %}

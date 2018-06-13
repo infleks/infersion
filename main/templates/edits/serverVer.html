@@ -11,7 +11,7 @@
             <h4>Sunucu Adı :</h4>
             <select name="server" class="form-control">
               {% for s in server %}
-              <option value={{s.pk}}>{{ s.serverName }}</option>
+              <option value={{s.pk}} {% if serverVer.pk == s.pk %} selected {% endif %}>{{ s.serverName }}</option>
       
               {% endfor %}
       

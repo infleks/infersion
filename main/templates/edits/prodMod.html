@@ -12,19 +12,17 @@
             <select name="pmp" class="form-control">
               {% for pr in prodMods %}
               
-              <option value={{pr.pk}}>{{ pr.product.productName }}</option>
+              <option value={{pr.pk}} {% if prodModData.pk == pr.pk %} selected {% endif %}>{{ pr.product.productName }}</option>
       
               {% endfor %}
       
             </select>
       
           </fieldset>
-          {% for p in prodModData %}
           <fieldset>
-            <input value="{{p.moduleName}}" type="text" tabindex="2" name="prodModName" required>
-            <input value="{{p.pk}}" type="hidden" tabindex="2" name="id" required>
+            <input value="{{prodModData.moduleName}}" type="text" tabindex="2" name="prodModName" required>
+            <input value="{{prodModData.pk}}" type="hidden" tabindex="2" name="id" required>
           </fieldset>
-          {% endfor %}
           <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
           </fieldset>
         </form>
