@@ -75,6 +75,7 @@ def manage(request):
     dataToSend = {}
     if 'user_id' not in request.session.keys():
         return redirect('login')
+
     data = []
 
     cuss = CustomerInfo.objects.all()
@@ -745,7 +746,3 @@ def delete(request):
             d=TestProductHistory.objects.get(pk=pk1)
             d.delete()
             return redirect('manage')
-
-
-
-        

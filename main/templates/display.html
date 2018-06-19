@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-
+<title>Infersion</title>
 <div class="container">
     <h2>Müşteriler</h2>
     {% for d in data %}
@@ -45,9 +45,7 @@
             </tbody>
         </table>
         
-        <div style="width: 100%; text-align: right; padding: 0px 50px;">
-            <a href="#" onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=700, height=400');">Geçmiş Kayıtlar</a>
-        </div>
+        
     </div>
     {% endfor %}
 </div>
