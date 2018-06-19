@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <title>Infersion Yönet</title>
 <ul id="containerManageTabs" class="nav nav-tabs">
+  {% if users.userPermission != '1' %}
   <li class="nav-item">
-    <a href="" data-target="#customerContainer" data-toggle="tab" class="nav-link small active">Müşteri Yönetimi</a>
+    <a href="" data-target="#customerContainer" data-toggle="tab" class="nav-link small ">Müşteri Yönetimi</a>
   </li>
   <li class="nav-item">
     <a href="" data-target="#productContainer" data-toggle="tab" class="nav-link small">Ürün Yönetimi</a>
@@ -10,14 +11,15 @@
   <li class="nav-item">
     <a href="" data-target="#environmentContainer" data-toggle="tab" class="nav-link small">Ortam Yönetimi</a>
   </li>
+  {% endif %}
   <li class="nav-item">
-    <a href="" data-target="#actionContainer" data-toggle="tab" class="nav-link small">Aksiyon Yönetimi</a>
+    <a href="" data-target="#actionContainer" data-toggle="tab" class="nav-link small active">Aksiyon Yönetimi</a>
   </li>
 </ul>
 
 <div class="tab-content" style="padding: 20px 0px;">
 
-  <div class="container tab-pane fade active show" id="customerContainer">
+  <div class="container tab-pane fade  show" id="customerContainer">
 
           
     <button class="displayHeaderButton" type="button" class="btn btn-info" data-toggle="collapse" data-target="#customers"><h4><b>Müşteriler</b></h4></button>
@@ -311,7 +313,7 @@
   </div>
 
 
-  <div class="container tab-pane fade" id="actionContainer">
+  <div class="container tab-pane fade active show" id="actionContainer">
 
     <button class="displayHeaderButton" type="button" class="btn btn-info" data-toggle="collapse" data-target="#prodHis"><h4><b>Ürün Geçmişi</b></h4></button>
     

@@ -10,10 +10,11 @@ def login_view(request):
         p = request.POST
         userr = UserInfo.objects.filter(
             userEmail=p['user_email'], userPassword=p['user_password'])
-        print(userr)
+    
         if(len(userr) > 0):
             user = userr[0]
             request.session['user_id'] = user.pk
+            request.session['user_email'] = user.userEmail
             return redirect('display')
         else:
             print("Kayit yok")
@@ -75,7 +76,9 @@ def manage(request):
     dataToSend = {}
     if 'user_id' not in request.session.keys():
         return redirect('login')
-
+    users = UserInfo.objects.get(pk=request.session['user_id'])
+    if users.userPermission == "2":
+        return redirect('display')
     data = []
 
     cuss = CustomerInfo.objects.all()
@@ -128,6 +131,7 @@ def manage(request):
             'prodLoadTime': ProductHistory.objects.all(),
             'testLoadTime': TestProductHistory.objects.all(),
             'infHis': InfinaWorkerHistory.objects.all(),
+            'users' :UserInfo.objects.get(pk=request.session['user_id']),
             'data' : data
     }
 
@@ -136,6 +140,9 @@ def manage(request):
 def add(request):
     if 'user_id' not in request.session.keys():
         return redirect('login')
+    users = UserInfo.objects.get(pk=request.session['user_id'])
+    if users.userPermission == "2":
+        return redirect('display')
     if(request.method == 'POST'):
         p = request.POST
         if p['add_what'] == "cus":

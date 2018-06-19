@@ -10,6 +10,20 @@ nav {
     border-radius: 151px !important;
 }
 
+.nav-item#x{
+    color: white;
+    font-size: 15px;
+} 
+
+.nav-item .nav-link#a2{ 
+    color: white;
+    font-size: 15px;
+} 
+
+.nav-item .nav-link#a2:hover{
+    color: whitesmoke;
+} 
+
 #headerNav .nav-item .nav-link {
     color: white;
     font-size: 20px;
@@ -20,6 +34,7 @@ nav {
     font-weight: 900;
 
 }
+
 
 .navbar-inverse .navbar-brand {
     background: #fff none repeat scroll 0 0 !important;
