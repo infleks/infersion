@@ -9,6 +9,7 @@ nav {
     border: medium none !important;
     border-radius: 151px;
     border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }
 
 .nav-item#x{
