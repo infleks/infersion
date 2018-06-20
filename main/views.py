@@ -701,6 +701,7 @@ def edit(request):
         return render(request, 'edits/testHis.html', dataToSend)
 
 def delete(request):
+    print("hey")
     if request.method == "GET":
         req=request.GET
         what=req['what']
