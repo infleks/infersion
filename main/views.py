@@ -202,7 +202,7 @@ def add(request):
             pH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
             pH.databaseversion = DatabaseVersion.objects.get(pk=p['dbVer_id'])
             pH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
-             pH.user = UserInfo.objects.get(pk=request.session['user_id'])
+            pH.user = UserInfo.objects.get(pk=request.session['user_id'])
             pH.prodInstallationTime = p['prodLoadTime_date']
             pH.save()
         elif p['add_what'] == 'testLoadTime':
