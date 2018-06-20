@@ -3,6 +3,14 @@ from datetime import datetime
 from django.db import models
 # Create your models here.
 
+class UserInfo(models.Model):
+    userEmail = models.EmailField()
+    userPassword = models.CharField(max_length=100)
+    userPermission = models.CharField(max_length=2)
+
+    def __str__(self):
+        return self.userEmail 
+
 class CustomerInfo(models.Model):
     customerName = models.CharField(max_length=50)
 
@@ -81,6 +89,7 @@ class ProductHistory(models.Model):
     customer = models.ForeignKey(CustomerInfo, on_delete=models.CASCADE)
     databaseversion = models.ForeignKey(DatabaseVersion, on_delete=models.CASCADE)
     serverversion = models.ForeignKey(ServerVersion, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.prodInstallationTime
@@ -91,29 +100,11 @@ class TestProductHistory(models.Model):
     customer = models.ForeignKey(CustomerInfo, on_delete=models.CASCADE)
     databaseversion = models.ForeignKey(DatabaseVersion, on_delete=models.CASCADE)
     serverversion = models.ForeignKey(ServerVersion, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.testInstallationTime
 
-class InfinaWorkerHistory(models.Model):
-    workerName = models.CharField(max_length=50)
-    workerSurname = models.CharField(max_length=50)
-    installationTime = models.DateField(default=datetime.now, blank=True)
-    producthistory = models.ForeignKey(ProductHistory, on_delete=models.CASCADE, null=True, blank=True)
-    testproducthistory = models.ForeignKey(TestProductHistory, on_delete=models.CASCADE, null=True, blank=True)
 
-    def __str__(self):
-        return self.workerName + " " + self.workerSurname 
 
-class UserInfo(models.Model):
-    userEmail = models.EmailField()
-    userPassword = models.CharField(max_length=100)
-    userPermission = models.CharField(max_length=2)
-
-    def __str__(self):
-        return self.userEmail 
-
-class UserModuleAuthentication(models.Model):
-    userr = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
-    productmodule = models.ForeignKey(ProductModule, on_delete=models.CASCADE)
 

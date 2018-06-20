@@ -333,11 +333,11 @@
           <table class="table">
             <tr>
               <th scope="col">Müşteri</th>
-              <th scope="col">Ürün Tipi</th>
               <th scope="col">Ürün</th>
               <th scope="col">Yükleme Tarihi</th>
               <th scope="col">Sunucu</th>
               <th scope="col">Veritabanı</th>
+              <th scope="col">Eklemeyi Yapan</th>
               <th></th>
               <th onclick="var myWindow = window.open('/main/addProdHis', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
 
@@ -346,13 +346,13 @@
             {% for k,ph in d.prodHist.items %}
             <tr>
                 <td>{{d.cus.customerName}}</td>
-                <td>Canlı</td>
                 <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
                     {{ph.productversion.productVersionName}}
                 </td>
                 <td>{{ph.prodInstallationTime}}</td>
-                <td>{{ph.serverversion.serverVersionName}}</td>
+                <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
                 <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
+                <td> {{ ph.user.userEmail }} </td>
                 <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodHis&id={{ph.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
                 <td><a id="delete" data-id="{{ph.pk}}" data-what="prodHis" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
@@ -374,11 +374,11 @@
             <table>
               <tr>
                 <th class="text-left">Müşteri</th>
-                <th class="text-left">Ürün Tipi</th>
                 <th class="text-left">Ürün</th>
                 <th class="text-left">Yükleme Tarihi</th>
                 <th class="text-left">Sunucu</th>
                 <th class="text-left">Veritabanı</th>
+                <th scope="col">Eklemeyi Yapan</th>
                 <th></th>
                 <th onclick="var myWindow = window.open('/main/addTestHis', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
 
@@ -389,13 +389,13 @@
             {% for k,th in d.testProdHist.items %}
             <tr>
                 <td class="text-left">{{d.cus.customerName}}</td>
-                <td class="text-left">Test</td>
                 <td class="text-left">{{th.productversion.productmodule.product.productName}}, {{th.productversion.productmodule.moduleName}},
                   {{th.productversion.productVersionName}}
                 </td>
                 <td class="text-left">{{th.testInstallationTime}}</td>
-                <td class="text-left">{{th.serverversion.serverVersionName}}</td>
+                <td class="text-left">{{th.serverversion.server.serverName}}, {{th.serverversion.serverVersionName}}</td>
                 <td class="text-left">{{th.databaseversion.database.databaseName}}, {{th.databaseversion.databaseVersionName}}</td>
+                <td class="text-left"> {{ th.user.userEmail }} </td>
                 <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=testHis&id={{th.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
                 <td><a id="delete" data-id="{{ph.pk}}" data-what="testProd" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 

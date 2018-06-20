@@ -130,7 +130,6 @@ def manage(request):
             'prodVer': ProductVersion.objects.all(),
             'prodLoadTime': ProductHistory.objects.all(),
             'testLoadTime': TestProductHistory.objects.all(),
-            'infHis': InfinaWorkerHistory.objects.all(),
             'users' :UserInfo.objects.get(pk=request.session['user_id']),
             'data' : data
     }
@@ -203,6 +202,7 @@ def add(request):
             pH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
             pH.databaseversion = DatabaseVersion.objects.get(pk=p['dbVer_id'])
             pH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
+             pH.user = UserInfo.objects.get(pk=request.session['user_id'])
             pH.prodInstallationTime = p['prodLoadTime_date']
             pH.save()
         elif p['add_what'] == 'testLoadTime':
@@ -211,17 +211,10 @@ def add(request):
             tH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
             tH.databaseversion = DatabaseVersion.objects.get(pk=p['dbVer_id'])
             tH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
+            tH.user = UserInfo.objects.get(pk=request.session['user_id'])
             tH.testInstallationTime = p['testLoadTime_date']
             tH.save()
-        elif p['add_what'] == 'infHis':
-            iH = InfinaWorkerHistory()
-            iH.producthistory = ProductHistory.objects.get(pk=p['prodHis_id'])
-            iH.testhistory = TestProductHistory.objects.get(pk=p['tprodHis_id'])
-            iH.workerName = p['infHis_name']
-            iH.workerSurname = p['infHis_surname']
-            iH.savingTime = p['infHis_date']
-            iH.save()
-        
+          
     return redirect('manage')
 
 def detail(request):
@@ -298,7 +291,6 @@ def addProdMan(request):
             'prodVer': ProductVersion.objects.all(),
             'prodLoadTime': ProductHistory.objects.all(),
             'testLoadTime': TestProductHistory.objects.all(),
-            'infHis': InfinaWorkerHistory.objects.all(),
             'data' : data
     }
 
@@ -431,7 +423,6 @@ def addTechMan(request):
             'prodVer': ProductVersion.objects.all(),
             'prodLoadTime': ProductHistory.objects.all(),
             'testLoadTime': TestProductHistory.objects.all(),
-            'infHis': InfinaWorkerHistory.objects.all(),
             'data' : data
     }
 
@@ -701,7 +692,6 @@ def edit(request):
         return render(request, 'edits/testHis.html', dataToSend)
 
 def delete(request):
-    print("hey")
     if request.method == "GET":
         req=request.GET
         what=req['what']
