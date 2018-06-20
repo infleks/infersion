@@ -346,6 +346,7 @@
             {% for k,ph in d.prodHist.items %}
             <tr>
                 <td>{{d.cus.customerName}}</td>
+                
                 <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
                     {{ph.productversion.productVersionName}}
                 </td>
@@ -451,18 +452,18 @@
                   <a href="#"><i class="fa fa-user fa-lg"></i> Müşteri Yönetimi<span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="customer">
-                    <li><a href="#" data-toggle="collapse" data-target="#customerInfo">Müşteri</a></li>
-                    <li><a href="#" data-toggle="collapse" data-target="#prodMans">Ürün Yöneticisi</a></li>
-                    <li><a href="#" data-toggle="collapse" data-target="#techMans">Teknik Sorumlu</a></li>
+                    <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#customerInfo"><li>Müşteri</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodMans"><li>Ürün Yöneticisi</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#techMans"><li>Teknik Sorumlu</li></a>
                 </ul>
 
                 <li  data-toggle="collapse" data-target="#productManagement" class="collapsed active">
                     <a href="#"><i class="fa fa-gift fa-lg"></i> Ürün Yönetimi<span class="arrow"></span></a>
                   </li>
                   <ul class="sub-menu collapse" id="productManagement">
-                      <li><a href="#" data-toggle="collapse" data-target="#products">Ürünler</a></li>
-                      <li><a href="#" data-toggle="collapse" data-target="#prodModule">Ürün Modülleri</a></li>
-                      <li><a href="#" data-toggle="collapse" data-target="#prodVer">Ürün Versiyonları</a></li>
+                      <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#products"><li>Ürünler</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodModule"><li>Ürün Modülleri</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodVer"><li>Ürün Versiyonları</li></a>
                   </ul>
 
 
@@ -470,18 +471,18 @@
                       <a href="#"><i class="fa fa-globe fa-lg"></i> Ortam Yönetimi<span class="arrow"></span></a>
                     </li>
                     <ul class="sub-menu collapse" id="envManagement">
-                        <li><a href="#" data-toggle="collapse" data-target="#databases">Veritabanı</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target="#dbVers">Veritabanı Versiyonları</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target="#servers">Sunucular</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target="#serverVer">Sunucu Versiyonları</a></li>
+                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#databases"><li>Veritabanı</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#dbVers"><li>Veritabanı Versiyonları</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#servers"><li>Sunucular</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#serverVer"><li>Sunucu Versiyonları</li></a>
                     </ul>
 
                     <li  data-toggle="collapse" data-target="#actManagement" class="collapsed active">
                         <a href="#"><i class="fa fa-car fa-lg"></i> Aksiyon Yönetimi<span class="arrow"></span></a>
                       </li>
                       <ul class="sub-menu collapse" id="actManagement">
-                          <li><a href="#" data-toggle="collapse" data-target="#prodHis">Ürün Geçmişi </a></li>
-                          <li><a href="#" data-toggle="collapse" data-target="#testHis">Test Ürün Geçmişi</a></li>
+                          <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodHis"><li>Ürün Geçmişi </li></a>
+                          <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#testHis"><li>Test Ürün Geçmişi</li></a>
                       </ul>
                 
      </div>
@@ -494,7 +495,7 @@
         <tr>
           <th scope="col">Müşteri Adı</th>
           <th></th>
-          <th onclick="var myWindow = window.open('/main/addCus', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+          <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addCus'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
         </tr>
         {% for c in cus %}
         <tr>
@@ -520,7 +521,7 @@
             <th scope="col">Tarihi</th>
             <th scope="col">Müşterisi</th>
             <th scope="col"></th>
-            <th onclick="var myWindow = window.open('/main/addProdMan', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+            <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdMan'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
           </tr>
           {% for p in prodMan %}
           <tr>
@@ -553,7 +554,7 @@
               <th scope="col">Tarihi</th>
               <th scope="col">Müşterisi</th>
               <th scope="col"></th>
-              <th onclick="var myWindow = window.open('/main/addTechMan', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+              <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTechMan'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
             </tr>
             {% for t in techMan %}
             <tr>
@@ -581,7 +582,7 @@
               <tr>
                 <th scope="col">Ürün Adı</th>
                 <th></th>
-                <th onclick="var myWindow = window.open('/main/addProd', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProd'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
   
               </tr>
               {% for p in prod %}
@@ -606,7 +607,7 @@
                   <th scope="col">Modül Adı</th>
                   <th scope="col">Ürün</th>
                   <th></th>
-                  <th onclick="var myWindow = window.open('/main/addProdMod', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                  <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdMod'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
   
                 </tr>
                 {% for pm in prodMod %}
@@ -633,7 +634,7 @@
                     <th scope="col">Versiyon Adı</th>
                     <th scope="col">Modülü</th>
                     <th></th>
-                    <th onclick="var myWindow = window.open('/main/addProdVer', 'Düzenle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                    <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdVer'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
     
                   </tr>
                   {% for pv in prodVer %}
@@ -660,7 +661,7 @@
                       <th scope="col">Versiyon Adı</th>
                       <th scope="col">Veritabanı</th>
                       <th></th>
-                      <th onclick="var myWindow = window.open('/main/addDbVer', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                      <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDbVer'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
         
                     </tr>
                     {% for dv in dbHis %}
@@ -686,7 +687,7 @@
                       <tr>
                         <th scope="col">Veritabanı Adı</th>
                         <th></th>
-                        <th onclick="var myWindow = window.open('/main/addDB', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                        <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDB'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
           
                       </tr>
                       {% for d in db %}
@@ -711,7 +712,7 @@
                           <th scope="col">Versiyon Adı</th>
                           <th scope="col">Veritabanı</th>
                           <th></th>
-                          <th onclick="var myWindow = window.open('/main/addDbVer', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                          <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDbVer'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
             
                         </tr>
                         {% for dv in dbHis %}
@@ -737,7 +738,7 @@
                           <tr>
                             <th scope="col">Sunucu Adı</th>
                             <th></th>
-                            <th onclick="var myWindow = window.open('/main/addServer', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                            <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addServer'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
               
                           </tr>
                           {% for s in server %}
@@ -763,7 +764,7 @@
                               <th scope="col">Versiyon Adı</th>
                               <th scope="col">Sunucu</th>
                               <th></th>
-                              <th onclick="var myWindow = window.open('/main/addServerVer', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                              <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addServerVer'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
                 
                             </tr>
                             {% for sv in svHis %}
@@ -794,7 +795,7 @@
                                 <th scope="col">Sunucu</th>
                                 <th scope="col">Veritabanı</th>
                                 <th></th>
-                                <th onclick="var myWindow = window.open('/main/addProdHis', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                                <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
                   
                               </tr>
                               {% for d in data %}
@@ -834,7 +835,7 @@
                                   <th class="text-left">Sunucu</th>
                                   <th class="text-left">Veritabanı</th>
                                   <th></th>
-                                  <th onclick="var myWindow = window.open('/main/addTestHis', 'Ekle', 'width=700, height=400');" style="cursor: pointer;"><i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i>  Ekle</th>
+                                  <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTestHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
                   
                                 </tr>
                                
@@ -851,7 +852,7 @@
                                   <td class="text-left">{{th.serverversion.serverVersionName}}</td>
                                   <td class="text-left">{{th.databaseversion.database.databaseName}}, {{th.databaseversion.databaseVersionName}}</td>
                                   <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=testHis&id={{th.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
-                                  <td><a id="delete" data-id="{{ph.pk}}" data-what="testProd" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                                  <td><a id="delete" data-id="{{th.pk}}" data-what="testProd" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
                   
                               </tr>
                               {% endfor %}

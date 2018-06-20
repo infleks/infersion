@@ -148,6 +148,7 @@ def add(request):
             c = CustomerInfo()
             c.customerName = p['cus_name']
             c.save()
+            
         elif p['add_what'] == "prodMan":
             pM = ProductManagerHistory()
             pM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
