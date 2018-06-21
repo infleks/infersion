@@ -452,18 +452,18 @@
                   <a href="#"><i class="fa fa-user fa-lg"></i> Müşteri Yönetimi<span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="customer">
-                    <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#customerInfo"><li>Müşteri</li></a>
-                    <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodMans"><li>Ürün Yöneticisi</li></a>
-                    <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#techMans"><li>Teknik Sorumlu</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#customerInfo"><li>Müşteri</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodMans"><li>Ürün Yöneticisi</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#techMans"><li>Teknik Sorumlu</li></a>
                 </ul>
 
                 <li  data-toggle="collapse" data-target="#productManagement" class="collapsed active">
                     <a href="#"><i class="fa fa-gift fa-lg"></i> Ürün Yönetimi<span class="arrow"></span></a>
                   </li>
                   <ul class="sub-menu collapse" id="productManagement">
-                      <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#products"><li>Ürünler</li></a>
-                      <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodModule"><li>Ürün Modülleri</li></a>
-                      <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodVer"><li>Ürün Versiyonları</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#products"><li>Ürünler</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodModule"><li>Ürün Modülleri</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodVer"><li>Ürün Versiyonları</li></a>
                   </ul>
 
 
@@ -471,23 +471,23 @@
                       <a href="#"><i class="fa fa-globe fa-lg"></i> Ortam Yönetimi<span class="arrow"></span></a>
                     </li>
                     <ul class="sub-menu collapse" id="envManagement">
-                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#databases"><li>Veritabanı</li></a>
-                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#dbVers"><li>Veritabanı Versiyonları</li></a>
-                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#servers"><li>Sunucular</li></a>
-                        <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#serverVer"><li>Sunucu Versiyonları</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#"  data-toggle="collapse" data-target="#databases"><li>Veritabanı</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#dbVers"><li>Veritabanı Versiyonları</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#servers"><li>Sunucular</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#serverVer"><li>Sunucu Versiyonları</li></a>
                     </ul>
 
                     <li  data-toggle="collapse" data-target="#actManagement" class="collapsed active">
                         <a href="#"><i class="fa fa-car fa-lg"></i> Aksiyon Yönetimi<span class="arrow"></span></a>
                       </li>
                       <ul class="sub-menu collapse" id="actManagement">
-                          <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#prodHis"><li>Ürün Geçmişi </li></a>
-                          <a style="color: whitesmoke; text-decoration: none;" href="#" data-toggle="collapse" data-target="#testHis"><li>Test Ürün Geçmişi</li></a>
+                          <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodHis"><li>Ürün Geçmişi </li></a>
+                          <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#testHis"><li>Test Ürün Geçmişi</li></a>
                       </ul>
                 
      </div>
 </div>
-<div id="customerInfo" class="collapse" style="margin: 20px 0px;">
+<div id="customerInfo" class="collapse" style="margin: 20px 0px;" data-toggle="customerInfo">
         
         
     <div style="width: 100%; text-align: left; padding: 0px 50px;">
@@ -500,7 +500,7 @@
         {% for c in cus %}
         <tr>
             <td>{{c.customerName}}</td>
-            <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=cus&id={{c.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+            <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=cus&id={{c.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td> 
             <td><a id="delete" data-id="{{c.pk}}" data-what="cus" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
             
         </tr>
@@ -530,7 +530,7 @@
               <td>{{p.prodManPhoneNumber}}</td>
               <td>{{p.whenIsProdManResponsible}}</td>
               <td>{{p.customer.customerName}}</td>
-              <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodMan&id={{p.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+              <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodMan&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
               <td><a id="delete" data-id="{{p.pk}}" data-what="prodMan" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
           </tr>
@@ -563,7 +563,7 @@
                 <td>{{t.techManPhoneNumber}}</td>
                 <td>{{t.whenIsTechManResponsible}}</td>
                 <td>{{t.customer.customerName}}</td>
-                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=techMan&id={{t.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=techMan&id={{t.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                 <td><a id="delete" data-id="{{t.pk}}" data-what="techMan" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
             </tr>
@@ -588,7 +588,7 @@
               {% for p in prod %}
               <tr>
                   <td>{{p.productName}}</td>
-                  <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prod&id={{p.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                  <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prod&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                   <td><a id="delete" data-id="{{p.pk}}" data-what="prod" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
   
               </tr>
@@ -614,7 +614,7 @@
                 <tr>
                     <td>{{pm.moduleName}}</td>
                     <td>{{pm.product.productName}}</td>
-                    <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodMod&id={{pm.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                    <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodMod&id={{pm.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                     <td><a id="delete" data-id="{{pm.pk}}" data-what="prodMod" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
   
                 </tr>
@@ -641,7 +641,7 @@
                   <tr>
                       <td>{{pv.productVersionName}}</td>
                       <td>{{pv.productmodule.moduleName}}</td>
-                      <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodVer&id={{pv.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                      <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodVer&id={{pv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                       <td><a id="delete" data-id="{{pv.pk}}" data-what="prodVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
     
                   </tr>
@@ -668,7 +668,7 @@
                     <tr>
                         <td>{{dv.databaseVersionName}}</td>
                         <td>{{dv.database.databaseName}}</td>
-                        <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=dbVer&id={{dv.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                        <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=dbVer&id={{dv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                         <td><a id="delete" data-id="{{dv.pk}}" data-what="dbVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
         
                     </tr>
@@ -693,7 +693,7 @@
                       {% for d in db %}
                       <tr>
                           <td>{{d.databaseName}}</td>
-                          <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=db&id={{d.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                          <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=db&id={{d.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                           <td><a id="delete" data-id="{{d.pk}}" data-what="db" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
           
                       </tr>
@@ -719,7 +719,7 @@
                         <tr>
                             <td>{{dv.databaseVersionName}}</td>
                             <td>{{dv.database.databaseName}}</td>
-                            <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=dbVer&id={{dv.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                            <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=dbVer&id={{dv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                             <td><a id="delete" data-id="{{dv.pk}}" data-what="dbVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
             
                         </tr>
@@ -744,7 +744,7 @@
                           {% for s in server %}
                           <tr>
                               <td>{{s.serverName}}</td>
-                              <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=server&id={{s.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                              <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=server&id={{s.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                               <td><a id="delete" data-id="{{s.pk}}" data-what="sv" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
               
                           </tr>
@@ -771,7 +771,7 @@
                             <tr>
                                 <td>{{sv.serverVersionName}}</td>
                                 <td>{{sv.server.serverName}}</td>
-                                <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=serverVer&id={{sv.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                                <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=serverVer&id={{sv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                                 <td><a id="delete" data-id="{{sv.pk}}" data-what="svVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
                 
                             </tr>
@@ -809,7 +809,7 @@
                                   <td>{{ph.prodInstallationTime}}</td>
                                   <td>{{ph.serverversion.serverVersionName}}</td>
                                   <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
-                                  <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=prodHis&id={{ph.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                                  <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodHis&id={{ph.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                                   <td><a id="delete" data-id="{{ph.pk}}" data-what="prodHis" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
                   
                               </tr>
@@ -851,7 +851,7 @@
                                   <td class="text-left">{{th.testInstallationTime}}</td>
                                   <td class="text-left">{{th.serverversion.serverVersionName}}</td>
                                   <td class="text-left">{{th.databaseversion.database.databaseName}}, {{th.databaseversion.databaseVersionName}}</td>
-                                  <td style=" cursor: pointer;" onclick="var myWindow = window.open('/main/edit?what=testHis&id={{th.pk}}', 'Düzenle', 'width=700, height=400');"><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</td>
+                                  <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=testHis&id={{th.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                                   <td><a id="delete" data-id="{{th.pk}}" data-what="testProd" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
                   
                               </tr>
@@ -868,6 +868,17 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript">
+    $(document).ready(function(){
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('where')){
+        var where=urlParams.get('where');
+        $('#'+where).addClass('show');
+    }
+      else {
+        $("#customerInfo").addClass('show');
+      }
+      
+    }); 
     $('#delete').click(function(){
     var id;
     var what;
@@ -885,6 +896,11 @@
      }).done(function (response) {
         location.reload();
     });
-});
+  });
+  
+  function kapat() {
+    $('.collapse').removeClass('show');
+}
+  
 </script>
 {% endblock %}

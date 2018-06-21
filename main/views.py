@@ -148,6 +148,7 @@ def add(request):
             c = CustomerInfo()
             c.customerName = p['cus_name']
             c.save()
+            return redirect("/main/manage?where=customerInfo")
             
         elif p['add_what'] == "prodMan":
             pM = ProductManagerHistory()
@@ -157,6 +158,7 @@ def add(request):
             pM.prodManPhoneNumber = p['prodMan_phone']
             pM.whenIsProdManResponsible = p['prodMan_date']
             pM.save()
+            return redirect("/main/manage?where=prodMans")
         elif p['add_what'] == "techMan":
             tM = TechnicalManagerHistory()
             tM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
@@ -165,38 +167,46 @@ def add(request):
             tM.techManPhoneNumber = p['techMan_phone']
             tM.whenIsTechManResponsible = p['techMan_date']
             tM.save()
+            return redirect("/main/manage?where=techMans")
         elif p['add_what'] == "db":
             d = DatabaseInfo()
             d.databaseName = p['db_name']
             d.save()
+            return redirect("/main/manage?where=databases")
         elif p['add_what'] == "dbHis":
             dH = DatabaseVersion()
             dH.database = DatabaseInfo.objects.get(pk=p['db_id'])
             dH.databaseVersionName = p['dbVer_name']
             dH.save()
+            return redirect("/main/manage?where=dbVers")
         elif p['add_what'] == "server":
             s = ServerInfo()
             s.serverName = p['server_name']
             s.save()
+            return redirect("/main/manage?where=servers")
         elif p['add_what'] == "svHis":
             sH = ServerVersion()
             sH.server = ServerInfo.objects.get(pk=p['sv_id'])
             sH.serverVersionName = p['svVer_name']
             sH.save()
+            return redirect("/main/manage?where=serverVer")
         elif p['add_what'] == 'prod':
             pr = ProductInfo()
             pr.productName = p['prod_name']
             pr.save()
+            return redirect("/main/manage?where=products")
         elif p['add_what'] == 'prodMod':
             prM = ProductModule()
             prM.product = ProductInfo.objects.get(pk=p['prod_id'])
             prM.moduleName = p['prodMod_name']
             prM.save()
+            return redirect("/main/manage?where=prodModule")
         elif p['add_what'] == 'prodVer':
             pV = ProductVersion()
             pV.productmodule = ProductModule.objects.get(pk=p['prodMod_id'])
             pV.productVersionName = p['prodVer_name']
             pV.save()
+            return redirect("/main/manage?where=prodVer")
         elif p['add_what'] == 'prodLoadTime':
             pH = ProductHistory()
             pH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
@@ -206,6 +216,7 @@ def add(request):
             pH.user = UserInfo.objects.get(pk=request.session['user_id'])
             pH.prodInstallationTime = p['prodLoadTime_date']
             pH.save()
+            return redirect("/main/manage?where=prodHis")
         elif p['add_what'] == 'testLoadTime':
             tH = TestProductHistory()
             tH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
@@ -215,6 +226,7 @@ def add(request):
             tH.user = UserInfo.objects.get(pk=request.session['user_id'])
             tH.testInstallationTime = p['testLoadTime_date']
             tH.save()
+            return redirect("/main/manage?where=testHis")
           
     return redirect('manage')
 
@@ -440,7 +452,7 @@ def edit(request):
             c = CustomerInfo.objects.get(pk=pk1)
             c.customerName = req['cus_name']
             c.save()
-            return redirect('add')
+            return redirect("/main/manage?where=customerInfo")
 
         elif req['edit_what'] == "editProdMan":
             pk1=req['pk']
@@ -451,7 +463,7 @@ def edit(request):
             p.customer=CustomerInfo.objects.get(pk=req['cus_id'])
             p.whenIsProdManResponsible = req['prodMan_date']
             p.save()
-            return redirect('add')
+            return redirect("/main/manage?where=prodMans")
 
         elif req['edit_what'] == "editTechMan":
             pk1=req['id']
@@ -461,14 +473,14 @@ def edit(request):
             t.prodManPhoneNumber = req['techMan_phone']
             t.whenIsTechManResponsible = req['techMan_date']
             t.save()
-            return redirect('add')
+            return redirect("/main/manage?where=techMans")
         
         elif req['edit_what'] == "editProd":
             pk1=req['pk']
             p = ProductInfo.objects.get(pk=pk1)
             p.productName = req['prodName']
             p.save()
-            return redirect('add')
+            return redirect("/main/manage?where=products")
         
         elif req['edit_what'] == "editProdMod":
             pk1=req['id']
@@ -477,7 +489,7 @@ def edit(request):
             pm.product=ProductInfo.objects.get(pk=pmp)
             pm.moduleName = req['prodModName']
             pm.save()
-            return redirect('add')
+            return redirect("/main/manage?where=prodModule")
         elif req['edit_what'] == "editProdVer":
             pk1=req['prodMod']
             pk2=req['id']
@@ -485,25 +497,25 @@ def edit(request):
             pm = ProductModule.objects.get(pk=pk1)
             p.productVersionName=req['prodVerName']
             p.save()
-            return redirect('add')
+            return redirect("/main/manage?where=prodVer")
         elif req['edit_what'] == "editDB":
             pk1=req['id']
             d=DatabaseInfo.objects.get(pk=pk1)
             d.databaseName=req['db_name']
             d.save()
-            return redirect('add')
+            return redirect("/main/manage?where=databases")
         elif req['edit_what'] == "editDbVer":
             pk1=req['id']
             d=DatabaseVersion.objects.get(pk=pk1)
             d.databaseVersionName=req['dbVer_name']
             d.save()
-            return redirect('add')
+            return redirect("/main/manage?where=dbVers")
         elif req['edit_what'] == "editServer":
             pk1=req['id']
             d=ServerInfo.objects.get(pk=pk1)
             d.serverName=req['server_name']
             d.save()
-            return redirect('add')
+            return redirect("/main/manage?where=servers")
         elif req['edit_what'] == "editServerVer":
             pk1=req['id']
             pk2=req['server']
@@ -512,7 +524,7 @@ def edit(request):
             d.serverVersionName=req['svVer_name']
 
             d.save()
-            return redirect('add')
+            return redirect("/main/manage?where=serverVer")
         elif req['edit_what'] == "editProdHis":
             pk1=req['id']
             pk2=req['server']
@@ -531,7 +543,7 @@ def edit(request):
             d.productversion=prodversion
 
             d.save()
-            return redirect('add')
+            return redirect("/main/manage?where=prodHis")
         elif req['edit_what'] == "editTestHis":
             pk1=req['id']
             pk2=req['server']
@@ -550,7 +562,7 @@ def edit(request):
             d.productversion=prodversion
 
             d.save()
-            return redirect('add')
+            return redirect("/main/manage?where=testHis")
 
     what = request.GET['what']
     if what == 'cus':
