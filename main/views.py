@@ -18,7 +18,6 @@ def login_view(request):
             request.session['user_email'] = user.userEmail
             return redirect('display')
         else:
-            print("Kayit yok")
             return redirect('login')
     else:
         return render(request, 'registration/login.html', {})
@@ -660,10 +659,11 @@ def edit(request):
     elif what == 'prodHis':
         pk1 = request.GET['id']
         prodHis = ProductHistory.objects.get(pk=pk1)
+        cusId = prodHis.customer.pk
         prodHisDate = datetime.datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%m-%d")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
-        c=CustomerInfo.objects.get(pk=pk1)
+        c=CustomerInfo.objects.get(pk=cusId)
         cus=CustomerInfo.objects.all()
         prodMan = ProductManagerHistory.objects.filter(customer=c)
         techMan = TechnicalManagerHistory.objects.filter(customer=c)
@@ -684,10 +684,11 @@ def edit(request):
     elif what == 'testHis':
         pk1 = request.GET['id']
         testHis = TestProductHistory.objects.get(pk=pk1)
+        cusId = testHis.customer.pk
         testHisDate = datetime.datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%m-%d")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
-        c=CustomerInfo.objects.get(pk=pk1)
+        c=CustomerInfo.objects.get(pk=cusId)
         cus=CustomerInfo.objects.all()
         prodMan = ProductManagerHistory.objects.filter(customer=c)
         techMan = TechnicalManagerHistory.objects.filter(customer=c)
@@ -762,7 +763,7 @@ def delete(request):
             d=TechnicalManagerHistory.objects.get(pk=pk1)
             d.delete()
             return redirect("/main/manage?where=techMans")
-        elif what=="testProd":
+        elif what=="testHis":
             d=TestProductHistory.objects.get(pk=pk1)
             d.delete()
             return redirect("/main/manage?where=testHis")

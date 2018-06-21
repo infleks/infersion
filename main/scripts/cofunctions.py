@@ -40,5 +40,4 @@ def prodHistTestHistIdsToJSON():
         tpArr.append(p.pk)
 
     jsonstr = json.dumps({'pIdArr':pArr, 'tpIdArr':tpArr})
-    print(jsonstr)
     return jsonstr

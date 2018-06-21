@@ -464,13 +464,12 @@
         ]
       });
   
-      $('#prodTable').find("thead").find("tr").append('<th></th><th> <i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i> Ekle</th>');
+      $('#prodTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
       
       var chldrn = $('#prodTable').find("tbody").children();
       var i=0;
       for (i=0; i<chldrn.length; i++) {
-        $(chldrn[i]).append('<td>Düzenle ' + dataId['pIdArr'][i] + '</td><td> <a id="delete" data-id="{{ph.pk}}" data-what="prodHis" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');
-      }
+        $(chldrn[i]).append(' <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodHis&id='+dataId['pIdArr'][i]+'"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>'+'<td><a id="delete" href="/main/delete?what=prodHis&id='+dataId['pIdArr'][i]+'" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');      }
   
   
     });
@@ -508,12 +507,12 @@
       ]
     });
 
-    $('#testTable').find("thead").find("tr").append('<th></th><th> <i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i> Ekle</th>');
+    $('#testTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTestHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
     
     var chldrn = $('#testTable').find("tbody").children();
     var i=0;
     for (i=0; i<chldrn.length; i++) {
-      $(chldrn[i]).append('<td>Düzenle ' + dataId['tpIdArr'][i] + '</td><td> <a id="delete" data-id="{{ph.pk}}" data-what="testProd" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');
+      $(chldrn[i]).append(' <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=testHis&id='+dataId['tpIdArr'][i]+'"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>'+'<td><a id="delete" href="/main/delete?what=testHis&id='+dataId['tpIdArr'][i]+'" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');
     }
 
 
