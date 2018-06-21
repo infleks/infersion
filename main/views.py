@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 import datetime
+from main.scripts.cofunctions import prodHistTestHistToJSON, prodHistTestHistIdsToJSON
 # Create your views here.
 
 
@@ -131,7 +132,9 @@ def manage(request):
             'prodLoadTime': ProductHistory.objects.all(),
             'testLoadTime': TestProductHistory.objects.all(),
             'users' :UserInfo.objects.get(pk=request.session['user_id']),
-            'data' : data
+            'data' : data,
+            'jsondata' : [prodHistTestHistToJSON(), prodHistTestHistIdsToJSON()],
+
     }
 
     return render(request, 'add.html', dataToSend)

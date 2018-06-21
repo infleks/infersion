@@ -18,7 +18,7 @@
                 </ul>
 
                 <li  data-toggle="collapse" data-target="#productManagement" class="collapsed active">
-                    <a href="#"><i class="fa fa-archive"></i> Ürün Yönetimi</a>
+                    <a href="#"><i class="fa fa-cubes"></i> Ürün Yönetimi</a>
                   </li>
                   <ul class="sub-menu collapse" id="productManagement">
                       <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#products"><li><i class="fas fa-arrow-right"></i> Ürünler</li></a>
@@ -38,7 +38,7 @@
                     </ul>
 
                     <li  data-toggle="collapse" data-target="#actManagement" class="collapsed active">
-                        <a href="#"><i class="fab fa-accusoft"></i> Aksiyon Yönetimi</a>
+                        <a href="#"><i class="fab fa-asymmetrik"></i> Aksiyon Yönetimi</a>
                       </li>
                       <ul class="sub-menu collapse" id="actManagement">
                           <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodHis"><li><i class="fas fa-arrow-right"></i> Ürün Geçmişi </li></a>
@@ -345,8 +345,10 @@
                       <div id="prodHis" class="collapse" style="margin: 90px 0px 0px 153px;">
         
         
-                          <div style="width: 100%; text-align: left; padding: 0px 50px;">
-                            <table class="table">
+                          <div>
+                              <table id="prodTable"></table>
+                          </div>
+                   <!--          <table class="table">
                               <tr>
                                 <th scope="col">Müşteri</th>
                                 <th scope="col">Ürün Tipi</th>
@@ -376,16 +378,18 @@
                               {% endfor %}
                               {% endfor %}
                               
-                            </table>
+                            </table> -->
                              
-                          </div>
+                          
                         </div>
 
 
                         <div id="testHis" class="collapse" style="margin: 90px 0px 0px 153px;">
+                            <div>
+                                <table id="testTable"></table>
+                            </div>          
           
-          
-                            <div style="width: 100%; text-align: left; padding: 0px 50px;">
+                            <!-- <div style="width: 100%; text-align: left; padding: 0px 50px;"></div>
                               <table>
                                 <tr>
                                   <th class="text-left">Müşteri</th>
@@ -421,12 +425,12 @@
                                 
                               </table>
                                
-                            </div>
+                            </div> -->
                           </div>
   
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
     <script type="text/javascript">
     $(document).ready(function(){
       var urlParams = new URLSearchParams(window.location.search);
@@ -458,9 +462,95 @@
     });
   });
   
+  
   function kapat() {
     $('.collapse').removeClass('show');
 }
   
 </script>
+<script>
+    var data = JSON.parse('{{jsondata.0|safe}}');
+    var dataId = JSON.parse('{{jsondata.1|safe}}');
+    $(document).ready(function () {
+      
+      $('#prodTable').DataTable({
+        data: data['pArr'],
+        columns: [{
+          title: "Müşteri"
+        },
+        {
+          title: "Ürün"
+        },
+        {
+          title: "Yükleme Tarihi"
+        },
+        {
+          title: "Sunucu"
+        },
+        {
+          title: "Veri Tabanı"
+        },
+        {
+          title: "Eklemeyi Yapan"
+        }
+        ]
+      });
+  
+      $('#prodTable').find("thead").find("tr").append('<th></th><th> <i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i> Ekle</th>');
+      
+      var chldrn = $('#prodTable').find("tbody").children();
+      var i=0;
+      for (i=0; i<chldrn.length; i++) {
+        $(chldrn[i]).append('<td>Düzenle ' + dataId['pIdArr'][i] + '</td><td> <a id="delete" data-id="{{ph.pk}}" data-what="prodHis" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');
+      }
+  
+  
+    });
+  
+  
+  </script> 
+
+
+
+<script>
+  var data = JSON.parse('{{jsondata.0|safe}}');
+  var dataId = JSON.parse('{{jsondata.1|safe}}');
+  $(document).ready(function () {
+    
+    $('#testTable').DataTable({
+      data: data['tpArr'],
+      columns: [{
+        title: "Müşteri"
+      },
+      {
+        title: "Ürün"
+      },
+      {
+        title: "Yükleme Tarihi"
+      },
+      {
+        title: "Sunucu"
+      },
+      {
+        title: "Veri Tabanı"
+      },
+      {
+        title: "Eklemeyi Yapan"
+      }
+      ]
+    });
+
+    $('#testTable').find("thead").find("tr").append('<th></th><th> <i style="cursor: pointer;" href="#" class="fas fa-plus-circle"></i> Ekle</th>');
+    
+    var chldrn = $('#testTable').find("tbody").children();
+    var i=0;
+    for (i=0; i<chldrn.length; i++) {
+      $(chldrn[i]).append('<td>Düzenle ' + dataId['tpIdArr'][i] + '</td><td> <a id="delete" data-id="{{ph.pk}}" data-what="testProd" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');
+    }
+
+
+  });
+
+
+</script> 
 {% endblock %}

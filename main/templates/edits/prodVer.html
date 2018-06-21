@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <title>Infersion Ürün Versiyonu Düzenleme</title>
 
-<div class="container2">
+<div class="container2" style="margin: 120px 0px 50px 400px;">
   <form class="contact" action="edit" method="post">
     {% csrf_token %}
     <h3>Ürün Versiyonu Düzenle</h3>
@@ -17,7 +17,7 @@
       <select name="prodMod" class="form-control">
 
         {% for pr in prodMods %}
-        <option value={{pr.pk}} {% if prodVerData.productmodule.pk == pr.pk %} selected {% endif %}  >{{ pr.moduleName }}</option>
+        <option value={{pr.pk}} {% if prodVerData.productmodule.pk == pr.pk %} selected {% endif %}  >{{pr.product.productName}} {{ pr.moduleName }}</option>
         {% endfor %}
 
       </select>

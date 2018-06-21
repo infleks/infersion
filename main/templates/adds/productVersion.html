@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <title>Infersion Ürün Versiyonu</title>
-<div class="container2">
+<div class="container2" style="margin: 120px 0px 50px 400px;">
   <form class="contact" action="add" method="post">
     {% csrf_token %}
     <h3>Ürün Versiyonu Ekle</h3>
@@ -12,7 +12,7 @@
       <h4>Ürün Modül Adı :</h4>
       <select name="prodMod_id" class="form-control">
         {% for pr in prodMod %}
-        <option value={{pr.pk}}>{{ pr.moduleName }}</option>
+        <option value={{pr.pk}}>{{pr.product.productName}} {{ pr.moduleName }}</option>
 
         {% endfor %}
 
