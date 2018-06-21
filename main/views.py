@@ -712,51 +712,57 @@ def delete(request):
         req=request.GET
         what=req['what']
         pk1=req['id']
-        if what=="cus":
+        if what=="customerInfo":
             d=CustomerInfo.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=customerInfo")
+
+           
         elif what=="db":
             d=DatabaseInfo.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=databases")
+
+            
         elif what=="dbVer":
             d=DatabaseVersion.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=dbVers")
+
         elif what=="prodHis":
             d=ProductHistory.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=prodHis")
+
         elif what=="prod":
             d=ProductInfo.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=products")
         elif what=="prodMan":
             d=ProductManagerHistory.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=prodMans")
         elif what=="prodMod":
             d=ProductModule.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=prodModule")
         elif what=="prodVer":
             d=ProductVersion.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=prodVer")
         elif what=="sv":
             d=ServerInfo.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=servers")
         elif what=="svVer":
             d=ServerVersion.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=serverVer")
         elif what=="techMan":
             d=TechnicalManagerHistory.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=techMans")
         elif what=="testProd":
             d=TestProductHistory.objects.get(pk=pk1)
             d.delete()
-            return redirect('manage')
+            return redirect("/main/manage?where=testHis")

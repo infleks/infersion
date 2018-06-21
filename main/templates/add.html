@@ -61,8 +61,8 @@
         <tr>
             <td>{{c.customerName}}</td>
             <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=cus&id={{c.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td> 
-            <td><a id="delete" data-id="{{c.pk}}" data-what="cus" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-            
+            <td><a id="delete" href="/main/delete?what=customerInfo&id={{c.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
         </tr>
         {% endfor %}
       </table>
@@ -91,8 +91,7 @@
               <td>{{p.whenIsProdManResponsible}}</td>
               <td>{{p.customer.customerName}}</td>
               <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodMan&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-              <td><a id="delete" data-id="{{p.pk}}" data-what="prodMan" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-
+              <td><a id="delete" href="/main/delete?what=prodMan&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
           </tr>
           {% endfor %}
         </table>
@@ -124,7 +123,7 @@
                 <td>{{t.whenIsTechManResponsible}}</td>
                 <td>{{t.customer.customerName}}</td>
                 <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=techMan&id={{t.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                <td><a id="delete" data-id="{{t.pk}}" data-what="techMan" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                <td><a id="delete" href="/main/delete?what=techMan&id={{t.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
             </tr>
             {% endfor %}
@@ -149,8 +148,8 @@
               <tr>
                   <td>{{p.productName}}</td>
                   <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prod&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                  <td><a id="delete" data-id="{{p.pk}}" data-what="prod" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-  
+                  <td><a id="delete" href="/main/delete?what=prod&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
               </tr>
               {% endfor %}
             </table>
@@ -175,8 +174,8 @@
                     <td>{{pm.moduleName}}</td>
                     <td>{{pm.product.productName}}</td>
                     <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodMod&id={{pm.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                    <td><a id="delete" data-id="{{pm.pk}}" data-what="prodMod" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-  
+                    <td><a id="delete" href="/main/delete?what=prodMod&id={{pm.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
                 </tr>
                 {% endfor %}
               </table>
@@ -202,8 +201,8 @@
                       <td>{{pv.productVersionName}}</td>
                       <td>{{pv.productmodule.moduleName}}</td>
                       <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodVer&id={{pv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                      <td><a id="delete" data-id="{{pv.pk}}" data-what="prodVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-    
+                      <td><a id="delete" href="/main/delete?what=prodVer&id={{pv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
                   </tr>
                   {% endfor %}
                 </table>
@@ -229,8 +228,8 @@
                         <td>{{dv.databaseVersionName}}</td>
                         <td>{{dv.database.databaseName}}</td>
                         <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=dbVer&id={{dv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                        <td><a id="delete" data-id="{{dv.pk}}" data-what="dbVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-        
+                        <td><a id="delete" href="/main/delete?what=dbVer&id={{dv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
                     </tr>
                     {% endfor %}
                   </table>
@@ -254,8 +253,8 @@
                       <tr>
                           <td>{{d.databaseName}}</td>
                           <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=db&id={{d.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                          <td><a id="delete" data-id="{{d.pk}}" data-what="db" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-          
+                          <td><a id="delete" href="/main/delete?what=db&id={{d.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
                       </tr>
                       {% endfor %}
                     </table>
@@ -263,32 +262,7 @@
                   </div>
                 </div>
 
-                <div id="dbVers" class="collapse" style="margin: 90px 0px 0px 153px;">
-        
-        
-                    <div style="width: 100%; text-align: left; padding: 0px 50px;">
-                      <table class="table">
-                        <tr>
-                          <th scope="col">Versiyon Adı</th>
-                          <th scope="col">Veritabanı</th>
-                          <th></th>
-                          <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDbVer'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
-            
-                        </tr>
-                        {% for dv in dbHis %}
-                        <tr>
-                            <td>{{dv.databaseVersionName}}</td>
-                            <td>{{dv.database.databaseName}}</td>
-                            <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=dbVer&id={{dv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                            <td><a id="delete" data-id="{{dv.pk}}" data-what="dbVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-            
-                        </tr>
-                        {% endfor %}
-                      </table>
-                       
-                    </div>
-                  </div>
-
+                
 
                   <div id="servers" class="collapse" style="margin: 90px 0px 0px 153px;">
         
@@ -305,8 +279,8 @@
                           <tr>
                               <td>{{s.serverName}}</td>
                               <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=server&id={{s.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                              <td><a id="delete" data-id="{{s.pk}}" data-what="sv" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-              
+                              <td><a id="delete" href="/main/delete?what=sv&id={{s.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
                           </tr>
                           {% endfor %}
                         </table>
@@ -332,8 +306,8 @@
                                 <td>{{sv.serverVersionName}}</td>
                                 <td>{{sv.server.serverName}}</td>
                                 <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=serverVer&id={{sv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                                <td><a id="delete" data-id="{{sv.pk}}" data-what="svVer" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-                
+                                <td><a id="delete" href="/main/delete?what=svVer&id={{sv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+
                             </tr>
                             {% endfor %}
                           </table>
@@ -443,24 +417,7 @@
       }
       
     }); 
-    $('#delete').click(function(){
-    var id;
-    var what;
 
-    id = $(this).attr("data-id");
-    what = $(this).attr("data-what");
-    $.ajax(
-    {
-        type:"GET",
-        url: "/main/delete",
-        data:{
-                what: what,
-                id: id
-        }
-     }).done(function (response) {
-        location.reload();
-    });
-  });
   
   
   function kapat() {
