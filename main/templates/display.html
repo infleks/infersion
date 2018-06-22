@@ -57,7 +57,7 @@
   
             <ul id="menu-content" class="menu-content collapse out">
                 {% for d in data %}
-                <li  data-toggle="collapse" data-target="#demo{{d.cus.pk}}" class="collapsed active" onclick="kapat();" >
+                <li  data-toggle="collapse" class="collapsed active" onclick="kapat('{{d.cus.pk}}');" >
                   <a href="#" ><i class="fa fa-user"></i>{{ d.cus.customerName }}</a>
                 </li>
                 {% endfor %}
@@ -119,10 +119,11 @@
     
       
     }); 
-    function kapat() {
+    function kapat(what) {
         {% for d in data %}
         $('#demo{{d.cus.pk}}').removeClass('show');
         {% endfor %}
+        $('#demo'+what).addClass('show');
     }
 </script>
 {% endblock %}
