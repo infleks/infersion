@@ -12,18 +12,18 @@
                   <a href="#"><i class="fa fa-users"></i> Müşteri Yönetimi</a>
                 </li>
                 <ul class="sub-menu collapse" id="customer">
-                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#customerInfo"><li><i class="fas fa-arrow-right"></i> Müşteri</li></a>
-                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodMans"><li><i class="fas fa-arrow-right"></i> Ürün Yöneticisi</li></a>
-                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#techMans"><li><i class="fas fa-arrow-right"></i> Teknik Sorumlu</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('customerInfo');" href="#" data-toggle="collapse"><li><i class="fas fa-arrow-right"></i> Müşteri</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodMans');" href="#" data-toggle="collapse"><li><i class="fas fa-arrow-right"></i> Ürün Yöneticisi</li></a>
+                    <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('techMans');" href="#" data-toggle="collapse"><li><i class="fas fa-arrow-right"></i> Teknik Sorumlu</li></a>
                 </ul>
 
                 <li  data-toggle="collapse" data-target="#productManagement" class="collapsed active">
                     <a href="#"><i class="fa fa-cubes"></i> Ürün Yönetimi</a>
                   </li>
                   <ul class="sub-menu collapse" id="productManagement">
-                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#products"><li><i class="fas fa-arrow-right"></i> Ürünler</li></a>
-                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodModule"><li><i class="fas fa-arrow-right"></i> Ürün Modülleri</li></a>
-                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodVer"><li><i class="fas fa-arrow-right"></i> Ürün Versiyonları</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('products');" href="#" data-toggle="collapse" ><li><i class="fas fa-arrow-right"></i> Ürünler</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodModule');" href="#" data-toggle="collapse" ><li><i class="fas fa-arrow-right"></i> Ürün Modülleri</li></a>
+                      <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodVer');" href="#" data-toggle="collapse" ><li><i class="fas fa-arrow-right"></i> Ürün Versiyonları</li></a>
                   </ul>
 
 
@@ -31,18 +31,18 @@
                       <a href="#"><i class="fa fa-globe"></i> Ortam Yönetimi</a>
                     </li>
                     <ul class="sub-menu collapse" id="envManagement">
-                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#"  data-toggle="collapse" data-target="#databases"><li><i class="fas fa-arrow-right"></i> Veritabanı</li></a>
-                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#dbVers"><li><i class="fas fa-arrow-right"></i> Veritabanı Versiyonları</li></a>
-                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#servers"><li><i class="fas fa-arrow-right"></i> Sunucular</li></a>
-                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#serverVer"><li><i class="fas fa-arrow-right"></i> Sunucu Versiyonları</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('databases');" href="#"  data-toggle="collapse" ><li><i class="fas fa-arrow-right"></i> Veritabanı</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('dbVers');" href="#" data-toggle="collapse" ><li><i class="fas fa-arrow-right"></i> Veritabanı Versiyonları</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('servers');" href="#" data-toggle="collapse" ><li><i class="fas fa-arrow-right"></i> Sunucular</li></a>
+                        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('serverVer');" href="#" data-toggle="collapse"><li><i class="fas fa-arrow-right"></i> Sunucu Versiyonları</li></a>
                     </ul>
 
                     <li  data-toggle="collapse" data-target="#actManagement" class="collapsed active">
                         <a href="#"><i class="fab fa-asymmetrik"></i> Aksiyon Yönetimi</a>
                       </li>
                       <ul class="sub-menu collapse" id="actManagement">
-                          <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#prodHis"><li><i class="fas fa-arrow-right"></i> Ürün Geçmişi </li></a>
-                          <a style="color: whitesmoke; text-decoration: none;" onclick="kapat();" href="#" data-toggle="collapse" data-target="#testHis"><li><i class="fas fa-arrow-right"></i> Test Ürün Geçmişi</li></a>
+                          <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodHis');" href="#" data-toggle="collapse"><li><i class="fas fa-arrow-right"></i> Ürün Geçmişi </li></a>
+                          <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('testHis');" href="#" data-toggle="collapse"><li><i class="fas fa-arrow-right"></i> Test Ürün Geçmişi</li></a>
                       </ul>
                 
      </div>
@@ -420,7 +420,7 @@
 
   
   
-  function kapat() {
+  function kapat(what) {
     $('#customerInfo').removeClass('show');
     $('#prodMans').removeClass('show');
     $('#techMans').removeClass('show');
@@ -433,6 +433,7 @@
     $('#serverVer').removeClass('show');
     $('#prodHis').removeClass('show');
     $('#testHis').removeClass('show');
+    $('#'+what).addClass('show');
 }
   
 </script>
