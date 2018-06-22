@@ -76,6 +76,8 @@
                         <th scope="col">Ürün Tipi</th>
                         <th scope="col">Ürün</th>
                         <th scope="col">Tarihi</th>
+                        <th scope="col">Veritabanı</th>
+                        <th scope="col">Sunucu</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,6 +88,8 @@
                             {{ph.productversion.productVersionName}}
                         </td>
                         <td>{{ph.prodInstallationTime}}</td>
+                        <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
+                        <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
                     </tr>
                     {% endfor %}
 
@@ -96,9 +100,14 @@
                             {{ph.productversion.productVersionName}}
                         </td>
                         <td>{{ph.testInstallationTime}}</td>
+                        <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
+                        <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
+                    
                     </tr>
                     {% endfor %}
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td style="cursor: pointer;" onclick="myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=1200, height=400');"><i class="fas fa-file-alt"></i>Geçmiş Kayıtlar</td>

@@ -696,4 +696,20 @@ body,html{
     margin: 0px;
     padding: 0px;
   }
+
+  #prodTable_filter > label > input[type="search"]{
+   
+   
+    border-radius: 15px;
+    background-color: #ebebeb;
+    
+    
+
+    
+  }
+  .search{
+    border-radius: 15px;
+    background-color: #ebebeb;
+    
+  }
   
