@@ -94,6 +94,9 @@ class ProductHistory(models.Model):
     def __str__(self):
         return self.prodInstallationTime
 
+    def prodInstallationTimeAsString(self):
+        return self.prodInstallationTime.strftime("%d-%m-%Y")
+
 class TestProductHistory(models.Model):
     testInstallationTime  = models.DateField(default=datetime.now, blank=True)
     productversion = models.ForeignKey(ProductVersion, on_delete=models.CASCADE)
@@ -104,6 +107,9 @@ class TestProductHistory(models.Model):
 
     def __str__(self):
         return self.testInstallationTime
+
+    def testInstallationTimeAsString(self):
+        return self.testInstallationTime.strftime("%d-%m-%Y")
 
 
 

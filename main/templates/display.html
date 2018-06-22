@@ -51,13 +51,13 @@
 </div>
 -->
 <div class="nav-side-menu">
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <i class="fa fa-bars fa-2x toggle-btn"  data-toggle="collapse" data-target="#menu-content"></i>
   
         <div class="menu-list">
-  
+            <input class="searchSide" type="text"  id="myInput" onkeyup="searchCustomer()" onfocus="this.placeholder = ' '" placeholder="Müşteri ara.." title="İsim girin">
             <ul id="menu-content" class="menu-content collapse out">
                 {% for d in data %}
-                <li  data-toggle="collapse" class="collapsed active" onclick="kapat('{{d.cus.pk}}');" >
+                <li data-toggle="collapse" class="collapsed active" onclick="kapat('{{d.cus.pk}}');" >
                   <a href="#" ><i class="fa fa-user"></i>{{ d.cus.customerName }}</a>
                 </li>
                 {% endfor %}
@@ -66,16 +66,16 @@
      </div>
 </div>
 
-<div class="container" style="margin: 90px 0px 0px 153px;">
+<div class="container">
 <div class="row" >
     {% for d in data %}
-    <div id="demo{{d.cus.pk}}" class="collapse" style="width: 100%; text-align: left; padding: 0px 50px;     margin-right: 100px;">
+    <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 150px auto;">
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Ürün Tipi</th>
                         <th scope="col">Ürün</th>
-                        <th scope="col">Tarihi</th>
+                        <th scope="col">Yükleme Tarihi</th>
                         <th scope="col">Veritabanı</th>
                         <th scope="col">Sunucu</th>
                     </tr>
@@ -87,7 +87,7 @@
                         <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
                             {{ph.productversion.productVersionName}}
                         </td>
-                        <td>{{ph.prodInstallationTime}}</td>
+                        <td>{{ph.prodInstallationTimeAsString}}</td>
                         <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
                     </tr>
@@ -99,7 +99,7 @@
                         <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
                             {{ph.productversion.productVersionName}}
                         </td>
-                        <td>{{ph.testInstallationTime}}</td>
+                        <td>{{ph.testInstallationTimeAsString}}</td>
                         <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
                     
@@ -134,5 +134,23 @@
         {% endfor %}
         $('#demo'+what).addClass('show');
     }
+</script>
+<script>
+    function searchCustomer() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("menu-content");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
 </script>
 {% endblock %}

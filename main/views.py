@@ -577,7 +577,7 @@ def edit(request):
     elif what == 'prodMan':
         pk1 = request.GET['id']
         prodData = ProductManagerHistory.objects.get(pk=pk1)
-        tarih = datetime.datetime.strftime(prodData.whenIsProdManResponsible, "%Y-%m-%d")        
+        tarih = datetime.datetime.strftime(prodData.whenIsProdManResponsible, "%d-%m-%Y")        
         cus=CustomerInfo.objects.all()
         dataToSend = {
             'prodData': prodData,
@@ -588,7 +588,7 @@ def edit(request):
     elif what == 'techMan':
         pk1 = request.GET['id']
         techData = TechnicalManagerHistory.objects.get(pk=pk1)
-        tarih = datetime.datetime.strftime(techData.whenIsTechManResponsible, "%Y-%m-%d")  
+        tarih = datetime.datetime.strftime(techData.whenIsTechManResponsible, "%d-%m-%Y")  
         cus=CustomerInfo.objects.all()
         dataToSend = {
             'techData': techData,
@@ -660,7 +660,7 @@ def edit(request):
         pk1 = request.GET['id']
         prodHis = ProductHistory.objects.get(pk=pk1)
         cusId = prodHis.customer.pk
-        prodHisDate = datetime.datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%m-%d")
+        prodHisDate = datetime.datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%d-%m-%Y")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
         c=CustomerInfo.objects.get(pk=cusId)
@@ -685,7 +685,7 @@ def edit(request):
         pk1 = request.GET['id']
         testHis = TestProductHistory.objects.get(pk=pk1)
         cusId = testHis.customer.pk
-        testHisDate = datetime.datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%m-%d")
+        testHisDate = datetime.datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%d-%m-%Y")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
         c=CustomerInfo.objects.get(pk=cusId)

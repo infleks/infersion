@@ -712,4 +712,17 @@ body,html{
     background-color: #ebebeb;
     
   }
+
+  .searchSide{
+    margin-left:15px; 
+    border-radius: 25px;
+    text-indent: 10px;
+  }
+
+  .searchSide:focus{
+    outline: none;
+    color: black;
+    text-align: left;
+    text-indent: 10px;
+  }
   
