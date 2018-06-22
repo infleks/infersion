@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base_for_addedit.html' %} {% block content %}
 <title>Infersion Sunucu Düzenleme</title>
 
 <div class="container2" style="margin: 120px 0px 50px 400px;">
@@ -14,7 +14,7 @@
             <input value="{{server.serverName}}" type="text" tabindex="2" name="server_name" required>
             <input type="hidden" tabindex="1" name="id" value="{{server.pk}}" required autofocus>
           </fieldset>
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Düzenle</button>
           </fieldset>
         </form>
       </div>

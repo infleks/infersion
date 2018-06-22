@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 import datetime
-from main.scripts.cofunctions import prodHistTestHistToJSON, prodHistTestHistIdsToJSON
+from main.scripts.cofunctions import *
 # Create your views here.
 
 
@@ -38,8 +38,7 @@ def display(request):
         tempDict['cus'] = c
 
         tempDict['prodMan'] = ProductManagerHistory.objects.filter(customer=c)
-        tempDict['techMan'] = TechnicalManagerHistory.objects.filter(
-            customer=c)
+        tempDict['techMan'] = TechnicalManagerHistory.objects.filter(customer=c)
 
         if len(tempDict['prodMan']) > 0:
             tempDict['prodMan'] = tempDict['prodMan'][len(
@@ -248,7 +247,8 @@ def detail(request):
 
     dataToSend = {
         'prodData': prodData,
-        'testData': testData
+        'testData': testData,
+        'jsondata' : [displayHistToJSON(), displayHistIdsToJSON()]
     }
 
     return render(request, 'detail.html', dataToSend)

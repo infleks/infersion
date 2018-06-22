@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base_for_addedit.html' %} {% block content %}
 <title>Infersion Database Düzenleme</title>
 
 <div class="container2" style="margin: 120px 0px 50px 400px;">
@@ -15,7 +15,7 @@
           <fieldset>
             <input value="{{dbData.databaseName}}" type="text" tabindex="2" name="db_name" required>
           </fieldset>
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Düzenle</button>
           </fieldset>
         </form>
       </div>

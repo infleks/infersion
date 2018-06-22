@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<div class="container" style="padding-right: 0px; padding-left: 0px; margin-right: auto; margin-left: auto; max-width: 3000px; position: absolute;">
+    <nav class="navbar navbar-expand-lg justify-content-between">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/headerimg.jpg' %}" height="50px" width="100px">
+        </a>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav" id="headerNav">
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'manage' %}">Yönet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'display' %}">Görüntüle</a>
+                </li>
+
+            </ul>
+            <ul style="list-style: none; color:white; margin-bottom: 0px;">
+                <li class="nav-item" id="x" style="height: 5px; padding-bottom: 30px;">
+                    <a class="nav-link" ><i class="fa fa-user-tie "  style="color:rgb(199, 198, 198);" ></i>  {{ request.session.user_email }}</a>
+                </li>
+                <li class="nav-item" id="x" style="text-align: center;">
+                    <a class="nav-link" id="a2" href="{% url 'logout' %}" name="nav-link1"><i class="fa fa-sign-out-alt" style="color:rgb(199, 198, 198);"></i> Çıkış</a>
+                    
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

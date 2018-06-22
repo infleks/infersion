@@ -61,7 +61,7 @@
         <tr>
             <td>{{c.customerName}}</td>
             <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=cus&id={{c.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td> 
-            <td><a id="delete" href="/main/delete?what=customerInfo&id={{c.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+            <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=customerInfo&id={{c.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
         </tr>
         {% endfor %}
@@ -91,7 +91,7 @@
               <td>{{p.whenIsProdManResponsible}}</td>
               <td>{{p.customer.customerName}}</td>
               <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodMan&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-              <td><a id="delete" href="/main/delete?what=prodMan&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+              <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=prodMan&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
           </tr>
           {% endfor %}
         </table>
@@ -123,7 +123,7 @@
                 <td>{{t.whenIsTechManResponsible}}</td>
                 <td>{{t.customer.customerName}}</td>
                 <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=techMan&id={{t.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                <td><a id="delete" href="/main/delete?what=techMan&id={{t.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=techMan&id={{t.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
             </tr>
             {% endfor %}
@@ -148,7 +148,7 @@
               <tr>
                   <td>{{p.productName}}</td>
                   <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prod&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                  <td><a id="delete" href="/main/delete?what=prod&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                  <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=prod&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
               </tr>
               {% endfor %}
@@ -174,7 +174,7 @@
                     <td>{{pm.moduleName}}</td>
                     <td>{{pm.product.productName}}</td>
                     <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodMod&id={{pm.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                    <td><a id="delete" href="/main/delete?what=prodMod&id={{pm.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                    <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=prodMod&id={{pm.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
                 </tr>
                 {% endfor %}
@@ -201,7 +201,7 @@
                       <td>{{pv.productVersionName}}</td>
                       <td>{{pv.productmodule.moduleName}}</td>
                       <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodVer&id={{pv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                      <td><a id="delete" href="/main/delete?what=prodVer&id={{pv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                      <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=prodVer&id={{pv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
                   </tr>
                   {% endfor %}
@@ -228,7 +228,7 @@
                         <td>{{dv.databaseVersionName}}</td>
                         <td>{{dv.database.databaseName}}</td>
                         <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=dbVer&id={{dv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                        <td><a id="delete" href="/main/delete?what=dbVer&id={{dv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                        <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=dbVer&id={{dv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
                     </tr>
                     {% endfor %}
@@ -253,7 +253,7 @@
                       <tr>
                           <td>{{d.databaseName}}</td>
                           <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=db&id={{d.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                          <td><a id="delete" href="/main/delete?what=db&id={{d.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                          <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=db&id={{d.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
                       </tr>
                       {% endfor %}
@@ -279,7 +279,7 @@
                           <tr>
                               <td>{{s.serverName}}</td>
                               <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=server&id={{s.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                              <td><a id="delete" href="/main/delete?what=sv&id={{s.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                              <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=sv&id={{s.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
                           </tr>
                           {% endfor %}
@@ -306,7 +306,7 @@
                                 <td>{{sv.serverVersionName}}</td>
                                 <td>{{sv.server.serverName}}</td>
                                 <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=serverVer&id={{sv.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                                <td><a id="delete" href="/main/delete?what=svVer&id={{sv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+                                <td><a id="delete" style="color:#666B85; text-decoration: none;" href="/main/delete?what=svVer&id={{sv.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
                             </tr>
                             {% endfor %}
@@ -470,7 +470,7 @@
       var chldrn = $('#prodTable').find("tbody").children();
       var i=0;
       for (i=0; i<chldrn.length; i++) {
-        $(chldrn[i]).append(' <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodHis&id='+dataId['pIdArr'][i]+'"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>'+'<td><a id="delete" href="/main/delete?what=prodHis&id='+dataId['pIdArr'][i]+'" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');      }
+        $(chldrn[i]).append(' <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=prodHis&id='+dataId['pIdArr'][i]+'"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>'+'<td><a style="color:#666B85; text-decoration: none;" id="delete" href="/main/delete?what=prodHis&id='+dataId['pIdArr'][i]+'" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');      }
   
   
     });
@@ -513,7 +513,7 @@
     var chldrn = $('#testTable').find("tbody").children();
     var i=0;
     for (i=0; i<chldrn.length; i++) {
-      $(chldrn[i]).append(' <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=testHis&id='+dataId['tpIdArr'][i]+'"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>'+'<td><a id="delete" href="/main/delete?what=testHis&id='+dataId['tpIdArr'][i]+'" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');
+      $(chldrn[i]).append(' <td style="cursor: pointer;"><a style="color:#666B85; text-decoration: none;" href="/main/edit?what=testHis&id='+dataId['tpIdArr'][i]+'"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>'+'<td><a style="color:#666B85; text-decoration: none; " id="delete" href="/main/delete?what=testHis&id='+dataId['tpIdArr'][i]+'" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');
     }
 
 

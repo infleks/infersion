@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Infersion Detay</title>
-</head>
-<body>
-    <table class="table">
+{% extends 'base_for_details.html' %} {% block content %}
+<title>Infersion Detay</title>
+<div  style="margin: 90px 0px 0px 153px;">
+    <div>
+        <table id="prodtestTable"></table>
+    </div>
+</div>
+    <!-- <table class="table">
         <tr>
-            <th scope="col">Test/Canlı</th>
+            <th scope="col">Ürün Tipi</th>
             <th scope="col">Ürün</th>
-            <th scope="col">Versiyon</th>
             <th scope="col">Yükleme Tarihi</th>
-            <th scope="col">Sunucu </th>
             <th scope="col">Veri Tabanı</th>
+            <th scope="col">Sunucu</th>
         </tr>
         {% for d in prodData %}
         <tr>
@@ -36,10 +34,45 @@
             <td>{{d.databaseversion.database.databaseName}} {{d.databaseversion.databaseVersionName}}</td>
         </tr>
         {% endfor %}
-    </table>
+    </table> -->
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+    <script>
+            var data = JSON.parse('{{jsondata.0|safe}}');
+            var dataId = JSON.parse('{{jsondata.1|safe}}');
+            console.log(data['pArr'].concat(data['tpArr']));
+            $(document).ready(function () {
+              
+              $('#prodtestTable').DataTable({
+                data: data['pArr'].concat(data['tpArr']),
+                columns: [{
+                  title: "Ürün Tipi"
+                },
+                {
+                  title: "Ürün"
+                },
+                {
+                  title: "Yükleme Tarihi"
+                },
+                {
+                  title: "Veri Tabanı"
+                },
+                {
+                  title: "Sunucu"
+                },
+                {
+                  title: "Eklemeyi Yapan"
+                }
+                ]
+              });
+          
+            });
+          
+          
+          </script> 
+        
+        
+        
+        
+{% endblock %}
+  
+

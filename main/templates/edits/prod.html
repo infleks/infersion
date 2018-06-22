@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base_for_addedit.html' %} {% block content %}
 <title>Infersion Ürün Düzenleme</title>
 
 <div class="container2" style="margin: 120px 0px 50px 400px;">
@@ -16,7 +16,7 @@
             <input value="{{p.productName}}" type="text" tabindex="2" name="prodName" required>
           </fieldset>
           {% endfor %}
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Düzenle</button>
           </fieldset>
         </form>
       </div>
