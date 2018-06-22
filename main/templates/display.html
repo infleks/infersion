@@ -50,20 +50,26 @@
     {% endfor %}
 </div>
 -->
-<div class="container">
-<div class="row">
-    <div class="col-md-4">
-    <div class="sideDiv">
-        <ul class="sideUl">
-        {% for d in data %}
-        <li style="cursor: pointer;" class="sideLi"><a class="lia"  data-toggle="collapse" data-target="#demo{{d.cus.pk}}">{{ d.cus.customerName }}</a></li>
-        {% endfor %}
-        </ul>
-    </div>
-    </div>
-    <div class="col-md-8">
+<div class="nav-side-menu">
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                {% for d in data %}
+                <li  data-toggle="collapse" data-target="#demo{{d.cus.pk}}" class="collapsed active" onclick="kapat();" >
+                  <a href="#" ><i class="fa fa-user"></i>{{ d.cus.customerName }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+                
+     </div>
+</div>
+
+<div class="container" style="margin: 90px 0px 0px 153px;">
+<div class="row" >
     {% for d in data %}
-    <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 20px 0px;">
+    <div id="demo{{d.cus.pk}}" class="collapse" style="width: 100%; text-align: left; padding: 0px 50px;     margin-right: 100px;">
             <table class="table">
                 <thead>
                     <tr>
@@ -95,7 +101,7 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td style="cursor: pointer;" onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=700, height=400');"><i class="fas fa-file-alt"></i>Geçmiş Kayıtlar</td>
+                        <td style="cursor: pointer;" onclick="myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=700, height=400');"><i class="fas fa-file-alt"></i>Geçmiş Kayıtlar</td>
                     </tr>
                 </tbody>
             </table>
@@ -104,6 +110,19 @@
         </div>
         {% endfor %}
     </div>
-    </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+      
+        
+        $("#demo{{data.0.cus.pk}}").addClass('show');
+    
+      
+    }); 
+    function kapat() {
+        {% for d in data %}
+        $('#demo{{d.cus.pk}}').removeClass('show');
+        {% endfor %}
+    }
+</script>
 {% endblock %}
