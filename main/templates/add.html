@@ -49,6 +49,10 @@
      </div>
 </div>
 <div id="customerInfo" class="collapse" style="margin: 90px 0px 0px 153px;" data-toggle="customerInfo">
+    <div>
+        <table style="width: 75%; position: relative; z-index: 1;" id="cusTable"></table>
+    </div> 
+    <!-- <div id="testHis" class="collapse" style="margin: 90px 0px 0px 153px;">
         
         
     <div style="width: 100%; text-align: left; padding: 0px 50px;">
@@ -68,7 +72,7 @@
         {% endfor %}
       </table>
        
-    </div>
+    </div> -->
   </div>
   <div id="prodMans" class="collapse" style="margin: 90px 0px 0px 153px;">
         
@@ -321,8 +325,9 @@
         
         
                           <div>
-                              <table id="prodTable"></table>
+                              <table id="prodTable" style="position: relative; z-index: 1;"></table>
                           </div>
+                        
                    <!--          <table class="table">
                               <tr>
                                 <th scope="col">Müşteri</th>
@@ -361,7 +366,7 @@
 
                         <div id="testHis" class="collapse" style="margin: 90px 0px 0px 153px;">
                             <div>
-                                <table id="testTable"></table>
+                                <table id="testTable" style="position: relative; z-index: 1;"></table>
                             </div>          
           
                             <!-- <div style="width: 100%; text-align: left; padding: 0px 50px;"></div>
@@ -441,6 +446,43 @@
 }
   
 </script>
+<script>
+    $(document).ready(function () {
+      var data = JSON.parse('{{jsondata.2|safe}}');
+      var dataId = JSON.parse('{{jsondata.3|safe}}');
+      
+      $('#cusTable').DataTable({
+        data: data['cusArr'],
+        columns: [{
+          title: "Müşteri Adı"
+        },
+        {
+          title: "Müşteri Durumu"
+        }
+        ]
+      });
+  
+      $('#cusTable').find("thead").find("tr").append(
+        '<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url "addCus"%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
+      
+      var chldrn = $('#cusTable').find("tbody").children();
+      var i=0;
+      for (i=0; i<chldrn.length; i++) {
+        $(chldrn[i]).append(
+          '<td style="cursor: pointer;"><a class="benima" href="/main/edit?what=cus&id='
+          +dataId['cusIdArr'][i]
+          +'"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>'
+          +'<td><a id="delete" class="benima" href="/main/delete?what=customerInfo&id='
+          +dataId['cusIdArr'][i]
+          + '" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>');      
+      }
+        
+  
+  
+    });
+  
+  
+</script> 
 <script>
     var data = JSON.parse('{{jsondata.0|safe}}');
     var dataId = JSON.parse('{{jsondata.1|safe}}');

@@ -13,9 +13,10 @@ class UserInfo(models.Model):
 
 class CustomerInfo(models.Model):
     customerName = models.CharField(max_length=50)
+    customerSituation = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.customerName
+        return self.customerName + "(" + self.customerSituation + ")"
 
 class ProductManagerHistory(models.Model):
     prodManName = models.CharField(max_length=50)

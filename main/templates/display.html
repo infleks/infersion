@@ -60,9 +60,11 @@
             <input class="searchSide" type="text"  id="myInput" onkeyup="searchCustomer()" onfocus="this.placeholder = ' '" placeholder="Müşteri ara.." title="İsim girin">
             <ul id="menu-content" class="menu-content collapse out" style="margin-bottom:15px;">
                 {% for d in data %}
-                <li data-toggle="collapse" class="collapsed active" onclick="kapat('{{d.cus.pk}}');" >
-                  <a href="#" ><i class="fa fa-user"></i>{{ d.cus.customerName }}</a>
-                </li>
+                    {% if d.cus.customerSituation == "Aktif"  %}
+                        <li data-toggle="collapse" class="collapsed active" onclick="kapat('{{d.cus.pk}}');" >
+                        <a href="#" ><i class="fa fa-user"></i>{{ d.cus.customerName }}</a>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
                 

@@ -132,7 +132,7 @@ def manage(request):
             'testLoadTime': TestProductHistory.objects.all(),
             'users' :UserInfo.objects.get(pk=request.session['user_id']),
             'data' : data,
-            'jsondata' : [prodHistTestHistToJSON(), prodHistTestHistIdsToJSON()],
+            'jsondata' : [prodHistTestHistToJSON(), prodHistTestHistIdsToJSON(), cusHistToJSON(), cusIdsToJSON()]
 
     }
 

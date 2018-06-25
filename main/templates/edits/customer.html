@@ -13,7 +13,15 @@
           <fieldset>
             <input value="{{c.customerName}}" type="text" tabindex="2" name="cus_name" required/>
           </fieldset>
+          <fieldset>
+              <select name="cus_situ" class="form-control" placeholder="Müşteri Durumu..">
+                  <option value={{c.pk}}  {% if c.customerSituation == "Aktif" %} selected {% endif %} >Aktif</option>
+                  <option value={{c.pk}}  {% if c.customerSituation == "Pasif" %} selected {% endif %} >Pasif</option>
+                
+              </select>
+          </fieldset>
           <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Düzenle</button>
+        
           </fieldset>
           {% endfor %}
         </form>

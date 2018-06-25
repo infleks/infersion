@@ -1,5 +1,26 @@
 import json
-from main.models import ProductHistory, TestProductHistory
+from main.models import *
+
+
+def cusHistToJSON():
+    cus=CustomerInfo.objects.all()
+    cusArr = []
+    for i,c in enumerate(cus):
+        cusArr.append([])
+        cusArr[i].append(c.customerName)
+        cusArr[i].append(c.customerSituation)
+        
+    jsonstr = json.dumps({'cusArr': cusArr})
+    return jsonstr
+
+def cusIdsToJSON():
+    cus=CustomerInfo.objects.all()
+    cusIdArr = []
+    for c in cus:
+        cusIdArr.append(c.pk)
+
+    jsonstr = json.dumps({'cusIdArr':cusIdArr})
+    return jsonstr
 
 def prodHistTestHistToJSON():
     pH=list(ProductHistory.objects.all())
