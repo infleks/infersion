@@ -9,7 +9,9 @@
       <h4>Müşteri Adı :</h4>
       <select name="cus_id" class="form-control">
         {% for c in cus %}
-        <option value={{c.pk}}>{{ c.customerName }}</option>
+          {% if c.customerSituation == "Aktif" %}
+            <option value={{c.pk}}>{{ c.customerName }}</option>
+          {% endif %}
         {% endfor %}
       </select>
 

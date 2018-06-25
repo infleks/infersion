@@ -19,8 +19,9 @@
             </fieldset>
             <select name="cus_id" class="form-control">
                 {% for c in cus %}
-                <option value={{c.pk}} {% if techData.customer.pk == c.pk %} selected {% endif %}>{{ c.customerName }}</option>
-        
+                  {% if c.customerSituation == "Aktif" %}
+                    <option value={{c.pk}} {% if techData.customer.pk == c.pk %} selected {% endif %}>{{ c.customerName }}</option>   
+                  {% endif %}
                 {% endfor %}
                 </select><br>
             <fieldset>

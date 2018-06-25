@@ -89,15 +89,17 @@
             <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdMan'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
           </tr>
           {% for p in prodMan %}
-          <tr>
-              <td>{{p.prodManName}}</td>
-              <td>{{p.prodManEmail}}</td>
-              <td>{{p.prodManPhoneNumber}}</td>
-              <td>{{p.whenIsProdManResponsible}}</td>
-              <td>{{p.customer.customerName}}</td>
-              <td style="cursor: pointer;"><a class="benima" href="/main/edit?what=prodMan&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-              <td><a id="delete" class="benima" href="/main/delete?what=prodMan&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
-          </tr>
+            {% if  p.customer.customerSituation == "Aktif" %}
+              <tr>
+                  <td>{{p.prodManName}}</td>
+                  <td>{{p.prodManEmail}}</td>
+                  <td>{{p.prodManPhoneNumber}}</td>
+                  <td>{{p.whenIsProdManResponsible}}</td>
+                  <td>{{p.customer.customerName}}</td>
+                  <td style="cursor: pointer;"><a class="benima" href="/main/edit?what=prodMan&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
+                  <td><a id="delete" class="benima" href="/main/delete?what=prodMan&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+              </tr>
+            {{% endif %}}
           {% endfor %}
         </table>
           
@@ -120,17 +122,20 @@
               <th scope="col"></th>
               <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTechMan'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
             </tr>
+            
             {% for t in techMan %}
-            <tr>
-                <td>{{t.techManName}}</td>
-                <td>{{t.techManEmail}}</td>
-                <td>{{t.techManPhoneNumber}}</td>
-                <td>{{t.whenIsTechManResponsible}}</td>
-                <td>{{t.customer.customerName}}</td>
-                <td style="cursor: pointer;"><a class="benima" href="/main/edit?what=techMan&id={{t.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
-                <td><a id="delete" class="benima" href="/main/delete?what=techMan&id={{t.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
+              {% if  t.customer.customerSituation == "Aktif" %}
+                <tr>
+                    <td>{{t.techManName}}</td>
+                    <td>{{t.techManEmail}}</td>
+                    <td>{{t.techManPhoneNumber}}</td>
+                    <td>{{t.whenIsTechManResponsible}}</td>
+                    <td>{{t.customer.customerName}}</td>
+                    <td style="cursor: pointer;"><a class="benima" href="/main/edit?what=techMan&id={{t.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
+                    <td><a id="delete" class="benima" href="/main/delete?what=techMan&id={{t.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
-            </tr>
+                </tr>
+              {{% endif %}}
             {% endfor %}
           </table>
             
