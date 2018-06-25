@@ -147,7 +147,12 @@ def add(request):
     if(request.method == 'POST'):
         p = request.POST
         if p['add_what'] == "cus":
-            if CustomerInfo.objects.get(customerName=p['cus_name']) is None:
+            varMi=1
+            try: 
+                CustomerInfo.objects.get(customerName__iexact=p['cus_name'])
+            except CustomerInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 c = CustomerInfo()
                 c.customerName = p['cus_name']
                 c.save()
@@ -156,7 +161,12 @@ def add(request):
                 return redirect("/main/manage?where=customerInfo&uyari=1")
             
         elif p['add_what'] == "prodMan":
-            if ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), prodManName=p['prodMan_name'], prodManEmail=p['prodMan_email'], prodManPhoneNumber=p['prodMan_phone']) is None:
+           varMi=1
+            try:
+                ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), prodManName__iexact=p['prodMan_name'], prodManEmail__iexact=p['prodMan_email'], prodManPhoneNumber=p['prodMan_phone'])
+            except ProductManagerHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pM = ProductManagerHistory()
                 pM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
                 pM.prodManName = p['prodMan_name']
@@ -168,7 +178,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=prodMans&uyari=1")
         elif p['add_what'] == "techMan":
-            if TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), techManName=p['techMan_name'], techManEmail=p['techMan_email'], techManPhoneNumber=p['techMan_phone']) is None:
+            varMi=1
+            try:
+                TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), techManName__iexact=p['techMan_name'], techManEmail__iexact=p['techMan_email'], techManPhoneNumber=p['techMan_phone'])
+            except TechnicalManagerHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 tM = TechnicalManagerHistory()
                 tM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
@@ -181,7 +196,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=techMans&uyari=1")
         elif p['add_what'] == "db":
-            if DatabaseInfo.objects.get(databaseName=p['db_name']) is None:
+            varMi=1
+            try:
+                DatabaseInfo.objects.get(databaseName__iexact=p['db_name'])
+            except DatabaseInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 d = DatabaseInfo()
                 d.databaseName = p['db_name']
                 d.save()
@@ -190,7 +210,12 @@ def add(request):
                 return redirect("/main/manage?where=databases&uyari=1")
             
         elif p['add_what'] == "dbHis":
-            if DatabaseVersion.objects.get(databaseVersionName=p['dbVer_name'], database=DatabaseInfo.objects.get(pk=p['db_id']) ) is None:
+             varMi=1
+            try:
+                DatabaseVersion.objects.get(databaseVersionName__iexact=p['dbVer_name'], database=DatabaseInfo.objects.get(pk=p['db_id']) )
+            except DatabaseVersion.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 dH = DatabaseVersion()
                 dH.database = DatabaseInfo.objects.get(pk=p['db_id'])
                 dH.databaseVersionName = p['dbVer_name']
@@ -200,7 +225,12 @@ def add(request):
                 return redirect("/main/manage?where=dbVers&uyari=1")
 
         elif p['add_what'] == "server":
-            if ServerInfo.objects.get(serverName=p['server_name']) is None:
+            varMi=1
+            try:
+                ServerInfo.objects.get(serverName__iexact=p['server_name'])
+            except ServerInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 s = ServerInfo()
                 s.serverName = p['server_name']
                 s.save()
@@ -208,7 +238,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=servers&uyari=1")
         elif p['add_what'] == "svHis":
-            if ServerVersion.objects.get(serverVersionName=p['svVer_name'], server=ServerInfo.objects.get(pk=p['sv_id']) ) is None:
+            varMi=1
+            try:
+                ServerVersion.objects.get(serverVersionName__iexact=p['svVer_name'], server=ServerInfo.objects.get(pk=p['sv_id']) )
+            except ServerVersion.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 sH = ServerVersion()
                 sH.server = ServerInfo.objects.get(pk=p['sv_id'])
                 sH.serverVersionName = p['svVer_name']
@@ -217,7 +252,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=serverVer&uyari=1")
         elif p['add_what'] == 'prod':
-            if ProductInfo.objects.get(productName=p['prod_name']) is None:
+            varMi=1
+            try:
+                ProductInfo.objects.get(productName__iexact=p['prod_name'])
+            except ProductInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pr = ProductInfo()
                 pr.productName = p['prod_name']
                 pr.save()
@@ -225,7 +265,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=products&uyari=1")
         elif p['add_what'] == 'prodMod':
-            if ProductModule.objects.get(moduleName=p['prodMod_name'], product=ProductInfo.objects.get(pk=p['prod_id']) ) is None:
+            varMi=1
+            try:
+                ProductModule.objects.get(moduleName__iexact=p['prodMod_name'], product=ProductInfo.objects.get(pk=p['prod_id']) )
+            except ProductModule.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 prM = ProductModule()
                 prM.product = ProductInfo.objects.get(pk=p['prod_id'])
                 prM.moduleName = p['prodMod_name']
@@ -234,7 +279,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=prodModule&uyari=1")
         elif p['add_what'] == 'prodVer':
-            if ProductVersion.objects.get(productVersionName=p['prodVer_name'], productmodule=ProductModule.objects.get(pk=p['prodMod_id']) ) is None:
+            varMi=1
+            try:
+                ProductVersion.objects.get(productVersionName__iexact=p['prodVer_name'], productmodule=ProductModule.objects.get(pk=p['prodMod_id']) )
+            except ProductVersion.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pV = ProductVersion()
                 pV.productmodule = ProductModule.objects.get(pk=p['prodMod_id'])
                 pV.productVersionName = p['prodVer_name']
@@ -243,7 +293,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=prodVer&uyari=1")
         elif p['add_what'] == 'prodLoadTime':
-            if ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) ) is None:
+            varMi=1
+            try:
+                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) )
+            except ProductHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pH = ProductHistory()
                 pH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
                 pH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
@@ -256,7 +311,12 @@ def add(request):
             else:
                 return redirect("/main/manage?where=prodHis&uyari=1")
         elif p['add_what'] == 'testLoadTime':
-            if TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) ) is None:
+            varMi=1
+            try:
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) )
+            except TestProductHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 tH = TestProductHistory()
                 tH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
                 tH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
@@ -490,7 +550,12 @@ def edit(request):
     if request.method == "POST":
         req=request.POST
         if req['edit_what'] == "editCustomer":
-            if CustomerInfo.objects.get(customerName=req['cus_name']) is None:
+            varMi=1
+            try:
+                CustomerInfo.objects.get(customerName=req['cus_name'])
+            except CustomerInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pk1=req['pk']
                 c = CustomerInfo.objects.get(pk=pk1)
                 c.customerName = req['cus_name']
@@ -500,7 +565,12 @@ def edit(request):
                 return redirect("/main/manage?where=customerInfo&uyari=1")
 
         elif req['edit_what'] == "editProdMan":
-            if ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), prodManName=req['prodMan_name'], prodManEmail=req['prodMan_email'], prodManPhoneNumber=req['prodMan_phone']) is None:
+            varMi=1
+            try:
+                ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), prodManName=req['prodMan_name'], prodManEmail=req['prodMan_email'], prodManPhoneNumber=req['prodMan_phone'])
+            except ProductManagerHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 pk1=req['pk']
                 p = ProductManagerHistory.objects.get(pk=pk1)
@@ -515,7 +585,12 @@ def edit(request):
                 return redirect("/main/manage?where=prodMans&uyari=1")
 
         elif req['edit_what'] == "editTechMan":
-            if TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), techManName=req['techMan_name'], techManEmail=req['techMan_email'], techManPhoneNumber=req['techMan_phone']) is None:
+            varMi=1
+            try:
+                TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), techManName=req['techMan_name'], techManEmail=req['techMan_email'], techManPhoneNumber=req['techMan_phone'])
+            except TechnicalManagerHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 pk1=req['id']
                 t = TechnicalManagerHistory.objects.get(pk=pk1)
@@ -529,7 +604,12 @@ def edit(request):
                 return redirect("/main/manage?where=techMans&uyari=1")
         
         elif req['edit_what'] == "editProd":
-            if ProductInfo.objects.get(productName=req['prodName']) is None:
+            varMi=1
+            try:
+                ProductInfo.objects.get(productName=req['prodName'])
+            except ProductInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pk1=req['pk']
                 p = ProductInfo.objects.get(pk=pk1)
                 p.productName = req['prodName']
@@ -540,7 +620,12 @@ def edit(request):
 
         
         elif req['edit_what'] == "editProdMod":
-            if ProductModule.objects.get(moduleName=req['prodMod_name'], product=ProductInfo.objects.get(pk=req['prod_id']) ) is None:
+            varMi=1
+            try:
+                ProductModule.objects.get(moduleName=req['prodMod_name'], product=ProductInfo.objects.get(pk=req['prod_id']) )
+            except ProductModule.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pk1=req['id']
                 pm = ProductModule.objects.get(pk=pk1)
                 pmp=req['pmp']
@@ -551,7 +636,12 @@ def edit(request):
             else:
                 return redirect("/main/manage?where=prodModule&uyari=1")
         elif req['edit_what'] == "editProdVer":
-            if ProductVersion.objects.get(productVersionName=req['prodVer_name'], productmodule=ProductModule.objects.get(pk=req['prodMod_id']) ) is None:
+            varMi=1
+            try:
+                ProductVersion.objects.get(productVersionName=req['prodVer_name'], productmodule=ProductModule.objects.get(pk=req['prodMod_id']) )
+            except ProductVersion.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pk1=req['prodMod']
                 pk2=req['id']
                 p=ProductVersion.objects.get(pk=pk2)
@@ -562,7 +652,12 @@ def edit(request):
             else:
                 return redirect("/main/manage?where=prodVer&uyari=1")
         elif req['edit_what'] == "editDB":
-            if DatabaseInfo.objects.get(databaseName=req['db_name']) is None:
+            varMi=1
+            try:
+                DatabaseInfo.objects.get(databaseName=req['db_name'])
+            except DatabaseInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 pk1=req['id']
                 d=DatabaseInfo.objects.get(pk=pk1)
@@ -572,7 +667,12 @@ def edit(request):
             else:
                 return redirect("/main/manage?where=databases&uyari=1")
         elif req['edit_what'] == "editDbVer":
-            if DatabaseVersion.objects.get(databaseVersionName=req['dbVer_name'], database=DatabaseInfo.objects.get(pk=req['db_id']) ) is None:
+            varMi=1
+            try:
+                DatabaseVersion.objects.get(databaseVersionName=req['dbVer_name'], database=DatabaseInfo.objects.get(pk=req['db_id']) )
+            except DatabaseVersion.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 pk1=req['id']
                 d=DatabaseVersion.objects.get(pk=pk1)
@@ -582,7 +682,12 @@ def edit(request):
             else:
                 return redirect("/main/manage?where=dbVers&uyari=1")
         elif req['edit_what'] == "editServer":
-            if ServerInfo.objects.get(serverName=req['server_name']) is None:
+            varMi=1
+            try:
+                ServerInfo.objects.get(serverName=req['server_name'])
+            except ServerInfo.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 pk1=req['id']
                 d=ServerInfo.objects.get(pk=pk1)
@@ -592,7 +697,12 @@ def edit(request):
             else:
                 return redirect("/main/manage?where=servers&uyari=1")
         elif req['edit_what'] == "editServerVer":
-            if ServerVersion.objects.get(serverVersionName=req['svVer_name'], server=ServerInfo.objects.get(pk=req['sv_id']) ) is None:
+            varMi=1
+            try:
+                ServerVersion.objects.get(serverVersionName=req['svVer_name'], server=ServerInfo.objects.get(pk=req['sv_id']) )
+            except ServerVersion.DoesNotExist:
+                varMi=0
+            if varMi==0:
                 pk1=req['id']
                 pk2=req['server']
                 d=ServerVersion.objects.get(pk=pk1)
@@ -604,7 +714,12 @@ def edit(request):
             else:
                 return redirect("/main/manage?where=serverVer&uyari=1")
         elif req['edit_what'] == "editProdHis":
-            if ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['dbVer_id']), serverversion=ServerVersion.objects.get(pk=req['svVer_id']) ) is None:
+            varMi=1
+            try:
+                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['dbVer_id']), serverversion=ServerVersion.objects.get(pk=req['svVer_id']) )
+            except ProductHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 pk1=req['id']
                 pk2=req['server']
@@ -627,7 +742,12 @@ def edit(request):
             else:
                 return redirect("/main/manage?where=prodHis&uyari=1")
         elif req['edit_what'] == "editTestHis":
-            if TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) ) is None:
+            varMi=1
+            try:
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) )
+            except TestProductHistory.DoesNotExist:
+                varMi=0
+            if varMi==0:
 
                 pk1=req['id']
                 pk2=req['server']
