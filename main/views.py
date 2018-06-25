@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 import datetime
 from main.scripts.cofunctions import *
+from django.contrib import messages
 # Create your views here.
 
 
@@ -146,88 +147,127 @@ def add(request):
     if(request.method == 'POST'):
         p = request.POST
         if p['add_what'] == "cus":
-            c = CustomerInfo()
-            c.customerName = p['cus_name']
-            c.save()
-            return redirect("/main/manage?where=customerInfo")
+            if CustomerInfo.objects.get(customerName=p['cus_name']) is None:
+                c = CustomerInfo()
+                c.customerName = p['cus_name']
+                c.save()
+                return redirect("/main/manage?where=customerInfo")
+            else:          
+                return redirect("/main/manage?where=customerInfo&uyari=1")
             
         elif p['add_what'] == "prodMan":
-            pM = ProductManagerHistory()
-            pM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
-            pM.prodManName = p['prodMan_name']
-            pM.prodManEmail = p['prodMan_email']
-            pM.prodManPhoneNumber = p['prodMan_phone']
-            pM.whenIsProdManResponsible = p['prodMan_date']
-            pM.save()
-            return redirect("/main/manage?where=prodMans")
+            if ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), prodManName=p['prodMan_name'], prodManEmail=p['prodMan_email'], prodManPhoneNumber=p['prodMan_phone']) is None:
+                pM = ProductManagerHistory()
+                pM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
+                pM.prodManName = p['prodMan_name']
+                pM.prodManEmail = p['prodMan_email']
+                pM.prodManPhoneNumber = p['prodMan_phone']
+                pM.whenIsProdManResponsible = p['prodMan_date']
+                pM.save()
+                return redirect("/main/manage?where=prodMans")
+            else:
+                return redirect("/main/manage?where=prodMans&uyari=1")
         elif p['add_what'] == "techMan":
-            tM = TechnicalManagerHistory()
-            tM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
-            tM.techManName = p['techMan_name']
-            tM.prodManEmail = p['techMan_email']
-            tM.techManPhoneNumber = p['techMan_phone']
-            tM.whenIsTechManResponsible = p['techMan_date']
-            tM.save()
-            return redirect("/main/manage?where=techMans")
+            if TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), techManName=p['techMan_name'], techManEmail=p['techMan_email'], techManPhoneNumber=p['techMan_phone']) is None:
+
+                tM = TechnicalManagerHistory()
+                tM.customer = CustomerInfo.objects.get(pk=p['cus_id'])
+                tM.techManName = p['techMan_name']
+                tM.techManEmail = p['techMan_email']
+                tM.techManPhoneNumber = p['techMan_phone']
+                tM.whenIsTechManResponsible = p['techMan_date']
+                tM.save()
+                return redirect("/main/manage?where=techMans")
+            else:
+                return redirect("/main/manage?where=techMans&uyari=1")
         elif p['add_what'] == "db":
-            d = DatabaseInfo()
-            d.databaseName = p['db_name']
-            d.save()
-            return redirect("/main/manage?where=databases")
+            if DatabaseInfo.objects.get(databaseName=p['db_name']) is None:
+                d = DatabaseInfo()
+                d.databaseName = p['db_name']
+                d.save()
+                return redirect("/main/manage?where=databases")
+            else:
+                return redirect("/main/manage?where=databases&uyari=1")
+            
         elif p['add_what'] == "dbHis":
-            dH = DatabaseVersion()
-            dH.database = DatabaseInfo.objects.get(pk=p['db_id'])
-            dH.databaseVersionName = p['dbVer_name']
-            dH.save()
-            return redirect("/main/manage?where=dbVers")
+            if DatabaseVersion.objects.get(databaseVersionName=p['dbVer_name'], database=DatabaseInfo.objects.get(pk=p['db_id']) ) is None:
+                dH = DatabaseVersion()
+                dH.database = DatabaseInfo.objects.get(pk=p['db_id'])
+                dH.databaseVersionName = p['dbVer_name']
+                dH.save()
+                return redirect("/main/manage?where=dbVers")
+            else:
+                return redirect("/main/manage?where=dbVers&uyari=1")
+
         elif p['add_what'] == "server":
-            s = ServerInfo()
-            s.serverName = p['server_name']
-            s.save()
-            return redirect("/main/manage?where=servers")
+            if ServerInfo.objects.get(serverName=p['server_name']) is None:
+                s = ServerInfo()
+                s.serverName = p['server_name']
+                s.save()
+                return redirect("/main/manage?where=servers")
+            else:
+                return redirect("/main/manage?where=servers&uyari=1")
         elif p['add_what'] == "svHis":
-            sH = ServerVersion()
-            sH.server = ServerInfo.objects.get(pk=p['sv_id'])
-            sH.serverVersionName = p['svVer_name']
-            sH.save()
-            return redirect("/main/manage?where=serverVer")
+            if ServerVersion.objects.get(serverVersionName=p['svVer_name'], server=ServerInfo.objects.get(pk=p['sv_id']) ) is None:
+                sH = ServerVersion()
+                sH.server = ServerInfo.objects.get(pk=p['sv_id'])
+                sH.serverVersionName = p['svVer_name']
+                sH.save()
+                return redirect("/main/manage?where=serverVer")
+            else:
+                return redirect("/main/manage?where=serverVer&uyari=1")
         elif p['add_what'] == 'prod':
-            pr = ProductInfo()
-            pr.productName = p['prod_name']
-            pr.save()
-            return redirect("/main/manage?where=products")
+            if ProductInfo.objects.get(productName=p['prod_name']) is None:
+                pr = ProductInfo()
+                pr.productName = p['prod_name']
+                pr.save()
+                return redirect("/main/manage?where=products")
+            else:
+                return redirect("/main/manage?where=products&uyari=1")
         elif p['add_what'] == 'prodMod':
-            prM = ProductModule()
-            prM.product = ProductInfo.objects.get(pk=p['prod_id'])
-            prM.moduleName = p['prodMod_name']
-            prM.save()
-            return redirect("/main/manage?where=prodModule")
+            if ProductModule.objects.get(moduleName=p['prodMod_name'], product=ProductInfo.objects.get(pk=p['prod_id']) ) is None:
+                prM = ProductModule()
+                prM.product = ProductInfo.objects.get(pk=p['prod_id'])
+                prM.moduleName = p['prodMod_name']
+                prM.save()
+                return redirect("/main/manage?where=prodModule")
+            else:
+                return redirect("/main/manage?where=prodModule&uyari=1")
         elif p['add_what'] == 'prodVer':
-            pV = ProductVersion()
-            pV.productmodule = ProductModule.objects.get(pk=p['prodMod_id'])
-            pV.productVersionName = p['prodVer_name']
-            pV.save()
-            return redirect("/main/manage?where=prodVer")
+            if ProductVersion.objects.get(productVersionName=p['prodVer_name'], productmodule=ProductModule.objects.get(pk=p['prodMod_id']) ) is None:
+                pV = ProductVersion()
+                pV.productmodule = ProductModule.objects.get(pk=p['prodMod_id'])
+                pV.productVersionName = p['prodVer_name']
+                pV.save()
+                return redirect("/main/manage?where=prodVer")
+            else:
+                return redirect("/main/manage?where=prodVer&uyari=1")
         elif p['add_what'] == 'prodLoadTime':
-            pH = ProductHistory()
-            pH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
-            pH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
-            pH.databaseversion = DatabaseVersion.objects.get(pk=p['dbVer_id'])
-            pH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
-            pH.user = UserInfo.objects.get(pk=request.session['user_id'])
-            pH.prodInstallationTime = p['prodLoadTime_date']
-            pH.save()
-            return redirect("/main/manage?where=prodHis")
+            if ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) ) is None:
+                pH = ProductHistory()
+                pH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
+                pH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
+                pH.databaseversion = DatabaseVersion.objects.get(pk=p['dbVer_id'])
+                pH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
+                pH.user = UserInfo.objects.get(pk=request.session['user_id'])
+                pH.prodInstallationTime = p['prodLoadTime_date']
+                pH.save()
+                return redirect("/main/manage?where=prodHis")
+            else:
+                return redirect("/main/manage?where=prodHis&uyari=1")
         elif p['add_what'] == 'testLoadTime':
-            tH = TestProductHistory()
-            tH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
-            tH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
-            tH.databaseversion = DatabaseVersion.objects.get(pk=p['dbVer_id'])
-            tH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
-            tH.user = UserInfo.objects.get(pk=request.session['user_id'])
-            tH.testInstallationTime = p['testLoadTime_date']
-            tH.save()
-            return redirect("/main/manage?where=testHis")
+            if TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) ) is None:
+                tH = TestProductHistory()
+                tH.customer = CustomerInfo.objects.get(pk=p['cus_id'])
+                tH.productversion = ProductVersion.objects.get(pk=p['prodVers_id'])
+                tH.databaseversion = DatabaseVersion.objects.get(pk=p['dbVer_id'])
+                tH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
+                tH.user = UserInfo.objects.get(pk=request.session['user_id'])
+                tH.testInstallationTime = p['testLoadTime_date']
+                tH.save()
+                return redirect("/main/manage?where=testHis")
+            else:
+                return redirect("/main/manage?where=testHis&uyari=1")
           
     return redirect('manage')
 
@@ -450,121 +490,165 @@ def edit(request):
     if request.method == "POST":
         req=request.POST
         if req['edit_what'] == "editCustomer":
-            pk1=req['pk']
-            c = CustomerInfo.objects.get(pk=pk1)
-            c.customerName = req['cus_name']
-            c.save()
-            return redirect("/main/manage?where=customerInfo")
+            if CustomerInfo.objects.get(customerName=req['cus_name']) is None:
+                pk1=req['pk']
+                c = CustomerInfo.objects.get(pk=pk1)
+                c.customerName = req['cus_name']
+                c.save()
+                return redirect("/main/manage?where=customerInfo")
+            else:          
+                return redirect("/main/manage?where=customerInfo&uyari=1")
 
         elif req['edit_what'] == "editProdMan":
-            pk1=req['pk']
-            p = ProductManagerHistory.objects.get(pk=pk1)
-            p.prodManName = req['prodMan_name']
-            p.prodManEmail = req['prodMan_email']
-            p.prodManPhoneNumber = req['prodMan_phone']
-            p.customer=CustomerInfo.objects.get(pk=req['cus_id'])
-            p.whenIsProdManResponsible = req['prodMan_date']
-            p.save()
-            return redirect("/main/manage?where=prodMans")
+            if ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), prodManName=req['prodMan_name'], prodManEmail=req['prodMan_email'], prodManPhoneNumber=req['prodMan_phone']) is None:
+
+                pk1=req['pk']
+                p = ProductManagerHistory.objects.get(pk=pk1)
+                p.prodManName = req['prodMan_name']
+                p.prodManEmail = req['prodMan_email']
+                p.prodManPhoneNumber = req['prodMan_phone']
+                p.customer=CustomerInfo.objects.get(pk=req['cus_id'])
+                p.whenIsProdManResponsible = req['prodMan_date']
+                p.save()
+                return redirect("/main/manage?where=prodMans")
+            else:
+                return redirect("/main/manage?where=prodMans&uyari=1")
 
         elif req['edit_what'] == "editTechMan":
-            pk1=req['id']
-            t = TechnicalManagerHistory.objects.get(pk=pk1)
-            t.techManName = req['techMan_name']
-            t.techManEmail = req['techMan_email']
-            t.prodManPhoneNumber = req['techMan_phone']
-            t.whenIsTechManResponsible = req['techMan_date']
-            t.save()
-            return redirect("/main/manage?where=techMans")
+            if TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), techManName=req['techMan_name'], techManEmail=req['techMan_email'], techManPhoneNumber=req['techMan_phone']) is None:
+
+                pk1=req['id']
+                t = TechnicalManagerHistory.objects.get(pk=pk1)
+                t.techManName = req['techMan_name']
+                t.techManEmail = req['techMan_email']
+                t.techManPhoneNumber = req['techMan_phone']
+                t.whenIsTechManResponsible = req['techMan_date']
+                t.save()
+                return redirect("/main/manage?where=techMans")
+            else:
+                return redirect("/main/manage?where=techMans&uyari=1")
         
         elif req['edit_what'] == "editProd":
-            pk1=req['pk']
-            p = ProductInfo.objects.get(pk=pk1)
-            p.productName = req['prodName']
-            p.save()
-            return redirect("/main/manage?where=products")
+            if ProductInfo.objects.get(productName=req['prodName']) is None:
+                pk1=req['pk']
+                p = ProductInfo.objects.get(pk=pk1)
+                p.productName = req['prodName']
+                p.save()
+                return redirect("/main/manage?where=products")
+            else:
+                return redirect("/main/manage?where=products&uyari=1")
+
         
         elif req['edit_what'] == "editProdMod":
-            pk1=req['id']
-            pm = ProductModule.objects.get(pk=pk1)
-            pmp=req['pmp']
-            pm.product=ProductInfo.objects.get(pk=pmp)
-            pm.moduleName = req['prodModName']
-            pm.save()
-            return redirect("/main/manage?where=prodModule")
+            if ProductModule.objects.get(moduleName=req['prodMod_name'], product=ProductInfo.objects.get(pk=req['prod_id']) ) is None:
+                pk1=req['id']
+                pm = ProductModule.objects.get(pk=pk1)
+                pmp=req['pmp']
+                pm.product=ProductInfo.objects.get(pk=pmp)
+                pm.moduleName = req['prodModName']
+                pm.save()
+                return redirect("/main/manage?where=prodModule")
+            else:
+                return redirect("/main/manage?where=prodModule&uyari=1")
         elif req['edit_what'] == "editProdVer":
-            pk1=req['prodMod']
-            pk2=req['id']
-            p=ProductVersion.objects.get(pk=pk2)
-            pm = ProductModule.objects.get(pk=pk1)
-            p.productVersionName=req['prodVerName']
-            p.save()
-            return redirect("/main/manage?where=prodVer")
+            if ProductVersion.objects.get(productVersionName=req['prodVer_name'], productmodule=ProductModule.objects.get(pk=req['prodMod_id']) ) is None:
+                pk1=req['prodMod']
+                pk2=req['id']
+                p=ProductVersion.objects.get(pk=pk2)
+                pm = ProductModule.objects.get(pk=pk1)
+                p.productVersionName=req['prodVerName']
+                p.save()
+                return redirect("/main/manage?where=prodVer")
+            else:
+                return redirect("/main/manage?where=prodVer&uyari=1")
         elif req['edit_what'] == "editDB":
-            pk1=req['id']
-            d=DatabaseInfo.objects.get(pk=pk1)
-            d.databaseName=req['db_name']
-            d.save()
-            return redirect("/main/manage?where=databases")
+            if DatabaseInfo.objects.get(databaseName=req['db_name']) is None:
+
+                pk1=req['id']
+                d=DatabaseInfo.objects.get(pk=pk1)
+                d.databaseName=req['db_name']
+                d.save()
+                return redirect("/main/manage?where=databases")
+            else:
+                return redirect("/main/manage?where=databases&uyari=1")
         elif req['edit_what'] == "editDbVer":
-            pk1=req['id']
-            d=DatabaseVersion.objects.get(pk=pk1)
-            d.databaseVersionName=req['dbVer_name']
-            d.save()
-            return redirect("/main/manage?where=dbVers")
+            if DatabaseVersion.objects.get(databaseVersionName=req['dbVer_name'], database=DatabaseInfo.objects.get(pk=req['db_id']) ) is None:
+
+                pk1=req['id']
+                d=DatabaseVersion.objects.get(pk=pk1)
+                d.databaseVersionName=req['dbVer_name']
+                d.save()
+                return redirect("/main/manage?where=dbVers")
+            else:
+                return redirect("/main/manage?where=dbVers&uyari=1")
         elif req['edit_what'] == "editServer":
-            pk1=req['id']
-            d=ServerInfo.objects.get(pk=pk1)
-            d.serverName=req['server_name']
-            d.save()
-            return redirect("/main/manage?where=servers")
+            if ServerInfo.objects.get(serverName=req['server_name']) is None:
+
+                pk1=req['id']
+                d=ServerInfo.objects.get(pk=pk1)
+                d.serverName=req['server_name']
+                d.save()
+                return redirect("/main/manage?where=servers")
+            else:
+                return redirect("/main/manage?where=servers&uyari=1")
         elif req['edit_what'] == "editServerVer":
-            pk1=req['id']
-            pk2=req['server']
-            d=ServerVersion.objects.get(pk=pk1)
-            d.server=ServerInfo.objects.get(pk=pk2)
-            d.serverVersionName=req['svVer_name']
+            if ServerVersion.objects.get(serverVersionName=req['svVer_name'], server=ServerInfo.objects.get(pk=req['sv_id']) ) is None:
+                pk1=req['id']
+                pk2=req['server']
+                d=ServerVersion.objects.get(pk=pk1)
+                d.server=ServerInfo.objects.get(pk=pk2)
+                d.serverVersionName=req['svVer_name']
 
-            d.save()
-            return redirect("/main/manage?where=serverVer")
+                d.save()
+                return redirect("/main/manage?where=serverVer")
+            else:
+                return redirect("/main/manage?where=serverVer&uyari=1")
         elif req['edit_what'] == "editProdHis":
-            pk1=req['id']
-            pk2=req['server']
-            pk3=req['db']
-            pk4=req['cus_id']
-            d=ProductHistory.objects.get(pk=pk1)
-            d.customer=CustomerInfo.objects.get(pk=pk4)
-            prodVer=req['prodVers_id']
-            prodversion=ProductVersion.objects.get(pk=prodVer)
-            prod=prodversion.productmodule.product
-            s=ServerVersion.objects.get(pk=pk2)
-            db=DatabaseVersion.objects.get(pk=pk3)
-            d.serverversion=s
-            d.databaseversion=db
-            d.prodInstallationTime=req['prodLoadTime_date']
-            d.productversion=prodversion
+            if ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['dbVer_id']), serverversion=ServerVersion.objects.get(pk=req['svVer_id']) ) is None:
 
-            d.save()
-            return redirect("/main/manage?where=prodHis")
+                pk1=req['id']
+                pk2=req['server']
+                pk3=req['db']
+                pk4=req['cus_id']
+                d=ProductHistory.objects.get(pk=pk1)
+                d.customer=CustomerInfo.objects.get(pk=pk4)
+                prodVer=req['prodVers_id']
+                prodversion=ProductVersion.objects.get(pk=prodVer)
+                prod=prodversion.productmodule.product
+                s=ServerVersion.objects.get(pk=pk2)
+                db=DatabaseVersion.objects.get(pk=pk3)
+                d.serverversion=s
+                d.databaseversion=db
+                d.prodInstallationTime=req['prodLoadTime_date']
+                d.productversion=prodversion
+
+                d.save()
+                return redirect("/main/manage?where=prodHis")
+            else:
+                return redirect("/main/manage?where=prodHis&uyari=1")
         elif req['edit_what'] == "editTestHis":
-            pk1=req['id']
-            pk2=req['server']
-            pk3=req['db']
-            pk4=req['cus_id']
-            d=TestProductHistory.objects.get(pk=pk1)
-            d.customer=CustomerInfo.objects.get(pk=pk4)
-            prodVer=req['prodVers_id']
-            prodversion=ProductVersion.objects.get(pk=prodVer)
-            prod=prodversion.productmodule.product
-            s=ServerVersion.objects.get(pk=pk2)
-            db=DatabaseVersion.objects.get(pk=pk3)
-            d.serverversion=s
-            d.databaseversion=db
-            d.testInstallationTime=req['testLoadTime_date']
-            d.productversion=prodversion
+            if TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) ) is None:
 
-            d.save()
-            return redirect("/main/manage?where=testHis")
+                pk1=req['id']
+                pk2=req['server']
+                pk3=req['db']
+                pk4=req['cus_id']
+                d=TestProductHistory.objects.get(pk=pk1)
+                d.customer=CustomerInfo.objects.get(pk=pk4)
+                prodVer=req['prodVers_id']
+                prodversion=ProductVersion.objects.get(pk=prodVer)
+                prod=prodversion.productmodule.product
+                s=ServerVersion.objects.get(pk=pk2)
+                db=DatabaseVersion.objects.get(pk=pk3)
+                d.serverversion=s
+                d.databaseversion=db
+                d.testInstallationTime=req['testLoadTime_date']
+                d.productversion=prodversion
+
+                d.save()
+                return redirect("/main/manage?where=testHis")
+            else:
+                return redirect("/main/manage?where=testHis&uyari=1")
 
     what = request.GET['what']
     if what == 'cus':
