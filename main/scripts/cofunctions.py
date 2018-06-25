@@ -25,8 +25,8 @@ def cusIdsToJSON():
 def prodHistTestHistToJSON():
     pH=list(ProductHistory.objects.all())
     pArr = []
-    if pH.customer.customerSituation == "Aktif":
-        for i,p in enumerate(pH): 
+    for i,p in enumerate(pH):
+        if p.customer.customerSituation == "Aktif":
             pArr.append([])
             pArr[i].append(p.customer.customerName)
             pArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
@@ -37,8 +37,8 @@ def prodHistTestHistToJSON():
     
     tpH=TestProductHistory.objects.all()
     tpArr = []
-    if tpH.customer.customerSituation == "Aktif":
-        for i,p in enumerate(tpH):
+    for i,p in enumerate(tpH):
+        if p.customer.customerSituation == "Aktif":
             tpArr.append([])
             tpArr[i].append(p.customer.customerName)
             tpArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
@@ -54,14 +54,14 @@ def prodHistTestHistToJSON():
 def prodHistTestHistIdsToJSON():
     pH=list(ProductHistory.objects.all())
     pArr = []
-    if pH.customer.customerSituation == "Aktif":
-        for p in pH:
+    for p in pH:
+        if p.customer.customerSituation == "Aktif":
             pArr.append(p.pk)
 
     tpH=TestProductHistory.objects.all()
     tpArr = []
-    if tpH.customer.customerSituation == "Aktif":
-        for p in tpH:
+    for p in tpH:
+        if p.customer.customerSituation == "Aktif":
             tpArr.append(p.pk)
 
     jsonstr = json.dumps({'pIdArr':pArr, 'tpIdArr':tpArr})
@@ -70,8 +70,8 @@ def prodHistTestHistIdsToJSON():
 def displayHistToJSON():
     pH=list(ProductHistory.objects.all())
     pArr = []
-    if pH.customer.customerSituation == "Aktif":
-        for i,p in enumerate(pH):
+    for i,p in enumerate(pH):
+        if p.customer.customerSituation == "Aktif":
             pArr.append([])
             pArr[i].append("Canlı")
             pArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
@@ -82,8 +82,8 @@ def displayHistToJSON():
     
     tpH=TestProductHistory.objects.all()
     tpArr = []
-    if tpH.customer.customerSituation == "Aktif":
-        for i,p in enumerate(tpH):
+    for i,p in enumerate(tpH):
+        if p.customer.customerSituation == "Aktif":
             tpArr.append([])
             tpArr[i].append("Test")
             tpArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
@@ -99,14 +99,14 @@ def displayHistToJSON():
 def displayHistIdsToJSON():
     pH=list(ProductHistory.objects.all())
     pArr = []
-    if pH.customer.customerSituation == "Aktif":
-        for p in pH:
+    for p in pH:
+        if p.customer.customerSituation == "Aktif":
             pArr.append(p.pk)
 
     tpH=TestProductHistory.objects.all()
     tpArr = []
-    if tpH.customer.customerSituation == "Aktif":
-        for p in tpH:
+    for p in tpH:
+        if p.customer.customerSituation == "Aktif":
             tpArr.append(p.pk)
 
     jsonstr = json.dumps({'pIdArr':pArr, 'tpIdArr':tpArr})

@@ -99,7 +99,7 @@
                   <td style="cursor: pointer;"><a class="benima" href="/main/edit?what=prodMan&id={{p.pk}}"> <div><i class="fas fa-edit" style="color: #be5254; cursor: pointer;"></i>Düzenle</div></a></td>
                   <td><a id="delete" class="benima" href="/main/delete?what=prodMan&id={{p.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
               </tr>
-            {{% endif %}}
+            {% endif %}
           {% endfor %}
         </table>
           
@@ -135,7 +135,7 @@
                     <td><a id="delete" class="benima" href="/main/delete?what=techMan&id={{t.pk}}" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; cursor: pointer;"></i>Sil</a></td>
 
                 </tr>
-              {{% endif %}}
+              {% endif %}
             {% endfor %}
           </table>
             

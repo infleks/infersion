@@ -161,7 +161,7 @@ def add(request):
                 return redirect("/main/manage?where=customerInfo&uyari=1")
             
         elif p['add_what'] == "prodMan":
-           varMi=1
+            varMi=1
             try:
                 ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), prodManName__iexact=p['prodMan_name'], prodManEmail__iexact=p['prodMan_email'], prodManPhoneNumber=p['prodMan_phone'])
             except ProductManagerHistory.DoesNotExist:
@@ -210,7 +210,7 @@ def add(request):
                 return redirect("/main/manage?where=databases&uyari=1")
             
         elif p['add_what'] == "dbHis":
-             varMi=1
+            varMi=1
             try:
                 DatabaseVersion.objects.get(databaseVersionName__iexact=p['dbVer_name'], database=DatabaseInfo.objects.get(pk=p['db_id']) )
             except DatabaseVersion.DoesNotExist:
