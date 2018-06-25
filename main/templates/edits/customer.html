@@ -15,8 +15,8 @@
           </fieldset>
           <fieldset>
               <select name="cus_situ" class="form-control" placeholder="Müşteri Durumu..">
-                  <option value={{c.pk}}  {% if c.customerSituation == "Aktif" %} selected {% endif %} >Aktif</option>
-                  <option value={{c.pk}}  {% if c.customerSituation == "Pasif" %} selected {% endif %} >Pasif</option>
+                  <option value="Aktif"  {% if c.customerSituation == "Aktif" %} selected {% endif %} >Aktif</option>
+                  <option value="Pasif"  {% if c.customerSituation == "Pasif" %} selected {% endif %} >Pasif</option>
                 
               </select>
           </fieldset>

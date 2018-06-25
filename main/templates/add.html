@@ -427,6 +427,13 @@
       if (urlParams.get('uyari')){
         if (urlParams.get('uyari')==1){
           alert("Bu isimde bir kayıt zaten mevcut.");
+          if (urlParams.get('where')){
+            window.location.href='/main/manage?where='+ urlParams.get('where');
+          }
+          else{
+            window.location.href='/main/manage?where=customerInfo';
+          }
+            
         }
       }
       

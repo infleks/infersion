@@ -155,6 +155,7 @@ def add(request):
             if varMi==0:
                 c = CustomerInfo()
                 c.customerName = p['cus_name']
+                c.customerSituation = p['cus_situ']
                 c.save()
                 return redirect("/main/manage?where=customerInfo")
             else:          
@@ -552,13 +553,14 @@ def edit(request):
         if req['edit_what'] == "editCustomer":
             varMi=1
             try:
-                CustomerInfo.objects.get(customerName=req['cus_name'])
+                CustomerInfo.objects.get(customerName=req['cus_name'], customerSituation=req['cus_situ'])
             except CustomerInfo.DoesNotExist:
                 varMi=0
             if varMi==0:
                 pk1=req['pk']
                 c = CustomerInfo.objects.get(pk=pk1)
                 c.customerName = req['cus_name']
+                c.customerSituation = req['cus_situ']
                 c.save()
                 return redirect("/main/manage?where=customerInfo")
             else:          
@@ -567,7 +569,7 @@ def edit(request):
         elif req['edit_what'] == "editProdMan":
             varMi=1
             try:
-                ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), prodManName=req['prodMan_name'], prodManEmail=req['prodMan_email'], prodManPhoneNumber=req['prodMan_phone'])
+                ProductManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), prodManName=req['prodMan_name'], prodManEmail=req['prodMan_email'], prodManPhoneNumber=req['prodMan_phone'], whenIsProdManResponsible = req['prodMan_date'])
             except ProductManagerHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -587,7 +589,7 @@ def edit(request):
         elif req['edit_what'] == "editTechMan":
             varMi=1
             try:
-                TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), techManName=req['techMan_name'], techManEmail=req['techMan_email'], techManPhoneNumber=req['techMan_phone'])
+                TechnicalManagerHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), techManName=req['techMan_name'], techManEmail=req['techMan_email'], techManPhoneNumber=req['techMan_phone'], whenIsTechManResponsible = req['techMan_date'])
             except TechnicalManagerHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -716,7 +718,7 @@ def edit(request):
         elif req['edit_what'] == "editProdHis":
             varMi=1
             try:
-                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['dbVer_id']), serverversion=ServerVersion.objects.get(pk=req['svVer_id']) )
+                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), prodInstallationTime = req['prodLoadTime_date'] )
             except ProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -744,7 +746,7 @@ def edit(request):
         elif req['edit_what'] == "editTestHis":
             varMi=1
             try:
-                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) )
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['db']), serverversion=ServerVersion.objects.get(pk=p['server']), prodInstallationTime = req['prodLoadTime_date'] )
             except TestProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -781,7 +783,7 @@ def edit(request):
     elif what == 'prodMan':
         pk1 = request.GET['id']
         prodData = ProductManagerHistory.objects.get(pk=pk1)
-        tarih = datetime.datetime.strftime(prodData.whenIsProdManResponsible, "%d-%m-%Y")        
+        tarih = datetime.strftime(prodData.whenIsProdManResponsible, "%d-%m-%Y")        
         cus=CustomerInfo.objects.all()
         dataToSend = {
             'prodData': prodData,
@@ -792,7 +794,7 @@ def edit(request):
     elif what == 'techMan':
         pk1 = request.GET['id']
         techData = TechnicalManagerHistory.objects.get(pk=pk1)
-        tarih = datetime.datetime.strftime(techData.whenIsTechManResponsible, "%d-%m-%Y")  
+        tarih = datetime.strftime(techData.whenIsTechManResponsible, "%d-%m-%Y")  
         cus=CustomerInfo.objects.all()
         dataToSend = {
             'techData': techData,
@@ -864,7 +866,7 @@ def edit(request):
         pk1 = request.GET['id']
         prodHis = ProductHistory.objects.get(pk=pk1)
         cusId = prodHis.customer.pk
-        prodHisDate = datetime.datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%d-%m-%Y")
+        prodHisDate = datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%d-%m-%Y")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
         c=CustomerInfo.objects.get(pk=cusId)

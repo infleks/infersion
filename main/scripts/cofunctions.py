@@ -1,9 +1,10 @@
 import json
 from main.models import *
-
+from django.db.models.functions import Lower
 
 def cusHistToJSON():
-    cus=CustomerInfo.objects.all()
+    cus=CustomerInfo.objects.all().order_by(Lower('customerName'))
+    print(cus)
     cusArr = []
     for i,c in enumerate(cus):
         cusArr.append([])
@@ -14,7 +15,8 @@ def cusHistToJSON():
     return jsonstr
 
 def cusIdsToJSON():
-    cus=CustomerInfo.objects.all()
+    cus=CustomerInfo.objects.all().order_by(Lower('customerName'))
+    print(cus)
     cusIdArr = []
     for c in cus:
         cusIdArr.append(c.pk)
@@ -28,24 +30,24 @@ def prodHistTestHistToJSON():
     for i,p in enumerate(pH):
         if p.customer.customerSituation == "Aktif":
             pArr.append([])
-            pArr[i].append(p.customer.customerName)
-            pArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
-            pArr[i].append(p.prodInstallationTime.strftime("%d-%m-%Y"))
-            pArr[i].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
-            pArr[i].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
-            pArr[i].append(p.user.userEmail)
+            pArr[-1].append(p.customer.customerName)
+            pArr[-1].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
+            pArr[-1].append(p.prodInstallationTime.strftime("%d-%m-%Y"))
+            pArr[-1].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
+            pArr[-1].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
+            pArr[-1].append(p.user.userEmail)
     
     tpH=TestProductHistory.objects.all()
     tpArr = []
     for i,p in enumerate(tpH):
         if p.customer.customerSituation == "Aktif":
             tpArr.append([])
-            tpArr[i].append(p.customer.customerName)
-            tpArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
-            tpArr[i].append(p.testInstallationTime.strftime("%d-%m-%Y"))
-            tpArr[i].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
-            tpArr[i].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
-            tpArr[i].append(p.user.userEmail)
+            tpArr[-1].append(p.customer.customerName)
+            tpArr[-1].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
+            tpArr[-1].append(p.testInstallationTime.strftime("%d-%m-%Y"))
+            tpArr[-1].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
+            tpArr[-1].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
+            tpArr[-1].append(p.user.userEmail)
 
     jsonstr = json.dumps({'pArr':pArr, 'tpArr':tpArr})
     return jsonstr
@@ -73,24 +75,24 @@ def displayHistToJSON():
     for i,p in enumerate(pH):
         if p.customer.customerSituation == "Aktif":
             pArr.append([])
-            pArr[i].append("Canlı")
-            pArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
-            pArr[i].append(p.prodInstallationTime.strftime("%d-%m-%Y"))
-            pArr[i].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
-            pArr[i].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
-            pArr[i].append(p.user.userEmail)
+            pArr[-1].append("Canlı")
+            pArr[-1].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
+            pArr[-1].append(p.prodInstallationTime.strftime("%d-%m-%Y"))
+            pArr[-1].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
+            pArr[-1].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
+            pArr[-1].append(p.user.userEmail)
     
     tpH=TestProductHistory.objects.all()
     tpArr = []
     for i,p in enumerate(tpH):
         if p.customer.customerSituation == "Aktif":
             tpArr.append([])
-            tpArr[i].append("Test")
-            tpArr[i].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
-            tpArr[i].append(p.testInstallationTime.strftime("%d-%m-%Y"))
-            tpArr[i].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
-            tpArr[i].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
-            tpArr[i].append(p.user.userEmail)
+            tpArr[-1].append("Test")
+            tpArr[-1].append(p.productversion.productmodule.product.productName + ", " + p.productversion.productmodule.moduleName + ", " + p.productversion.productVersionName )
+            tpArr[-1].append(p.testInstallationTime.strftime("%d-%m-%Y"))
+            tpArr[-1].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
+            tpArr[-1].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
+            tpArr[-1].append(p.user.userEmail)
 
     jsonstr = json.dumps({'pArr':pArr, 'tpArr':tpArr})
     return jsonstr

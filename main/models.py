@@ -16,7 +16,7 @@ class CustomerInfo(models.Model):
     customerSituation = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.customerName + "(" + self.customerSituation + ")"
+        return str(self.pk) + " - " + self.customerName + "(" + self.customerSituation + ")"
 
 class ProductManagerHistory(models.Model):
     prodManName = models.CharField(max_length=50)
