@@ -340,7 +340,7 @@ td.text-compativel {
 
 .fas fa-plus-circle .i{
   font-family: "Roboto", helvetica, arial, sans-serif;
-  font-size:23px;
+  font-size:40px;
   font-weight: 100;
 }
 
@@ -703,6 +703,10 @@ body,html{
     padding: 0px;
   }
 
+  th, td {
+    font-size: 12px;
+  }
+
   #prodTable_filter > label > input[type="search"]{
     border-radius: 15px;
     background-color: #ebebeb;
@@ -715,6 +719,11 @@ body,html{
     border-radius: 15px;
     background-color: #ebebeb;  
   }
+  #prodtestTable_filter > label > input[type="search"]{
+    border-radius: 15px;
+    background-color: #ebebeb;  
+  }
+
   .search{
     border-radius: 15px;
     background-color: #ebebeb;
@@ -736,7 +745,7 @@ body,html{
 
   .displayName {
     margin-bottom: 20px;
-    text-align: center;
+    margin-left : 50%;
     color: #be5254;
     font-family: 'Roboto Slab', serif;
     font-size: 40px;

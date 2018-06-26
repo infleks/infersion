@@ -47,6 +47,12 @@
           </select>
           <br>
         </fieldset>
+        {% for t in testHis %}
+        <fieldset>
+          <input value="{{t.url}}" type="text" tabindex="2" name="url_name">
+        </fieldset>
+        
+        {% endfor %}
   
         <h4>Test Ürün Yüklenme Tarihi: </h4>
         <input placeholder="Satış Tarihi" id="test_tarihi" type="date" tabindex="2" name="testLoadTime_date" required>

@@ -304,6 +304,7 @@ def add(request):
                 pH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
                 pH.user = UserInfo.objects.get(pk=request.session['user_id'])
                 pH.prodInstallationTime = p['prodLoadTime_date']
+                pH.url = p['url_name']
                 pH.save()
                 return redirect("/main/manage?where=prodHis")
             else:
@@ -322,6 +323,7 @@ def add(request):
                 tH.serverversion = ServerVersion.objects.get(pk=p['svVer_id'])
                 tH.user = UserInfo.objects.get(pk=request.session['user_id'])
                 tH.testInstallationTime = p['testLoadTime_date']
+                tH.url = p['url_name']
                 tH.save()
                 return redirect("/main/manage?where=testHis")
             else:
@@ -735,6 +737,7 @@ def edit(request):
                 d.databaseversion=db
                 d.prodInstallationTime=req['prodLoadTime_date']
                 d.productversion=prodversion
+                d.url = req['url_name']
 
                 d.save()
                 return redirect("/main/manage?where=prodHis")
@@ -763,6 +766,7 @@ def edit(request):
                 d.databaseversion=db
                 d.testInstallationTime=req['testLoadTime_date']
                 d.productversion=prodversion
+                d.url = req['url_name']
 
                 d.save()
                 return redirect("/main/manage?where=testHis")

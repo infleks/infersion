@@ -20,11 +20,11 @@
         </a>
         <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodMans');" href="#" data-toggle="collapse">
           <li>
-            <i class="fas fa-arrow-right"></i> Ürün Yöneticisi</li>
+            <i class="fas fa-arrow-right"></i> Ürün Sorumlusu</li>
         </a>
         <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('techMans');" href="#" data-toggle="collapse">
           <li>
-            <i class="fas fa-arrow-right"></i> Teknik Sorumlu</li>
+            <i class="fas fa-arrow-right"></i> Teknik Sorumlu </li>
         </a>
       </ul>
 
@@ -107,7 +107,7 @@
         <tr>
           <th scope="col">Müşteri Adı</th>
           <th></th>
-          <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addCus'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
+          <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addCus'%}"> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
         </tr>
         {% for c in cus %}
         <tr>
@@ -127,7 +127,7 @@
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
-        <th scope="col">Ürün Yöneticisi</th>
+        <th scope="col">Ürün Sorumlusu</th>
         <th scope="col">E-Mail</th>
         <th scope="col">Telefon</th>
         <th scope="col">Tarihi</th>
@@ -136,7 +136,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdMan'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
       </tr>
@@ -181,7 +181,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTechMan'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
       </tr>
@@ -223,7 +223,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProd'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
 
@@ -261,7 +261,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdMod'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
 
@@ -301,7 +301,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdVer'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
 
@@ -341,7 +341,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDbVer'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
 
@@ -380,7 +380,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDB'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
 
@@ -419,7 +419,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addServer'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
 
@@ -458,7 +458,7 @@
         <th style="cursor: pointer;">
           <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addServerVer'%}">
             <div>
-              <i style="cursor: pointer;" class="fas fa-plus-circle"></i> Ekle</div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
           </a>
         </th>
 
@@ -496,8 +496,8 @@
 <div id="prodHis" class="collapse" style="margin: 90px 0px 0px 153px;">
 
 
-  <div>
-    <table id="prodTable" style="position: relative; z-index: 1;"></table>
+  <div style="display:block;margin:120px auto;background-color: white;">
+    <table id="prodTable" style="position: relative; z-index: 1; width:50%; margin-left:15%;"></table>
   </div>
 
   <!--          <table class="table">
@@ -509,7 +509,7 @@
                                 <th scope="col">Sunucu</th>
                                 <th scope="col">Veritabanı</th>
                                 <th></th>
-                                <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
+                                <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdHis'%}"> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
                   
                               </tr>
                               {% for d in data %}
@@ -543,8 +543,8 @@
 </div>
 
 <div id="testHis" class="collapse" style="margin: 90px 0px 0px 153px;">
-  <div>
-    <table id="testTable" style="position: relative; z-index: 1;"></table>
+  <div style="display:block;margin:120px auto;background-color: white;">
+    <table id="testTable" style="position: relative; z-index: 1; width:50%; margin-left:15%;"></table>
   </div>
 
   <!-- <div style="width: 100%; text-align: left; padding: 0px 50px;"></div>
@@ -557,7 +557,7 @@
                                   <th class="text-left">Sunucu</th>
                                   <th class="text-left">Veritabanı</th>
                                   <th></th>
-                                  <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTestHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
+                                  <th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTestHis'%}"> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>
                   
                                 </tr>
                                
@@ -643,7 +643,7 @@
         });
 
         $('#cusTable').find("thead").find("tr").append(
-          '<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url "addCus"%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
+          '<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url "addCus"%}"> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
 
         var chldrn = $('#cusTable').find("tbody").children();
         var i = 0;
@@ -691,11 +691,14 @@
     },
     {
       title: "Eklemeyi Yapan"
+    },
+    {
+      title:"URL"
     }
     ]
   });
 
-  $('#prodTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
+  $('#prodTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addProdHis'%}"> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
 
   var chldrn = $('#prodTable').find("tbody").children();
   var i = 0;
@@ -747,11 +750,14 @@
       },
       {
         title: "Eklemeyi Yapan"
+      },
+      {
+        title:"URL"
       }
       ]
     });
 
-    $('#testTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTestHis'%}"> <div><i style="cursor: pointer;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
+    $('#testTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href="{% url 'addTestHis'%}"> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
 
     var chldrn = $('#testTable').find("tbody").children();
     var i = 0;

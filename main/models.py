@@ -86,6 +86,7 @@ class ServerVersion(models.Model):
 
 class ProductHistory(models.Model):
     prodInstallationTime  = models.DateField(default=datetime.now, blank=True)
+    url = models.CharField(max_length=100)
     productversion = models.ForeignKey(ProductVersion, on_delete=models.CASCADE)
     customer = models.ForeignKey(CustomerInfo, on_delete=models.CASCADE)
     databaseversion = models.ForeignKey(DatabaseVersion, on_delete=models.CASCADE)
@@ -100,6 +101,7 @@ class ProductHistory(models.Model):
 
 class TestProductHistory(models.Model):
     testInstallationTime  = models.DateField(default=datetime.now, blank=True)
+    url = models.CharField(max_length=100)
     productversion = models.ForeignKey(ProductVersion, on_delete=models.CASCADE)
     customer = models.ForeignKey(CustomerInfo, on_delete=models.CASCADE)
     databaseversion = models.ForeignKey(DatabaseVersion, on_delete=models.CASCADE)

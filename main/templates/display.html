@@ -74,11 +74,11 @@
         {% for d in data %}
         <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 150px auto;">
             
-            {% if d.prodHist.items %}
+            {% if d.prodHist.items or d.testProdHist.items %}
             
             <h2 class = "displayName">{{d.cus.customerName}}</h2>
            
-            <table class="table">
+            <table class="table" style="position: relative; z-index: 1; width:90%; margin-left:16%;">
                 <thead>
                     <tr>
                         <th scope="col">Ürün Tipi</th>
@@ -86,6 +86,8 @@
                         <th scope="col">Yükleme Tarihi</th>
                         <th scope="col">Veritabanı</th>
                         <th scope="col">Sunucu</th>
+                        <th scope="col">Eklemeyi Yapan</th>
+                        <th scope="col">URL</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,6 +100,8 @@
                         <td>{{ph.prodInstallationTimeAsString}}</td>
                         <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
+                        <td>{{ph.user.userEmail}}</td>
+                        <td style="max-width:175px;word-wrap: break-word;">{{ph.url}}</td>
                     </tr>
                     {% endfor %} 
                     {% for k,ph in d.testProdHist.items %}
@@ -109,10 +113,14 @@
                         <td>{{ph.testInstallationTimeAsString}}</td>
                         <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
+                        <td>{{ph.user.userEmail}}</td>
+                        <td style="max-width:175px;word-wrap: break-word;" >{{ph.url}}</td>
 
                     </tr>
                     {% endfor %}
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -143,7 +151,7 @@
                     {% endif %}
                     {% if d.techMan %}
                     <tr>
-                        <td>Teknik Sorumlusu</td>
+                        <td>Teknik Sorumlu  </td>
                         <td>{{d.techMan.techManName}}</td>
                         <td>{{d.techMan.techManEmail}}</td>
                         <td>{{d.techMan.techManPhoneNumber}}</td>
