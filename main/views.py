@@ -746,7 +746,7 @@ def edit(request):
         elif req['edit_what'] == "editTestHis":
             varMi=1
             try:
-                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['db']), serverversion=ServerVersion.objects.get(pk=p['server']), prodInstallationTime = req['prodLoadTime_date'] )
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), testInstallationTime = req['testLoadTime_date'] )
             except TestProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
