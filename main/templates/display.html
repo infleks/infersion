@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-{% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-{% endfor %}
+
 <title>Infersion</title>
 <!-- <div class="container">
     <h2>Müşteriler</h2>
@@ -54,27 +52,32 @@
 </div>
 -->
 <div class="nav-side-menu">
-    <i class="fa fa-bars fa-2x toggle-btn"  data-toggle="collapse" data-target="#menu-content"></i>
-  
-        <div class="menu-list">
-            <input class="searchSide" type="text"  id="myInput" onkeyup="searchCustomer()" onfocus="this.placeholder = ' '" placeholder="Müşteri ara.." title="İsim girin">
-            <ul id="menu-content" class="menu-content collapse out" style="margin-bottom:15px;">
-                {% for d in data %}
-                    {% if d.cus.customerSituation == "Aktif"  %}
-                        <li data-toggle="collapse" class="collapsed active" onclick="kapat('{{d.cus.pk}}');" >
-                        <a href="#" ><i class="fa fa-user"></i>{{ d.cus.customerName }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-                
-     </div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+    <div class="menu-list">
+        <input class="searchSide" type="text" id="myInput" onkeyup="searchCustomer()" onfocus="this.placeholder = ' '" placeholder="Müşteri ara.."
+            title="İsim girin">
+        <ul id="menu-content" class="menu-content collapse out" style="margin-bottom:15px;">
+            {% for d in data %} {% if d.cus.customerSituation == "Aktif" %}
+            <li data-toggle="collapse" class="collapsed active" onclick="kapat('{{d.cus.pk}}');">
+                <a href="#">
+                    <i class="fa fa-user"></i>{{ d.cus.customerName }}</a>
+            </li>
+            {% endif %} {% endfor %}
+        </ul>
+
+    </div>
 </div>
 
 <div class="container">
-<div class="row" >
-    {% for d in data %}
-    <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 150px auto;">
+    <div class="row">
+        {% for d in data %}
+        <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 150px auto;">
+            
+            {% if d.prodHist.items %}
+            
+            <h2 class = "displayName">{{d.cus.customerName}}</h2>
+           
             <table class="table">
                 <thead>
                     <tr>
@@ -96,8 +99,7 @@
                         <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
                     </tr>
-                    {% endfor %}
-
+                    {% endfor %} 
                     {% for k,ph in d.testProdHist.items %}
                     <tr>
                         <td>Test</td>
@@ -107,7 +109,7 @@
                         <td>{{ph.testInstallationTimeAsString}}</td>
                         <td>{{ph.databaseversion.database.databaseName}}, {{ph.databaseversion.databaseVersionName}}</td>
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
-                    
+
                     </tr>
                     {% endfor %}
                     <tr>
@@ -115,47 +117,92 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style="cursor: pointer;" onclick="myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=1200, height=400');"><i class="fas fa-file-alt"></i>Geçmiş Kayıtlar</td>
+                        <td style="cursor: pointer;" onclick="myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=1400, height=400');">
+                            <i class="fas fa-file-alt"></i>Geçmiş Kayıtlar</td>
                     </tr>
                 </tbody>
             </table>
-            
-            
+            {% endif %}
+
+            {% if d.prodMan or d.techMan %}
+            <table class ="table">
+                <thead>
+                    <th>Görev</th>
+                    <th>İsim</th>
+                    <th>e-Posta</th>
+                    <th>Telefon</th>
+                </thead>
+                <tbody>
+                    {% if d.prodMan %}
+                    <tr>
+                        <td>Ürün Sorumlusu</td>
+                        <td>{{d.prodMan.prodManName}}</td>
+                        <td>{{d.prodMan.prodManEmail}}</td>
+                        <td>{{d.prodMan.prodManPhoneNumber}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if d.techMan %}
+                    <tr>
+                        <td>Teknik Sorumlusu</td>
+                        <td>{{d.techMan.techManName}}</td>
+                        <td>{{d.techMan.techManEmail}}</td>
+                        <td>{{d.techMan.techManPhoneNumber}}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            {% endif %}
+
+
         </div>
         {% endfor %}
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function(){
-      
-        
+    $(document).ready(function () {
+
+
         $("#demo{{data.0.cus.pk}}").addClass('show');
-    
-      
-    }); 
+
+
+    });
     function kapat(what) {
         {% for d in data %}
         $('#demo{{d.cus.pk}}').removeClass('show');
         {% endfor %}
-        $('#demo'+what).addClass('show');
+        $('#demo' + what).addClass('show');
     }
 </script>
 <script>
     function searchCustomer() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("menu-content");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("menu-content");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
 
+            }
         }
     }
-}
+</script> 
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('uyari')){
+        if (urlParams.get('uyari')==2){
+          alert("Yönet ekranı yetkiniz yoktur.");
+          window.location.href='/main';
+        }
+      }
+      
+    }); 
 </script>
+
 {% endblock %}

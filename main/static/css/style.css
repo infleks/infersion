@@ -731,4 +731,12 @@ body,html{
     text-align: left;
     text-indent: 10px;
   }
+
+  .displayName {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #be5254;
+    font-family: 'Roboto Slab', serif;
+    font-size: 40px;
+  }
   

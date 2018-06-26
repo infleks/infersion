@@ -4,7 +4,6 @@ from django.db.models.functions import Lower
 
 def cusHistToJSON():
     cus=CustomerInfo.objects.all().order_by(Lower('customerName'))
-    print(cus)
     cusArr = []
     for i,c in enumerate(cus):
         cusArr.append([])
@@ -16,7 +15,6 @@ def cusHistToJSON():
 
 def cusIdsToJSON():
     cus=CustomerInfo.objects.all().order_by(Lower('customerName'))
-    print(cus)
     cusIdArr = []
     for c in cus:
         cusIdArr.append(c.pk)

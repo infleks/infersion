@@ -28,26 +28,23 @@ def logout_view(request):
     except KeyError:
         pass
     return render(request, 'registration/logout.html', {})
+
 def display(request):   
     if 'user_id' not in request.session.keys():
         return redirect('login')
     data = []
 
     cuss = CustomerInfo.objects.all()
+
     for c in cuss:
         tempDict = {}
         tempDict['cus'] = c
 
-        tempDict['prodMan'] = ProductManagerHistory.objects.filter(customer=c)
-        tempDict['techMan'] = TechnicalManagerHistory.objects.filter(customer=c)
+        tempDict['prodMan'] = [p for p in ProductManagerHistory.objects.filter(customer=c).order_by('pk')]
+        tempDict['techMan'] = [t for t in TechnicalManagerHistory.objects.filter(customer=c).order_by('pk')]
 
-        if len(tempDict['prodMan']) > 0:
-            tempDict['prodMan'] = tempDict['prodMan'][len(
-                tempDict['prodMan'])-1]
-
-        if len(tempDict['techMan']) > 0:
-            tempDict['techMan'] = tempDict['techMan'][len(
-                tempDict['techMan'])-1]
+        tempDict['prodMan'] = tempDict['prodMan'][-1] if len(tempDict['prodMan'])>0 else tempDict['prodMan']
+        tempDict['techMan'] = tempDict['techMan'][-1] if len(tempDict['techMan'])>0 else tempDict['techMan']
 
         tempHist = ProductHistory.objects.filter(customer=c)
         tempDict['prodHist'] = {}
@@ -78,7 +75,7 @@ def manage(request):
         return redirect('login')
     users = UserInfo.objects.get(pk=request.session['user_id'])
     if users.userPermission == "2":
-        return redirect('display')
+        return redirect('/main?uyari=2') 
     data = []
 
     cuss = CustomerInfo.objects.all()
