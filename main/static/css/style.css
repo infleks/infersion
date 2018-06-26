@@ -704,14 +704,16 @@ body,html{
   }
 
   #prodTable_filter > label > input[type="search"]{
-   
-   
     border-radius: 15px;
     background-color: #ebebeb;
-    
-    
-
-    
+  }
+  #testTable_filter > label > input[type="search"]{
+    border-radius: 15px;
+    background-color: #ebebeb;
+  }
+  #cusTable_filter > label > input[type="search"]{
+    border-radius: 15px;
+    background-color: #ebebeb;  
   }
   .search{
     border-radius: 15px;
