@@ -20,7 +20,7 @@
       <input type="hidden" tabindex="1" name="add_what" value="prodLoadTime" required autofocus>
     </fieldset>
     <fieldset>
-      <h4>Ürün Versiyon Adı :</h4>
+      <h4>Ürün Adı :</h4>
       <select name="prodVers_id" class="form-control">
         {% for p in prodVer %}
         <option value={{p.pk}}>{{p.productmodule.product.productName}} {{p.productmodule.moduleName}} {{p.productVersionName }}</option>
@@ -29,7 +29,7 @@
     </fieldset>
 
     <fieldset>
-      <h4>Veritabanı Versiyon Adı :</h4>
+      <h4>Veritabanı Adı :</h4>
       <select name="dbVer_id" class="form-control">
         {% for d in dbHis %}
         <option value={{d.pk}}> {{d.database.databaseName}} {{ d.databaseVersionName }}</option>
@@ -39,7 +39,7 @@
         <input placeholder="Database URL" type="text" tabindex="2" name="url_db">
       </fieldset>
       <fieldset>
-        <h4>Sunucu Versiyon Adı :</h4>
+        <h4>Sunucu Adı :</h4>
         <select name="svVer_id" class="form-control">
           {% for sv in svHis %}
           <option value={{sv.pk}}> {{sv.server.serverName}} {{ sv.serverVersionName }}</option>
@@ -53,11 +53,32 @@
       </fieldset>
 
       <h4>Satış Tarihi: </h4>
-      <input placeholder="Satış Tarihi" type="date" tabindex="2" name="prodLoadTime_date" required>
+      <input placeholder="Satış Tarihi" type="date" tabindex="2" name="prodLoadTime_date" id="tarihi" required>
     </fieldset>
     <fieldset>
       <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
     </fieldset>
   </form>
 </div>
+<script>
+    window.onload = function () {
+      var date = new Date();
+      var mounth="";
+      if((date.getMonth() + 1)<10){
+        mounth = "0"+(date.getMonth() + 1);
+      }
+      else{
+        mounth=(date.getMonth() + 1);
+      }
+      var date = new Date();
+      var day="";
+      if((date.getDate() + 1)<10){
+        day = "0"+(date.getDate() + 1);
+      }
+      else{
+        day=(date.getDate() + 1);
+      }
+      document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + mounth + '-' +  day;
+      }
+  </script>
 {% endblock %}

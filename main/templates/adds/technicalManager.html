@@ -28,7 +28,7 @@
       <input placeholder="Telefon Numarası" type="number" style="text-indent: 10px;" tabindex="4" name="techMan_phone" required>
     </fieldset>
     <fieldset>
-      <input placeholder="Tarih" type="date" tabindex="5" name="techMan_date" required>
+      <input placeholder="Tarih" type="date" tabindex="5" name="techMan_date" id="tarihi" required>
     </fieldset>
 
     <fieldset>
@@ -36,4 +36,25 @@
     </fieldset>
   </form>
 </div>
+<script>
+    window.onload = function () {
+      var date = new Date();
+      var mounth="";
+      if((date.getMonth() + 1)<10){
+        mounth = "0"+(date.getMonth() + 1);
+      }
+      else{
+        mounth=(date.getMonth() + 1);
+      }
+      var date = new Date();
+      var day="";
+      if((date.getDate() + 1)<10){
+        day = "0"+(date.getDate() + 1);
+      }
+      else{
+        day=(date.getDate() + 1);
+      }
+      document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + mounth + '-' +  day;
+      }
+  </script>
 {% endblock %}

@@ -23,7 +23,7 @@
         <input type="hidden" tabindex="1" name="id" value="{{testHis.pk}}" required autofocus>
       </fieldset>
       <fieldset>
-        <h4>Ürün Versiyon Adı :</h4>
+        <h4>Ürün Adı :</h4>
         <select name="prodVers_id" class="form-control">
           {% for p in prodVer %}
           <option value={{p.pk}} {% if testHis.productversion.pk == p.pk %} selected {% endif %}>{{p.productmodule.product.productName}} {{p.productmodule.moduleName}} {{p.productVersionName }}</option>
@@ -32,7 +32,7 @@
       </fieldset>
   
       <fieldset>
-        <h4>Veritabanı Versiyon Adı :</h4>
+        <h4>Veritabanı Adı :</h4>
         <select name="db" class="form-control">
           {% for d in dbHis %}
           <option value={{d.pk}} {% if testHis.databaseversion.pk == d.pk %} selected {% endif %}>{{d.database.databaseName}} {{ d.databaseVersionName }}</option>
@@ -43,7 +43,7 @@
           <fieldset>
             <input value="{{testHis.url_database}}" type="text" tabindex="2" name="url_db">
           </fieldset>
-          <h4>Sunucu Versiyon Adı :</h4>
+          <h4>Sunucu Adı :</h4>
           <select name="server" class="form-control">
             {% for sv in svHis %}
             <option value={{sv.pk}} {% if testHis.serverversion.pk == sv.pk %} selected {% endif %}>{{sv.server.serverName}} {{ sv.serverVersionName }}</option>

@@ -21,7 +21,7 @@
       <input type="hidden" tabindex="1" name="id" value="{{prodHis.pk}}" required autofocus>
     </fieldset>
     <fieldset>
-      <h4>Ürün Versiyon Adı :</h4>
+      <h4>Ürün Adı :</h4>
       <select name="prodVers_id" class="form-control">
         {% for p in prodVer %}
         <option value={{p.pk}} {% if prodHis.productversion.pk == p.pk %} selected {% endif %}>{{p.productmodule.product.productName}} {{p.productmodule.moduleName}} {{p.productVersionName }}</option>
@@ -30,7 +30,7 @@
     </fieldset>
 
     <fieldset>
-      <h4>Veritabanı Versiyon Adı :</h4>
+      <h4>Veritabanı Adı :</h4>
       <select name="db" class="form-control">
         {% for d in dbHis %}
         <option value={{d.pk}} {% if prodHis.databaseversion.pk == d.pk %} selected {% endif %}> {{d.database.databaseName}} {{ d.databaseVersionName }}</option>
@@ -41,7 +41,7 @@
           <input value="{{prodHis.url_database}}" type="text" tabindex="2" name="url_db">
         </fieldset>
       <fieldset>
-        <h4>Sunucu Versiyon Adı :</h4>
+        <h4>Sunucu Adı :</h4>
         <select name="server" class="form-control">
           {% for sv in svHis %}
           <option value={{sv.pk}} {% if prodHis.serverversion.pk == sv.pk %} selected {% endif %}> {{sv.server.serverName}} {{ sv.serverVersionName }}</option>
@@ -65,10 +65,10 @@
     </fieldset>
   </form>
 
+</div>
   <script>
     window.onload = function () {
       document.getElementById("satis_tarihi").defaultValue = "{{prodHisDate}}";
     }
   </script>
-</div>
 {% endblock %}
