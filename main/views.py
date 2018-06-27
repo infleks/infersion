@@ -52,7 +52,7 @@ def display(request):
             if t.productversion.productmodule.pk not in tempDict['prodHist']:
                 tempDict['prodHist'][t.productversion.productmodule.pk] = t
 
-            if str(tempDict['prodHist'][t.productversion.productmodule.pk].prodInstallationTime) > str(t.prodInstallationTime):
+            if str(tempDict['prodHist'][t.productversion.productmodule.pk].prodInstallationTime) < str(t.prodInstallationTime):
                 tempDict['prodHist'][t.productversion.productmodule.pk] = t
 
         tempHist = TestProductHistory.objects.filter(customer=c)
@@ -61,7 +61,7 @@ def display(request):
             if t.productversion.productmodule.pk not in tempDict['testProdHist']:
                 tempDict['testProdHist'][t.productversion.productmodule.pk] = t
 
-            if str(tempDict['testProdHist'][t.productversion.productmodule.pk].testInstallationTime) > str(t.testInstallationTime):
+            if str(tempDict['testProdHist'][t.productversion.productmodule.pk].testInstallationTime) < str(t.testInstallationTime):
                 tempDict['testProdHist'][t.productversion.productmodule.pk] = t
 
         data.append(tempDict)
