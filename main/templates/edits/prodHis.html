@@ -36,6 +36,7 @@
         <option value={{d.pk}} {% if prodHis.databaseversion.pk == d.pk %} selected {% endif %}> {{d.database.databaseName}} {{ d.databaseVersionName }}</option>
         {% endfor %}
       </select><br>
+      <h4>Veritabanı URL :</h4>
       <fieldset>
           <input value="{{prodHis.url_database}}" type="text" tabindex="2" name="url_db">
         </fieldset>
@@ -49,7 +50,7 @@
         <br>
       </fieldset>
 
-    
+      <h4>Ürün URL :</h4>
       <fieldset>
         <input value="{{prodHis.url}}" type="text" tabindex="2" name="url_name">
       </fieldset>
