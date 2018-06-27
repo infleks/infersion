@@ -35,7 +35,8 @@
                         <th scope="col">Veritabanı</th>
                         <th scope="col">Sunucu</th>
                         <th scope="col">Eklemeyi Yapan</th>
-                        <th scope="col">URL</th>
+                        <th scope="col">Ürün URL</th>
+                        <th scope="col">Veitabanı URL</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +51,7 @@
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
                         <td>{{ph.user.userEmail}}</td>
                         <td style="max-width:175px;word-wrap: break-word;">{{ph.url}}</td>
+                        <td style="max-width:175px;word-wrap: break-word;">{{ph.url_database}}</td>
                     </tr>
                     {% endfor %} 
                     {% for k,ph in d.testProdHist.items %}
@@ -63,10 +65,12 @@
                         <td>{{ph.serverversion.server.serverName}}, {{ph.serverversion.serverVersionName}}</td>
                         <td>{{ph.user.userEmail}}</td>
                         <td style="max-width:175px;word-wrap: break-word;" >{{ph.url}}</td>
+                        <td style="max-width:175px;word-wrap: break-word;">{{ph.url_database}}</td>
 
                     </tr>
                     {% endfor %}
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

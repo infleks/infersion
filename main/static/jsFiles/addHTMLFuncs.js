@@ -97,7 +97,7 @@ function prodHisTableFunc(data, dataId, urlProd) {
         title: "Ürün URL"
       },
       {
-        title: "Database URL"
+        title: "Veritabanı URL"
       }
       ]
     });
@@ -150,7 +150,7 @@ function testHisTableFunc(data, dataId, urlTest) {
           title: "Ürün URL"
         },
         {
-          title: "Database URL"
+          title: "Veirtabanı URL"
         }
         ]
       });
