@@ -36,7 +36,8 @@
         {% endfor %}
       </select><br>
       <fieldset>
-        <input placeholder="Database URL" type="text" tabindex="2" name="url_db">
+        <h4>Veritabanı URL :</h4>
+        <input  type="text" tabindex="2" name="url_db">
       </fieldset>
       <fieldset>
         <h4>Sunucu Adı :</h4>
@@ -45,16 +46,19 @@
           <option value={{sv.pk}}> {{sv.server.serverName}} {{ sv.serverVersionName }}</option>
           {% endfor %}
         </select>
-        <br>
+        
       </fieldset>
 
       <fieldset>
-        <input placeholder="Ürün URL" type="text" tabindex="2" name="url_name">
+        <h4>Ürün URL :</h4>
+        <input  type="text" tabindex="2" name="url_name">
       </fieldset>
 
+      <fieldset>
       <h4>Satış Tarihi: </h4>
       <input placeholder="Satış Tarihi" type="date" tabindex="2" name="prodLoadTime_date" id="tarihi" required>
     </fieldset>
+    <br>
     <fieldset>
       <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
     </fieldset>
@@ -63,12 +67,12 @@
 <script>
     window.onload = function () {
       var date = new Date();
-      var mounth="";
+      var month="";
       if((date.getMonth() + 1)<10){
-        mounth = "0"+(date.getMonth() + 1);
+        month = "0"+(date.getMonth() + 1);
       }
       else{
-        mounth=(date.getMonth() + 1);
+        month=(date.getMonth() + 1);
       }
       var date = new Date();
       var day="";
@@ -78,7 +82,7 @@
       else{
         day=(date.getDate() + 1);
       }
-      document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + mounth + '-' +  day;
+      document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + month + '-' +  day;
       }
   </script>
 {% endblock %}

@@ -150,7 +150,7 @@ function testHisTableFunc(data, dataId, urlTest) {
           title: "Ürün URL"
         },
         {
-          title: "Veirtabanı URL"
+          title: "Veritabanı URL"
         }
         ]
       });
