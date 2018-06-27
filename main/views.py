@@ -392,7 +392,8 @@ def add(request):
 #-----------------------------------------------------< DETAIL >-----------------------------------------------------
 
 def detail(request):
-
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     if request.method != "GET":
         return redirect('display')
 
@@ -419,6 +420,8 @@ def detail(request):
 
 
 def addCus(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     return render(request, 'adds/customerInfo.html')
 
 
@@ -426,6 +429,8 @@ def addCus(request):
 
 
 def addProdMan(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     data = []
 
     cuss = CustomerInfo.objects.all()
@@ -487,6 +492,8 @@ def addProdMan(request):
 
 
 def addTechMan(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     data = []
 
     cuss = CustomerInfo.objects.all()
@@ -548,6 +555,8 @@ def addTechMan(request):
 
 
 def addProd(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     return render(request, 'adds/productInfo.html')
 
 
@@ -555,6 +564,8 @@ def addProd(request):
 
 
 def addProdMod(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     prods=ProductInfo.objects.all()
     dataToSend={
         'prods' : prods
@@ -566,6 +577,8 @@ def addProdMod(request):
 
 
 def addProdVer(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     prodMod=ProductModule.objects.all()
     dataToSend={
         'prodMod' : prodMod
@@ -577,6 +590,8 @@ def addProdVer(request):
 
 
 def addDB(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     return render(request, 'adds/databaseInfo.html')
 
 
@@ -585,6 +600,8 @@ def addDB(request):
 
 
 def addDbVer(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     db=DatabaseInfo.objects.all()
     dataToSend={
         'db' : db,
@@ -596,6 +613,8 @@ def addDbVer(request):
 
 
 def addServer(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     return render(request, 'adds/serverInfo.html')
 
 
@@ -603,6 +622,8 @@ def addServer(request):
 
 
 def addServerVer(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     servers=ServerInfo.objects.all()
     dataToSend={
         'servers' : servers
@@ -614,6 +635,8 @@ def addServerVer(request):
 
 
 def addProdHis(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     cus=CustomerInfo.objects.all()
     prodVer= ProductVersion.objects.all()
     dbHis= DatabaseVersion.objects.all()
@@ -635,6 +658,8 @@ def addProdHis(request):
 
 
 def addTestHis(request):
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
     cus=CustomerInfo.objects.all()
     prodVer= ProductVersion.objects.all()
     dbHis= DatabaseVersion.objects.all()
@@ -654,7 +679,8 @@ def addTestHis(request):
 #-----------------------------------------------------< EDIT >-----------------------------------------------------
 
 
-def edit(request):
+def edit(request): 
+    
     if 'user_id' not in request.session.keys():
         return redirect('login')
 
