@@ -8,7 +8,18 @@
           
           <input value="editProdMan" type="hidden" tabindex="2" name="edit_what" required/>
           <input value="{{prodData.pk}}" type="hidden" tabindex="2" name="pk" required/>
-          
+
+        <fieldset>
+           <select name="cus_id" class="form-control">
+              {% for c in cus %}
+                {% if c.customerSituation == "Aktif" %}
+                  <option value={{c.pk}} {% if prodData.customer.pk == c.pk %} selected {% endif %}>{{ c.customerName }}</option>   
+                {% endif %}
+              {% endfor %}
+      
+            </select>
+        </fieldset>
+
           <fieldset>
               <input value="{{prodData.prodManName}}" type="text" tabindex="2" name="prodMan_name" required>
             </fieldset>
@@ -18,14 +29,7 @@
             <fieldset>
               <input value="{{prodData.prodManPhoneNumber}}" type="text" tabindex="4" name="prodMan_phone" required>
             </fieldset>
-            <select name="cus_id" class="form-control">
-              {% for c in cus %}
-                {% if c.customerSituation == "Aktif" %}
-                  <option value={{c.pk}} {% if prodData.customer.pk == c.pk %} selected {% endif %}>{{ c.customerName }}</option>   
-                {% endif %}
-              {% endfor %}
-      
-            </select></br>
+            
             <fieldset>
               <input type="date" tabindex="5" name="prodMan_date" id="tarihi" required>
             </fieldset>

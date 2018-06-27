@@ -711,24 +711,26 @@ body,html{
   #prodTable_filter > label > input[type="search"]{
     border-radius: 15px;
     background-color: #ebebeb;
+    text-indent: 10px;
+    outline: none;  
   }
   #testTable_filter > label > input[type="search"]{
     border-radius: 15px;
     background-color: #ebebeb;
+    text-indent: 10px;
+    outline: none;  
   }
   #cusTable_filter > label > input[type="search"]{
     border-radius: 15px;
-    background-color: #ebebeb;  
+    background-color: #ebebeb;
+    text-indent: 10px;
+    outline: none;    
   }
   #prodtestTable_filter > label > input[type="search"]{
     border-radius: 15px;
-    background-color: #ebebeb;  
-  }
-
-  .search{
-    border-radius: 15px;
     background-color: #ebebeb;
-    
+    text-indent: 10px;
+    outline: none;    
   }
 
   .searchSide{
