@@ -39,6 +39,9 @@
           {% endfor %}
         </select>
         <fieldset>
+          <fieldset>
+            <input value="{{testHis.url_database}}" type="text" tabindex="2" name="url_db">
+          </fieldset>
           <h4>Sunucu Versiyon Adı :</h4>
           <select name="server" class="form-control">
             {% for sv in svHis %}

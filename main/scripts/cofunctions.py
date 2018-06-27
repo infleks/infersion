@@ -35,6 +35,7 @@ def prodHistTestHistToJSON():
             pArr[-1].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
             pArr[-1].append(p.user.userEmail)
             pArr[-1].append( '<div style=\\\"max-width:175px;word-wrap: break-word;\\\"><p>'+str(p.url)+'</p></div>')
+            pArr[-1].append( '<div style=\\\"max-width:175px;word-wrap: break-word;\\\"><p>'+str(p.url_database)+'</p></div>')
     
     tpH=TestProductHistory.objects.all()
     tpArr = []
@@ -48,6 +49,7 @@ def prodHistTestHistToJSON():
             tpArr[-1].append(p.databaseversion.database.databaseName + ", " + p.databaseversion.databaseVersionName)
             tpArr[-1].append(p.user.userEmail)
             tpArr[-1].append( '<div style=\\\"max-width:175px;word-wrap: break-word;\\\"><p>'+str(p.url)+'</p></div>')
+            tpArr[-1].append( '<div style=\\\"max-width:175px;word-wrap: break-word;\\\"><p>'+str(p.url_database)+'</p></div>')
 
     jsonstr = json.dumps({'pArr':pArr, 'tpArr':tpArr})
     return jsonstr
@@ -82,6 +84,7 @@ def displayHistToJSON(prodData, testData):
             pArr[-1].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
             pArr[-1].append(p.user.userEmail)
             pArr[-1].append('<div style=\\\"max-width:250px;word-wrap: break-word;\\\"><p>'+str(p.url)+'</p></div>')
+            pArr[-1].append('<div style=\\\"max-width:250px;word-wrap: break-word;\\\"><p>'+str(p.url_database)+'</p></div>')
     
     tpH=list(testData)
     tpArr = []
@@ -95,6 +98,7 @@ def displayHistToJSON(prodData, testData):
             tpArr[-1].append(p.serverversion.server.serverName + ", " + p.serverversion.serverVersionName)
             tpArr[-1].append(p.user.userEmail)
             tpArr[-1].append(p.url)
+            tpArr[-1].append(p.url_database)
 
     jsonstr = json.dumps({'pArr':pArr, 'tpArr':tpArr})
     return jsonstr

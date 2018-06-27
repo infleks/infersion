@@ -34,8 +34,10 @@
         {% for d in dbHis %}
         <option value={{d.pk}}> {{d.database.databaseName}} {{ d.databaseVersionName }}</option>
         {% endfor %}
-      </select>
-
+      </select><br>
+      <fieldset>
+        <input placeholder="Database URL" type="text" tabindex="2" name="url_db">
+      </fieldset>
       <fieldset>
         <h4>Sunucu Versiyon Adı :</h4>
         <select name="svVer_id" class="form-control">

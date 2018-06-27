@@ -36,7 +36,9 @@
         <option value={{d.pk}} {% if prodHis.databaseversion.pk == d.pk %} selected {% endif %}> {{d.database.databaseName}} {{ d.databaseVersionName }}</option>
         {% endfor %}
       </select>
-
+      <fieldset>
+          <input value="{{prodHis.url_database}}" type="text" tabindex="2" name="url_db">
+        </fieldset>
       <fieldset>
         <h4>Sunucu Versiyon Adı :</h4>
         <select name="server" class="form-control">

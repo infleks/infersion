@@ -353,6 +353,7 @@ def add(request):
                 pH.user = UserInfo.objects.get(pk=request.session['user_id'])
                 pH.prodInstallationTime = p['prodLoadTime_date']
                 pH.url = p['url_name']
+                pH.url_database=p['url_db']
                 pH.save()
                 return redirect("/main/manage?where=prodHis")
             else:
@@ -375,6 +376,7 @@ def add(request):
                 tH.user = UserInfo.objects.get(pk=request.session['user_id'])
                 tH.testInstallationTime = p['testLoadTime_date']
                 tH.url = p['url_name']
+                tH.url_database=p['url_db']
                 tH.save()
                 return redirect("/main/manage?where=testHis")
             else:
@@ -859,7 +861,7 @@ def edit(request):
         elif req['edit_what'] == "editProdHis":
             varMi=1
             try:
-                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), prodInstallationTime = req['prodLoadTime_date'], url=req['url_name'] )
+                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), prodInstallationTime = req['prodLoadTime_date'], url=req['url_name'], url_database=req['url_db'] )
             except ProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -880,6 +882,7 @@ def edit(request):
                 d.prodInstallationTime=req['prodLoadTime_date']
                 d.productversion=prodversion
                 d.url = req['url_name']
+                d.url_database=req['url_db']
 
                 d.save()
                 return redirect("/main/manage?where=prodHis")
@@ -891,7 +894,7 @@ def edit(request):
         elif req['edit_what'] == "editTestHis":
             varMi=1
             try:
-                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), testInstallationTime = req['testLoadTime_date'], url=req['url_name'] )
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), testInstallationTime = req['testLoadTime_date'], url=req['url_name'], url_database=req['url_db'] )
             except TestProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -912,6 +915,7 @@ def edit(request):
                 d.testInstallationTime=req['testLoadTime_date']
                 d.productversion=prodversion
                 d.url = req['url_name']
+                d.url_database=req['url_db']
 
                 d.save()
                 return redirect("/main/manage?where=testHis")

@@ -94,7 +94,10 @@ function prodHisTableFunc(data, dataId, urlProd) {
         title: "Eklemeyi Yapan"
       },
       {
-        title: "URL"
+        title: "Ürün URL"
+      },
+      {
+        title: "Database URL"
       }
       ]
     });
@@ -144,7 +147,10 @@ function testHisTableFunc(data, dataId, urlTest) {
           title: "Eklemeyi Yapan"
         },
         {
-          title: "URL"
+          title: "Ürün URL"
+        },
+        {
+          title: "Database URL"
         }
         ]
       });
