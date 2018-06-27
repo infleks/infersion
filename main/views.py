@@ -623,7 +623,7 @@ def edit(request):
         elif req['edit_what'] == "editProdMod":
             varMi=1
             try:
-                ProductModule.objects.get(moduleName=req['prodMod_name'], product=ProductInfo.objects.get(pk=req['prod_id']) )
+                ProductModule.objects.get(moduleName=req['prodModName'], product=ProductInfo.objects.get(pk=req['pmp']) )
             except ProductModule.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -639,7 +639,7 @@ def edit(request):
         elif req['edit_what'] == "editProdVer":
             varMi=1
             try:
-                ProductVersion.objects.get(productVersionName=req['prodVer_name'], productmodule=ProductModule.objects.get(pk=req['prodMod_id']) )
+                ProductVersion.objects.get(productVersionName=req['prodVerName'], productmodule=ProductModule.objects.get(pk=req['prodMod']) )
             except ProductVersion.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -678,6 +678,7 @@ def edit(request):
                 pk1=req['id']
                 d=DatabaseVersion.objects.get(pk=pk1)
                 d.databaseVersionName=req['dbVer_name']
+                d.database=DatabaseInfo.objects.get(pk=req['db_id'])
                 d.save()
                 return redirect("/main/manage?where=dbVers")
             else:
@@ -700,7 +701,7 @@ def edit(request):
         elif req['edit_what'] == "editServerVer":
             varMi=1
             try:
-                ServerVersion.objects.get(serverVersionName=req['svVer_name'], server=ServerInfo.objects.get(pk=req['sv_id']) )
+                ServerVersion.objects.get(serverVersionName=req['server'], server=ServerInfo.objects.get(pk=req['id']) )
             except ServerVersion.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -717,7 +718,7 @@ def edit(request):
         elif req['edit_what'] == "editProdHis":
             varMi=1
             try:
-                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), prodInstallationTime = req['prodLoadTime_date'], url=req['url_name'] )
+                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), prodInstallationTime = req['prodLoadTime_date'] )
             except ProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -746,7 +747,7 @@ def edit(request):
         elif req['edit_what'] == "editTestHis":
             varMi=1
             try:
-                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), testInstallationTime = req['testLoadTime_date'], url=req['url_name'] )
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['db']), serverversion=ServerVersion.objects.get(pk=p['server']), testInstallationTime = req['testLoadTime_date'] )
             except TestProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -784,7 +785,7 @@ def edit(request):
     elif what == 'prodMan':
         pk1 = request.GET['id']
         prodData = ProductManagerHistory.objects.get(pk=pk1)
-        tarih = datetime.strftime(prodData.whenIsProdManResponsible, "%Y-%d-%m")        
+        tarih = datetime.strftime(prodData.whenIsProdManResponsible, "%Y-%m-%d")        
         cus=CustomerInfo.objects.all()
         dataToSend = {
             'prodData': prodData,
@@ -795,7 +796,7 @@ def edit(request):
     elif what == 'techMan':
         pk1 = request.GET['id']
         techData = TechnicalManagerHistory.objects.get(pk=pk1)
-        tarih = datetime.strftime(techData.whenIsTechManResponsible, "%Y-%d-%m")  
+        tarih = datetime.strftime(techData.whenIsTechManResponsible, "%Y-%m-%d")  
         cus=CustomerInfo.objects.all()
         dataToSend = {
             'techData': techData,
@@ -867,7 +868,7 @@ def edit(request):
         pk1 = request.GET['id']
         prodHis = ProductHistory.objects.get(pk=pk1)
         cusId = prodHis.customer.pk
-        prodHisDate = datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%d-%m")
+        prodHisDate = datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%m-%d")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
         c=CustomerInfo.objects.get(pk=cusId)
@@ -892,7 +893,7 @@ def edit(request):
         pk1 = request.GET['id']
         testHis = TestProductHistory.objects.get(pk=pk1)
         cusId = testHis.customer.pk
-        testHisDate = datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%d-%m")
+        testHisDate = datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%m-%d")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
         c=CustomerInfo.objects.get(pk=cusId)
