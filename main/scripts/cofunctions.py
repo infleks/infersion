@@ -69,8 +69,8 @@ def prodHistTestHistIdsToJSON():
     jsonstr = json.dumps({'pIdArr':pArr, 'tpIdArr':tpArr})
     return jsonstr
 
-def displayHistToJSON():
-    pH=list(ProductHistory.objects.all())
+def displayHistToJSON(prodData, testData):
+    pH=list(prodData)
     pArr = []
     for i,p in enumerate(pH):
         if p.customer.customerSituation == "Aktif":
@@ -83,7 +83,7 @@ def displayHistToJSON():
             pArr[-1].append(p.user.userEmail)
             pArr[-1].append('<div style=\\\"max-width:250px;word-wrap: break-word;\\\"><p>'+str(p.url)+'</p></div>')
     
-    tpH=TestProductHistory.objects.all()
+    tpH=list(testData)
     tpArr = []
     for i,p in enumerate(tpH):
         if p.customer.customerSituation == "Aktif":
@@ -100,14 +100,14 @@ def displayHistToJSON():
     return jsonstr
 
 
-def displayHistIdsToJSON():
-    pH=list(ProductHistory.objects.all())
+def displayHistIdsToJSON(prodData, testData):
+    pH=list(prodData)
     pArr = []
     for p in pH:
         if p.customer.customerSituation == "Aktif":
             pArr.append(p.pk)
 
-    tpH=TestProductHistory.objects.all()
+    tpH=list(testData)
     tpArr = []
     for p in tpH:
         if p.customer.customerSituation == "Aktif":

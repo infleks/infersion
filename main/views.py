@@ -348,7 +348,7 @@ def detail(request):
     dataToSend = {
         'prodData': prodData,
         'testData': testData,
-        'jsondata' : [displayHistToJSON(), displayHistIdsToJSON()]
+        'jsondata' : [displayHistToJSON(prodData, testData), displayHistIdsToJSON(prodData, testData)]
     }
 
     return render(request, 'detail.html', dataToSend)

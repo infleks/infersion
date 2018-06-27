@@ -309,7 +309,7 @@
       {% for pv in prodVer %}
       <tr>
         <td>{{pv.productVersionName}}</td>
-        <td>{{pv.productmodule.moduleName}}</td>
+        <td>{{pv.productmodule.product.productName}}, {{pv.productmodule.moduleName}}</td>
         <td style="cursor: pointer;">
           <a class="benima" href="/main/edit?what=prodVer&id={{pv.pk}}">
             <div>
