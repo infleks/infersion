@@ -35,7 +35,7 @@
         {% for d in dbHis %}
         <option value={{d.pk}} {% if prodHis.databaseversion.pk == d.pk %} selected {% endif %}> {{d.database.databaseName}} {{ d.databaseVersionName }}</option>
         {% endfor %}
-      </select>
+      </select><br>
       <fieldset>
           <input value="{{prodHis.url_database}}" type="text" tabindex="2" name="url_db">
         </fieldset>
