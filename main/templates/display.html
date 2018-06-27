@@ -1,56 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-
 <title>Infersion</title>
-<!-- <div class="container">
-    <h2>Müşteriler</h2>
-    {% for d in data %}
-    <button class="displayHeaderButton" type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{d.cus.pk}}">
-        <h4>
-            <b>{{ d.cus.customerName }}</b>
-        </h4> [ Ürün Sorumlusu: {{ d.prodMan.prodManName }} - {{d.prodMan.prodManPhoneNumber}} / Teknik Sorumlu: {{ d.techMan.techManName }} - {{d.techMan.techManPhoneNumber}} ]</button>
-    
-    <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 20px 0px;">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Ürün Tipi</th>
-                    <th scope="col">Ürün</th>
-                    <th scope="col">Tarihi</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for k,ph in d.prodHist.items %}
-                <tr>
-                    <td>Canlı</td>
-                    <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
-                        {{ph.productversion.productVersionName}}
-                    </td>
-                    <td>{{ph.prodInstallationTime}}</td>
-                </tr>
-                {% endfor %}
-
-                {% for k,ph in d.testProdHist.items %}
-                <tr>
-                    <td>Test</td>
-                    <td>{{ph.productversion.productmodule.product.productName}}, {{ph.productversion.productmodule.moduleName}},
-                        {{ph.productversion.productVersionName}}
-                    </td>
-                    <td>{{ph.testInstallationTime}}</td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td style="cursor: pointer;" onclick="var myWindow = window.open('/main/detay?id={{d.cus.pk}}', 'Geçmiş Kayıtlar', 'width=700, height=400');"><i class="fas fa-file-alt"></i>Geçmiş Kayıtlar</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        
-    </div>
-    {% endfor %}
-</div>
--->
 <div class="nav-side-menu">
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
@@ -65,7 +14,6 @@
             </li>
             {% endif %} {% endfor %}
         </ul>
-
     </div>
 </div>
 
@@ -160,26 +108,28 @@
                 </tbody>
             </table>
             {% endif %}
-
-
         </div>
         {% endfor %}
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-
-
-
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('uyari')){
+            if (urlParams.get('uyari')==2){
+            alert("Yönet ekranı yetkiniz yoktur.");
+            window.location.href='/main';
+            }
+        }
     });
+
     function kapat(what) {
         {% for d in data %}
-        $('#demo{{d.cus.pk}}').removeClass('show');
+            $('#demo{{d.cus.pk}}').removeClass('show');
         {% endfor %}
         $('#demo' + what).addClass('show');
     }
-</script>
-<script>
+    
     function searchCustomer() {
         var input, filter, ul, li, a, i;
         input = document.getElementById("myInput");
@@ -196,19 +146,5 @@
             }
         }
     }
-</script> 
-
-<script type="text/javascript">
-    $(document).ready(function(){
-      var urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('uyari')){
-        if (urlParams.get('uyari')==2){
-          alert("Yönet ekranı yetkiniz yoktur.");
-          window.location.href='/main';
-        }
-      }
-      
-    }); 
 </script>
-
 {% endblock %}

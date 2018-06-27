@@ -5,77 +5,40 @@
         <table id="prodtestTable"></table>
     </div>
 </div>
-    <!-- <table class="table">
-        <tr>
-            <th scope="col">Ürün Tipi</th>
-            <th scope="col">Ürün</th>
-            <th scope="col">Yükleme Tarihi</th>
-            <th scope="col">Veri Tabanı</th>
-            <th scope="col">Sunucu</th>
-        </tr>
-        {% for d in prodData %}
-        <tr>
-            <td>Canlı</td>
-            <td>{{d.productversion.productmodule.product.productName}} {{d.productversion.productmodule.moduleName}}</td>
-            <td>{{d.productversion.productVersionName}}</td>
-            <td>{{d.prodInstallationTime}}</td>
-            <td>{{d.serverversion.server.serverName}} {{d.serverversion.serverVersionName}}</td>
-            <td>{{d.databaseversion.database.databaseName}} {{d.databaseversion.databaseVersionName}}</td>
-        </tr>
-        {% endfor %}
+<script>
+  var data = JSON.parse('{{jsondata.0|safe}}');
+  var dataId = JSON.parse('{{jsondata.1|safe}}');
+  console.log(data['pArr'].concat(data['tpArr']));
+  $(document).ready(function () {
+    
+    $('#prodtestTable').DataTable({
+      data: data['pArr'].concat(data['tpArr']),
+      columns: [{
+        title: "Ürün Tipi"
+      },
+      {
+        title: "Ürün"
+      },
+      {
+        title: "Yükleme Tarihi"
+      },
+      {
+        title: "Veri Tabanı"
+      },
+      {
+        title: "Sunucu"
+      },
+      {
+        title: "Eklemeyi Yapan"
+      },
+      {
+        title: "URL"
+      }
+      ]
+    });
 
-        {% for d in testData %}
-        <tr>
-            <td>Test</td>
-            <td>{{d.productversion.productmodule.product.productName}} {{d.productversion.productmodule.moduleName}}</td>
-            <td>{{d.productversion.productVersionName}}</td>
-            <td>{{d.testInstallationTime}}</td>
-            <td>{{d.serverversion.server.serverName}} {{d.serverversion.serverVersionName}}</td>
-            <td>{{d.databaseversion.database.databaseName}} {{d.databaseversion.databaseVersionName}}</td>
-        </tr>
-        {% endfor %}
-    </table> -->
-
-    <script>
-            var data = JSON.parse('{{jsondata.0|safe}}');
-            var dataId = JSON.parse('{{jsondata.1|safe}}');
-            console.log(data['pArr'].concat(data['tpArr']));
-            $(document).ready(function () {
-              
-              $('#prodtestTable').DataTable({
-                data: data['pArr'].concat(data['tpArr']),
-                columns: [{
-                  title: "Ürün Tipi"
-                },
-                {
-                  title: "Ürün"
-                },
-                {
-                  title: "Yükleme Tarihi"
-                },
-                {
-                  title: "Veri Tabanı"
-                },
-                {
-                  title: "Sunucu"
-                },
-                {
-                  title: "Eklemeyi Yapan"
-                },
-                {
-                  title: "URL"
-                }
-                ]
-              });
-          
-            });
-          
-          
-          </script> 
-        
-        
-        
-        
+  });
+</script>    
 {% endblock %}
   
 
