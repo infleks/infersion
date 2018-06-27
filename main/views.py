@@ -701,7 +701,7 @@ def edit(request):
         elif req['edit_what'] == "editServerVer":
             varMi=1
             try:
-                ServerVersion.objects.get(serverVersionName=req['server'], server=ServerInfo.objects.get(pk=req['id']) )
+                ServerVersion.objects.get(serverVersionName=req['svVer_name'], server=ServerInfo.objects.get(pk=req['server']) )
             except ServerVersion.DoesNotExist:
                 varMi=0
             if varMi==0:
