@@ -85,7 +85,7 @@ class ServerVersion(models.Model):
         return self.serverVersionName
 
 class ProductHistory(models.Model):
-    prodInstallationTime  = models.DateField(default=datetime.now, blank=True)
+    prodInstallationTime  = models.DateTimeField(default=datetime.now, blank=True)
     url = models.CharField(max_length=100)
     url_database = models.CharField(max_length=100)
     productversion = models.ForeignKey(ProductVersion, on_delete=models.CASCADE)
@@ -98,10 +98,10 @@ class ProductHistory(models.Model):
         return self.prodInstallationTimeAsString()
 
     def prodInstallationTimeAsString(self):
-        return self.prodInstallationTime.strftime("%d-%m-%Y")
+        return self.prodInstallationTime.strftime("%d-%m-%y %H:%M")
 
 class TestProductHistory(models.Model):
-    testInstallationTime  = models.DateField(default=datetime.now, blank=True)
+    testInstallationTime  = models.DateTimeField(default=datetime.now, blank=True)
     url = models.CharField(max_length=100)
     url_database = models.CharField(max_length=100)
     productversion = models.ForeignKey(ProductVersion, on_delete=models.CASCADE)
@@ -114,7 +114,7 @@ class TestProductHistory(models.Model):
         return self.testInstallationTimeAsString()
 
     def testInstallationTimeAsString(self):
-        return self.testInstallationTime.strftime("%d-%m-%Y")
+        return self.testInstallationTime.strftime("%d-%m-%y %H:%M")
 
 
 

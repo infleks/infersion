@@ -57,7 +57,7 @@
 
     <fieldset>
       <h4>Test Ürün Yüklenme Tarihi: </h4>
-      <input placeholder="Satış Tarihi" type="date" tabindex="2" name="testLoadTime_date" id="tarihi" required>
+      <input placeholder="Satış Tarihi" type="datetime-local" tabindex="2" name="testLoadTime_date" id="tarihi" required>
     </fieldset>
     <br>
     <fieldset>
@@ -83,7 +83,7 @@
       else{
         day=(date.getDate() + 1);
       }
-      document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + month + '-' +  day;
+      document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + month + '-' + day+ 'T' + date.getHours() + ':' + date.getMinutes();
       }
   </script>
 {% endblock %}

@@ -341,7 +341,7 @@ def add(request):
         elif p['add_what'] == 'prodLoadTime':
             varMi=1
             try:
-                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) )
+                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']), prodInstallationTime=p['prodLoadTime_date'] )
             except ProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -364,7 +364,7 @@ def add(request):
         elif p['add_what'] == 'testLoadTime':
             varMi=1
             try:
-                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']) )
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=p['cus_id']), productversion=ProductVersion.objects.get(pk=p['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=p['dbVer_id']), serverversion=ServerVersion.objects.get(pk=p['svVer_id']), testInstallationTime=p['testLoadTime_date'] )
             except TestProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -887,7 +887,7 @@ def edit(request):
         elif req['edit_what'] == "editProdHis":
             varMi=1
             try:
-                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), prodInstallationTime = req['prodLoadTime_date'], url=req['url_name'], url_database=req['url_db'] )
+                ProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), prodInstallationTime = req['prodLoadTime_date'], url=req['url_name'], url_database=req['url_db'])
             except ProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -920,7 +920,7 @@ def edit(request):
         elif req['edit_what'] == "editTestHis":
             varMi=1
             try:
-                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), testInstallationTime = req['testLoadTime_date'], url=req['url_name'], url_database=req['url_db'] )
+                TestProductHistory.objects.get(customer=CustomerInfo.objects.get(pk=req['cus_id']), productversion=ProductVersion.objects.get(pk=req['prodVers_id']), databaseversion=DatabaseVersion.objects.get(pk=req['db']), serverversion=ServerVersion.objects.get(pk=req['server']), testInstallationTime = req['testLoadTime_date'], url=req['url_name'], url_database=req['url_db'])
             except TestProductHistory.DoesNotExist:
                 varMi=0
             if varMi==0:
@@ -1067,7 +1067,7 @@ def edit(request):
         pk1 = request.GET['id']
         prodHis = ProductHistory.objects.get(pk=pk1)
         cusId = prodHis.customer.pk
-        prodHisDate = datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%m-%d")
+        prodHisDate = datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%m-%dT%H:%M")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
         c=CustomerInfo.objects.get(pk=cusId)
@@ -1094,7 +1094,7 @@ def edit(request):
         pk1 = request.GET['id']
         testHis = TestProductHistory.objects.get(pk=pk1)
         cusId = testHis.customer.pk
-        testHisDate = datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%m-%d")
+        testHisDate = datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%m-%dT%H:%M")
         svHis = ServerVersion.objects.all()
         dbHis= DatabaseVersion.objects.all()
         c=CustomerInfo.objects.get(pk=cusId)
