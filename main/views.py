@@ -23,7 +23,10 @@ def login_view(request):
         else:
             return redirect('login')
     else:
-        return render(request, 'registration/login.html', {})
+        if 'user_id' not in request.session.keys():
+            return render(request, 'registration/login.html', {})
+        else :
+            return redirect('/main')
 
 
 #-----------------------------------------------------< LOGOUT >-----------------------------------------------------
