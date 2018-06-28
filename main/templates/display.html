@@ -22,9 +22,9 @@
         {% for d in data %}
         <div id="demo{{d.cus.pk}}" class="collapse" style="margin: 150px auto;">
             
-            {% if d.prodHist.items or d.testProdHist.items %}
-            
             <h2 class = "displayName">{{d.cus.customerName}}</h2>
+            
+            {% if d.prodHist.items or d.testProdHist.items %}
            
             <table class="table" style="position: relative; z-index: 1; width:90%; margin-left:16%;">
                 <thead>
