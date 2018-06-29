@@ -2,10 +2,10 @@
 function customerUyariFunc(){
     $(document).ready(function () {
       var urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('where')) {
-        var where = urlParams.get('where');
+      if (urlParams.get('menu')) {
+        var menu = urlParams.get('menu');
         $("#customerInfo").removeClass('show');
-        $('#' + where).addClass('show');
+        $('#' + menu).addClass('show');
       }
       else {
         $("#customerInfo").addClass('show');
@@ -13,11 +13,11 @@ function customerUyariFunc(){
       if (urlParams.get('uyari')) {
         if (urlParams.get('uyari') == 1) {
           alert("Bu isimde bir kayıt zaten mevcut.");
-          if (urlParams.get('where')) {
-            window.location.href = '/main/manage?where=' + urlParams.get('where');
+          if (urlParams.get('menu')) {
+            window.location.href = '/main/manage?menu=' + urlParams.get('menu');
           }
           else {
-            window.location.href = '/main/manage?where=customerInfo';
+            window.location.href = '/main/manage?menu=customerInfo';
           }
   
         }
