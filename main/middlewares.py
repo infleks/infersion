@@ -35,4 +35,4 @@ class SessionExpiredMiddleware:
         
     def process_request(self, request):
         if 'user_id' in request.session:
-            request.session.set_expiry(60*60)
+            request.session.set_expiry(60*10)
