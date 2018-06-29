@@ -47,6 +47,12 @@ function cusTableFunc(data, dataId, urlCus){
         },
         {
           title: "Müşteri Durumu"
+        },
+        {
+          orderable:false
+        },
+        {
+          orderable:false
         }
         ]
       });
@@ -56,7 +62,7 @@ function cusTableFunc(data, dataId, urlCus){
 
       var chldrn = $('#cusTable').find("tbody").children();
       var i = 0;
-      for (i = 0; i < chldrn.length; i++) {
+       /* for (i = 0; i < chldrn.length; i++) {
         $(chldrn[i]).append(
           '<td style="cursor: pointer;"><a class="benima" href="/main/edit?what=cus&id='
           + dataId['cusIdArr'][i]
@@ -65,7 +71,7 @@ function cusTableFunc(data, dataId, urlCus){
           + dataId['cusIdArr'][i]
           + '" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a></td>');
 
-      }
+      } */
 
     });
 }
@@ -97,17 +103,24 @@ function prodHisTableFunc(data, dataId, urlProd) {
       },
       {
         title: "Veritabanı URL"
+      },
+      {
+        orderable:false
+      },
+      {
+        orderable:false
       }
+      
       ]
     });
 
     $('#prodTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href= '+urlProd+' > <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
     var chldrn = $('#prodTable').find("tbody").children();
-    if( data['pArr'].length > 0){
+     /* if( data['pArr'].length > 0){
       for (i = 0; i < chldrn.length; i++) {
         $(chldrn[i]).append(' <td style="cursor: pointer;"><a class="benima" href="/main/edit?what=prodHis&id=' + dataId['pIdArr'][i] + '"> <div><i class="fas fa-edit" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Düzenle</div></a></td>' + '<td><a class="benima" id="delete" href="/main/delete?what=prodHis&id=' + dataId['pIdArr'][i] + '" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a></td>');
       }
-    }
+    }  */
     $(document).ready(function () {
       var prodVar = 1;
       if (chldrn.length > 0) {
@@ -150,6 +163,12 @@ function testHisTableFunc(data, dataId, urlTest) {
         },
         {
           title: "Veritabanı URL"
+        },
+        {
+          orderable: false
+        },
+        {
+          orderable: false
         }
         ]
       });
@@ -157,11 +176,11 @@ function testHisTableFunc(data, dataId, urlTest) {
       $('#testTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href='+urlTest+'> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
 
       var chldrn = $('#testTable').find("tbody").children();
-      if( data['tpArr'].length > 0){
+      /*if( data['tpArr'].length > 0){
         for (i = 0; i < chldrn.length; i++) {
           $(chldrn[i]).append(' <td style="cursor: pointer;"><a class="benima" href="/main/edit?what=testHis&id=' + dataId['tpIdArr'][i] + '"> <div><i class="fas fa-edit" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Düzenle</div></a></td>' + '<td><a class="benima" id="delete" href="/main/delete?what=testHis&id=' + dataId['tpIdArr'][i] + '" style=" cursor: pointer;"><i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a></td>');
         }
-      }
+      } */
       var testVar = 1;
       if (chldrn.length > 0) {
         $('#addtestHis').removeClass('show');

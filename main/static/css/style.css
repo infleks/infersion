@@ -748,7 +748,7 @@ body,html{
 
   .displayName {
     margin-bottom: 20px;
-    margin-left : 50%;
+    text-align: center;
     color: #be5254;
     font-family: 'Roboto Slab', serif;
     font-size: 40px;
@@ -760,3 +760,4 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+

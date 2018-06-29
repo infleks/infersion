@@ -9,6 +9,10 @@ def cusHistToJSON():
         cusArr.append([])
         cusArr[i].append(c.customerName)
         cusArr[i].append(c.customerSituation)
+        cusArr[-1].append('<td><a class=\\\"benima\\\" href=\\\"/main/edit?what=cus&id=' + str(c.pk) + '\\\"> <div><i class=\\\"fas fa-edit\\\" style=\\\"color: #be5254; font-size:20px; cursor: pointer;\\\"></i>Düzenle</div></a></td>' )
+        cusArr[-1].append('<td><a class=\\\"benima\\\" id=\\\"delete\\\" href=\\\"/main/delete?what=customerInfo&id=' + str(c.pk) + '\\\" style=\\\" cursor: pointer;\\\"><i class=\\\"fas fa-trash-alt\\\" style=\\\"color: #be5254; font-size:20px; cursor: pointer;\\\"></i>Sil</a></td>')
+
+    
         
     jsonstr = json.dumps({'cusArr': cusArr})
     return jsonstr
@@ -36,6 +40,9 @@ def prodHistTestHistToJSON():
             pArr[-1].append(p.user.userEmail)
             pArr[-1].append( '<div style=\\\"max-width:150px;word-wrap: break-word;\\\"><p>'+str(p.url)+'</p></div>')
             pArr[-1].append( '<div style=\\\"max-width:150px;word-wrap: break-word;\\\"><p>'+str(p.url_database)+'</p></div>')
+            pArr[-1].append('<td><a class=\\\"benima\\\" href=\\\"/main/edit?what=prodHis&id=' + str(p.pk) + '\\\"> <div><i class=\\\"fas fa-edit\\\" style=\\\"color: #be5254; font-size:20px; cursor: pointer;\\\"></i>Düzenle</div></a></td>' )
+            pArr[-1].append('<td><a class=\\\"benima\\\" id=\\\"delete\\\" href=\\\"/main/delete?what=prodHis&id=' + str(p.pk) + '\\\" style=\\\" cursor: pointer;\\\"><i class=\\\"fas fa-trash-alt\\\" style=\\\"color: #be5254; font-size:20px; cursor: pointer;\\\"></i>Sil</a></td>')
+
     
     tpH=TestProductHistory.objects.all()
     tpArr = []
@@ -50,7 +57,10 @@ def prodHistTestHistToJSON():
             tpArr[-1].append(p.user.userEmail)
             tpArr[-1].append( '<div style=\\\"max-width:150px;word-wrap: break-word;\\\"><p>'+str(p.url)+'</p></div>')
             tpArr[-1].append( '<div style=\\\"max-width:150px;word-wrap: break-word;\\\"><p>'+str(p.url_database)+'</p></div>')
+            tpArr[-1].append('<td><a class=\\\"benima\\\" href=\\\"/main/edit?what=testHis&id=' + str(p.pk) + '\\\"> <div><i class=\\\"fas fa-edit\\\" style=\\\"color: #be5254; font-size:20px; cursor: pointer;\\\"></i>Düzenle</div></a></td>' )
+            tpArr[-1].append('<td><a class=\\\"benima\\\" id=\\\"delete\\\" href=\\\"/main/delete?what=testHis&id=' + str(p.pk) + '\\\" style=\\\" cursor: pointer;\\\"><i class=\\\"fas fa-trash-alt\\\" style=\\\"color: #be5254; font-size:20px; cursor: pointer;\\\"></i>Sil</a></td>')
 
+    
     jsonstr = json.dumps({'pArr':pArr, 'tpArr':tpArr})
     return jsonstr
 
