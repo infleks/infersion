@@ -86,7 +86,7 @@ def display(request):
 
 
 def manage(request):
-    dataToSend = {}
+    """dataToSend = {}
     if 'user_id' not in request.session.keys():
         return redirect('login')
     users = UserInfo.objects.get(pk=request.session['user_id'])
@@ -149,7 +149,89 @@ def manage(request):
 
     }
 
-    return render(request, 'add.html', dataToSend)
+    return render(request, 'add.html', dataToSend)"""
+
+    req = request.GET
+    if 'menu' in req:
+        if req['menu']=="customerInfo":
+            dataToSend={
+                'jsondata' : [cusHistToJSON(), cusIdsToJSON()],
+                'where': 'customerInfo'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="prodMans":
+            dataToSend={
+                'prodMan': ProductManagerHistory.objects.all(),
+                'where': 'prodMans'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="techMans":
+            dataToSend={
+                'techMan': TechnicalManagerHistory.objects.all(),
+                'where': 'techMans'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="products":
+            dataToSend={
+                'prod': ProductInfo.objects.all(),
+                'where': 'products'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="prodModule":
+            dataToSend={
+                'prodMod': ProductModule.objects.all(),
+                'where': 'prodModule'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="prodVer":
+            dataToSend={
+                'prodVer': ProductVersion.objects.all(),
+                'where': 'prodVer'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="databases":
+            dataToSend={
+                'db': DatabaseInfo.objects.all(),
+                'where': 'databases'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="dbVers":
+            dataToSend={
+                'dbHis': DatabaseVersion.objects.all(),
+                'where': 'dbVers'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="servers":
+            dataToSend={
+                'server': ServerInfo.objects.all(),
+                'where': 'servers'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="serverVer":
+            dataToSend={
+                'svHis': ServerVersion.objects.all(),
+                'where': 'serverVer'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="prodHis":
+            dataToSend={
+                'jsondata' : [prodHistTestHistToJSON(), prodHistTestHistIdsToJSON()],
+                'where': 'prodHis'
+            }
+            return render(request, 'add.html', dataToSend)
+        if req['menu']=="testHis":
+            dataToSend={
+                'jsondata' : [prodHistTestHistToJSON(), prodHistTestHistIdsToJSON()],
+                'where': 'testHis'
+            }
+            return render(request, 'add.html', dataToSend)
+    else:
+        dataToSend={
+            'jsondata' : [cusHistToJSON(), cusIdsToJSON()],
+            'where': 'customerInfo'
+        }
+        return render(request, 'add.html', dataToSend)
+    
 
 
 #-----------------------------------------------------< ADD >-----------------------------------------------------
