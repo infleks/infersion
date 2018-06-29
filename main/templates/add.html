@@ -13,16 +13,16 @@
         <a href="#">
           <i class="fa fa-users"></i> Müşteri Yönetimi</a>
       </li>
-      <ul class="sub-menu collapse" id="customer">
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('customerInfo');" href="#" data-toggle="collapse">
+      <ul class="sub-menu collapse {% if where == 'customerInfo' or where == 'prodMans' or where == 'techMans' %} show {% endif %}" id="customer">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=customerInfo">
           <li>
             <i class="fas fa-arrow-right"></i> Müşteri</li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodMans');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=prodMans">
           <li>
             <i class="fas fa-arrow-right"></i> Ürün Sorumlusu</li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('techMans');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=techMans">
           <li>
             <i class="fas fa-arrow-right"></i> Teknik Sorumlu </li>
         </a>
@@ -32,16 +32,16 @@
         <a href="#">
           <i class="fa fa-cubes"></i> Ürün Yönetimi</a>
       </li>
-      <ul class="sub-menu collapse" id="productManagement">
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('products');" href="#" data-toggle="collapse">
+      <ul class="sub-menu collapse {% if where == 'products' or where == 'prodModule' or where == 'prodVer' %} show {% endif %}" id="productManagement">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=products">
           <li>
             <i class="fas fa-arrow-right"></i> Ürünler</li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodModule');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=prodModule">
           <li>
             <i class="fas fa-arrow-right"></i> Ürün Modülleri</li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodVer');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=prodVer">
           <li>
             <i class="fas fa-arrow-right"></i> Ürün Versiyonları</li>
         </a>
@@ -52,20 +52,20 @@
         <a href="#">
           <i class="fa fa-globe"></i> Ortam Yönetimi</a>
       </li>
-      <ul class="sub-menu collapse" id="envManagement">
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('databases');" href="#" data-toggle="collapse">
+      <ul class="sub-menu collapse {% if where == 'databases' or where == 'dbVers' or where == 'servers' or where == 'serverVer' %} show {% endif %}" id="envManagement">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=databases">
           <li>
             <i class="fas fa-arrow-right"></i> Veritabanı</li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('dbVers');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=dbVers">
           <li>
             <i class="fas fa-arrow-right"></i> Veritabanı Versiyonları</li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('servers');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=servers">
           <li>
             <i class="fas fa-arrow-right"></i> Sunucular</li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('serverVer');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=serverVer">
           <li>
             <i class="fas fa-arrow-right"></i> Sunucu Versiyonları</li>
         </a>
@@ -75,12 +75,12 @@
         <a href="#">
           <i class="fab fa-asymmetrik"></i> Aksiyon Yönetimi</a>
       </li>
-      <ul class="sub-menu collapse" id="actManagement">
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('prodHis');" href="#" data-toggle="collapse">
+      <ul class="sub-menu collapse {% if where == 'prodHis' or where == 'testHis'%} show {% endif %}" id="actManagement">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=prodHis">
           <li>
             <i class="fas fa-arrow-right"></i> Prod Ürün Geçmişi </li>
         </a>
-        <a style="color: whitesmoke; text-decoration: none;" onclick="kapat('testHis');" href="#" data-toggle="collapse">
+        <a style="color: whitesmoke; text-decoration: none;" href="/main/manage?menu=testHis">
           <li>
             <i class="fas fa-arrow-right"></i> Test Ürün Geçmişi</li>
         </a>
@@ -88,6 +88,8 @@
 
   </div>
 </div>
+
+{% if where == "customerInfo" %}
 <div id="addcustomerInfo" class="collapse" style="margin: 90px 0px 0px 153px; text-align: center;" data-toggle="addCustomer">
   <h4>Bu tablo boş görünüyor. Eklemek İçin Tıklayın: </h4>
   <a href="{% url 'addCus'%}">
@@ -95,14 +97,15 @@
   </a>
 </div>
 
-<div id="customerInfo" class="collapse" style="margin: 90px 0px 0px 153px;" data-toggle="customerInfo">
+<div id="customerInfo" class="collapse show" style="margin: 90px 0px 0px 153px;" data-toggle="customerInfo">
   <div>
     <table style="width: 75%; position: relative; z-index: 1;" id="cusTable"></table>
   </div>
 </div>
+{% endif %}
 
-
-<div id="prodMans" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% if where == "prodMans" %}
+<div id="prodMans" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -141,8 +144,9 @@
     </table>
   </div>
 </div>
-
-<div id="techMans" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "techMans" %}
+<div id="techMans" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -182,9 +186,9 @@
     </table>
   </div>
 </div>
-
-
-<div id="products" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "products" %}
+<div id="products" class="collapse  show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -215,8 +219,9 @@
     </table>
   </div>
 </div>
-
-<div id="prodModule" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "prodModule" %}
+<div id="prodModule" class="collapse  show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -249,9 +254,9 @@
     </table>
   </div>
 </div>
-
-
-<div id="prodVer" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "prodVer" %}
+<div id="prodVer" class="collapse  show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -285,9 +290,9 @@
     </table>
   </div>
 </div>
-
-
-<div id="dbVers" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "dbVers" %}
+<div id="dbVers" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -322,9 +327,9 @@
     </table>
   </div>
 </div>
-
-
-<div id="databases" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "databases" %}
+<div id="databases" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -355,10 +360,10 @@
     </table>
   </div>
 </div>
+{% endif %}
+{% if where == "servers" %}
 
-
-
-<div id="servers" class="collapse" style="margin: 90px 0px 0px 153px;">
+<div id="servers" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -389,9 +394,9 @@
     </table>
   </div>
 </div>
-
-
-<div id="serverVer" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "serverVer" %}
+<div id="serverVer" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="width: 100%; text-align: left; padding: 0px 50px;">
     <table class="table">
       <tr>
@@ -424,9 +429,9 @@
     </table>
   </div>
 </div>
-
-
-<div id="prodHis" class="collapse" style="margin: 90px 0px 0px 153px;">
+{% endif %}
+{% if where == "prodHis" %}
+<div id="prodHis" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="display:block;margin:120px auto;  background-color: white;">
     <table id="prodTable" style="position: relative; z-index: 1; width:50%; margin:10px auto;"></table>
   </div>
@@ -438,7 +443,8 @@
     <i class="fa fa-plus-square" style="color:#be5254; font-size: 140px;"></i>
   </a>
 </div>
-
+{% endif %}
+{% if where == "testHis" %}
 <div id="addtestHis" class="collapse" style="margin: 90px 0px 0px 153px; text-align: center;" data-toggle="addtestHis">
   <h4>Önce müşteri eklemeniz gerekmektedir; </h4>
   <a href="{% url 'addCus'%}">
@@ -446,25 +452,32 @@
   </a>
 </div>
 
-<div id="testHis" class="collapse" style="margin: 90px 0px 0px 153px;">
+<div id="testHis" class="collapse show" style="margin: 90px 0px 0px 153px;">
   <div style="display:block;margin:120px auto;background-color: white;">
     <table id="testTable" style="position: relative; z-index: 1; width:50%; margin:10px auto;"></table>
   </div>
 </div>
-
+{% endif %}
 
 <script>
+  {% if where == "customerInfo" %}
+  var urlCus = "{% url "addCus"%}";
+  var data = JSON.parse('{{jsondata.0|safe}}');
+  var dataId = JSON.parse('{{jsondata.1|safe}}');
+  cusTableFunc(data,dataId, urlCus);
+  {% endif %}
+  {% if where == "prodHis" %}
   var data = JSON.parse('{{jsondata.0|safe}}');
   var dataId = JSON.parse('{{jsondata.1|safe}}');
   var urlProd = "{% url "addProdHis"%}";
-  var urlTest = "{% url "addTestHis"%}";
   prodHisTableFunc(data,dataId, urlProd);
+  {% endif %}
+  {% if where == "testHis" %}
+  var urlTest = "{% url "addTestHis"%}";
+  var data = JSON.parse('{{jsondata.0|safe}}');
+  var dataId = JSON.parse('{{jsondata.1|safe}}');
   testHisTableFunc(data,dataId, urlTest);
-  var urlCus = "{% url "addCus"%}";
-  var data = JSON.parse('{{jsondata.2|safe}}');
-  var dataId = JSON.parse('{{jsondata.3|safe}}');
-  cusTableFunc(data,dataId, urlCus);
-
+  {% endif %}
   customerUyariFunc();
 
 function kapat(what) {
@@ -486,7 +499,7 @@ function kapat(what) {
     $('#' + what).addClass('show');
     if (what == 'customerInfo') {
       try {
-        JSON.parse('{{jsondata.2|safe}}')['cusArr'].length;
+        JSON.parse('{{jsondata.0|safe}}')['cusArr'].length;
       }
       catch (err) {
         $('#addcustomerInfo').addClass('show');
