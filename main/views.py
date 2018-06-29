@@ -263,9 +263,9 @@ def add(request):
                 c.customerName = p['cus_name']
                 c.customerSituation = p['cus_situ']
                 c.save()
-                return redirect("/main/manage?where=customerInfo")
+                return redirect("/main/manage?menu=customerInfo")
             else:          
-                return redirect("/main/manage?where=customerInfo&uyari=1")
+                return redirect("/main/manage?menu=customerInfo&uyari=1")
 
 
             
@@ -283,9 +283,9 @@ def add(request):
                 pM.prodManPhoneNumber = p['prodMan_phone']
                 pM.whenIsProdManResponsible = p['prodMan_date']
                 pM.save()
-                return redirect("/main/manage?where=prodMans")
+                return redirect("/main/manage?menu=prodMans")
             else:
-                return redirect("/main/manage?where=prodMans&uyari=1")
+                return redirect("/main/manage?menu=prodMans&uyari=1")
 
 
         elif p['add_what'] == "techMan":
@@ -303,9 +303,9 @@ def add(request):
                 tM.techManPhoneNumber = p['techMan_phone']
                 tM.whenIsTechManResponsible = p['techMan_date']
                 tM.save()
-                return redirect("/main/manage?where=techMans")
+                return redirect("/main/manage?menu=techMans")
             else:
-                return redirect("/main/manage?where=techMans&uyari=1")
+                return redirect("/main/manage?menu=techMans&uyari=1")
 
         elif p['add_what'] == 'prod':
             varMi=1
@@ -317,9 +317,9 @@ def add(request):
                 pr = ProductInfo()
                 pr.productName = p['prod_name']
                 pr.save()
-                return redirect("/main/manage?where=products")
+                return redirect("/main/manage?menu=products")
             else:
-                return redirect("/main/manage?where=products&uyari=1")
+                return redirect("/main/manage?menu=products&uyari=1")
 
 
                 
@@ -334,9 +334,9 @@ def add(request):
                 prM.product = ProductInfo.objects.get(pk=p['prod_id'])
                 prM.moduleName = p['prodMod_name']
                 prM.save()
-                return redirect("/main/manage?where=prodModule")
+                return redirect("/main/manage?menu=prodModule")
             else:
-                return redirect("/main/manage?where=prodModule&uyari=1")
+                return redirect("/main/manage?menu=prodModule&uyari=1")
 
 
 
@@ -351,9 +351,9 @@ def add(request):
                 pV.productmodule = ProductModule.objects.get(pk=p['prodMod_id'])
                 pV.productVersionName = p['prodVer_name']
                 pV.save()
-                return redirect("/main/manage?where=prodVer")
+                return redirect("/main/manage?menu=prodVer")
             else:
-                return redirect("/main/manage?where=prodVer&uyari=1")
+                return redirect("/main/manage?menu=prodVer&uyari=1")
 
 
 
@@ -367,9 +367,9 @@ def add(request):
                 d = DatabaseInfo()
                 d.databaseName = p['db_name']
                 d.save()
-                return redirect("/main/manage?where=databases")
+                return redirect("/main/manage?menu=databases")
             else:
-                return redirect("/main/manage?where=databases&uyari=1")
+                return redirect("/main/manage?menu=databases&uyari=1")
 
 
             
@@ -384,9 +384,9 @@ def add(request):
                 dH.database = DatabaseInfo.objects.get(pk=p['db_id'])
                 dH.databaseVersionName = p['dbVer_name']
                 dH.save()
-                return redirect("/main/manage?where=dbVers")
+                return redirect("/main/manage?menu=dbVers")
             else:
-                return redirect("/main/manage?where=dbVers&uyari=1")
+                return redirect("/main/manage?menu=dbVers&uyari=1")
 
 
 
@@ -400,9 +400,9 @@ def add(request):
                 s = ServerInfo()
                 s.serverName = p['server_name']
                 s.save()
-                return redirect("/main/manage?where=servers")
+                return redirect("/main/manage?menu=servers")
             else:
-                return redirect("/main/manage?where=servers&uyari=1")
+                return redirect("/main/manage?menu=servers&uyari=1")
 
 
 
@@ -417,9 +417,9 @@ def add(request):
                 sH.server = ServerInfo.objects.get(pk=p['sv_id'])
                 sH.serverVersionName = p['svVer_name']
                 sH.save()
-                return redirect("/main/manage?where=serverVer")
+                return redirect("/main/manage?menu=serverVer")
             else:
-                return redirect("/main/manage?where=serverVer&uyari=1")
+                return redirect("/main/manage?menu=serverVer&uyari=1")
 
 
 
@@ -440,9 +440,9 @@ def add(request):
                 pH.url = p['url_name']
                 pH.url_database=p['url_db']
                 pH.save()
-                return redirect("/main/manage?where=prodHis")
+                return redirect("/main/manage?menu=prodHis")
             else:
-                return redirect("/main/manage?where=prodHis&uyari=1")
+                return redirect("/main/manage?menu=prodHis&uyari=1")
 
 
 
@@ -463,9 +463,9 @@ def add(request):
                 tH.url = p['url_name']
                 tH.url_database=p['url_db']
                 tH.save()
-                return redirect("/main/manage?where=testHis")
+                return redirect("/main/manage?menu=testHis")
             else:
-                return redirect("/main/manage?where=testHis&uyari=1")
+                return redirect("/main/manage?menu=testHis&uyari=1")
 
 
 #-----------------------------------------------------< ADD-GET >-----------------------------------------------------
@@ -790,9 +790,9 @@ def edit(request):
                 c.customerName = req['cus_name']
                 c.customerSituation = req['cus_situ']
                 c.save()
-                return redirect("/main/manage?where=customerInfo")
+                return redirect("/main/manage?menu=customerInfo")
             else:          
-                return redirect("/main/manage?where=customerInfo&uyari=1")
+                return redirect("/main/manage?menu=customerInfo&uyari=1")
 
 #-----------------------------------------------------< EDIT PRODUCT MANAGER >-----------------------------------------------------
 
@@ -812,9 +812,9 @@ def edit(request):
                 p.customer=CustomerInfo.objects.get(pk=req['cus_id'])
                 p.whenIsProdManResponsible = req['prodMan_date']
                 p.save()
-                return redirect("/main/manage?where=prodMans")
+                return redirect("/main/manage?menu=prodMans")
             else:
-                return redirect("/main/manage?where=prodMans&uyari=1")
+                return redirect("/main/manage?menu=prodMans&uyari=1")
 
 #-----------------------------------------------------< EDIT TECHNICAL MANAGER >-----------------------------------------------------
 
@@ -833,9 +833,9 @@ def edit(request):
                 t.techManPhoneNumber = req['techMan_phone']
                 t.whenIsTechManResponsible = req['techMan_date']
                 t.save()
-                return redirect("/main/manage?where=techMans")
+                return redirect("/main/manage?menu=techMans")
             else:
-                return redirect("/main/manage?where=techMans&uyari=1")
+                return redirect("/main/manage?menu=techMans&uyari=1")
 
  #-----------------------------------------------------< EDIT PRODUCT >-----------------------------------------------------
         
@@ -850,9 +850,9 @@ def edit(request):
                 p = ProductInfo.objects.get(pk=pk1)
                 p.productName = req['prodName']
                 p.save()
-                return redirect("/main/manage?where=products")
+                return redirect("/main/manage?menu=products")
             else:
-                return redirect("/main/manage?where=products&uyari=1")
+                return redirect("/main/manage?menu=products&uyari=1")
 
 #-----------------------------------------------------< EDIT PRODUCT MODULE >-----------------------------------------------------
         
@@ -869,9 +869,9 @@ def edit(request):
                 pm.product=ProductInfo.objects.get(pk=pmp)
                 pm.moduleName = req['prodModName']
                 pm.save()
-                return redirect("/main/manage?where=prodModule")
+                return redirect("/main/manage?menu=prodModule")
             else:
-                return redirect("/main/manage?where=prodModule&uyari=1")
+                return redirect("/main/manage?menu=prodModule&uyari=1")
 
 #-----------------------------------------------------< EDIT PRODUCT VERSION >-----------------------------------------------------
 
@@ -888,9 +888,9 @@ def edit(request):
                 pm = ProductModule.objects.get(pk=pk1)
                 p.productVersionName=req['prodVerName']
                 p.save()
-                return redirect("/main/manage?where=prodVer")
+                return redirect("/main/manage?menu=prodVer")
             else:
-                return redirect("/main/manage?where=prodVer&uyari=1")
+                return redirect("/main/manage?menu=prodVer&uyari=1")
 
 #-----------------------------------------------------< EDIT DATABASE >-----------------------------------------------------
 
@@ -906,9 +906,9 @@ def edit(request):
                 d=DatabaseInfo.objects.get(pk=pk1)
                 d.databaseName=req['db_name']
                 d.save()
-                return redirect("/main/manage?where=databases")
+                return redirect("/main/manage?menu=databases")
             else:
-                return redirect("/main/manage?where=databases&uyari=1")
+                return redirect("/main/manage?menu=databases&uyari=1")
 
 #-----------------------------------------------------< EDIT DATABASE VERSION >-----------------------------------------------------
 
@@ -925,9 +925,9 @@ def edit(request):
                 d.databaseVersionName=req['dbVer_name']
                 d.database=DatabaseInfo.objects.get(pk=req['db_id'])
                 d.save()
-                return redirect("/main/manage?where=dbVers")
+                return redirect("/main/manage?menu=dbVers")
             else:
-                return redirect("/main/manage?where=dbVers&uyari=1")
+                return redirect("/main/manage?menu=dbVers&uyari=1")
 
 #-----------------------------------------------------< EDIT SERVER >-----------------------------------------------------
 
@@ -943,9 +943,9 @@ def edit(request):
                 d=ServerInfo.objects.get(pk=pk1)
                 d.serverName=req['server_name']
                 d.save()
-                return redirect("/main/manage?where=servers")
+                return redirect("/main/manage?menu=servers")
             else:
-                return redirect("/main/manage?where=servers&uyari=1")
+                return redirect("/main/manage?menu=servers&uyari=1")
 
 #-----------------------------------------------------< EDIT SERVER VERSION >-----------------------------------------------------
 
@@ -963,9 +963,9 @@ def edit(request):
                 d.serverVersionName=req['svVer_name']
 
                 d.save()
-                return redirect("/main/manage?where=serverVer")
+                return redirect("/main/manage?menu=serverVer")
             else:
-                return redirect("/main/manage?where=serverVer&uyari=1")
+                return redirect("/main/manage?menu=serverVer&uyari=1")
 
 #-----------------------------------------------------< EDIT PRODUCT HISTORY >-----------------------------------------------------
 
@@ -996,9 +996,9 @@ def edit(request):
                 d.url_database=req['url_db']
 
                 d.save()
-                return redirect("/main/manage?where=prodHis")
+                return redirect("/main/manage?menu=prodHis")
             else:
-                return redirect("/main/manage?where=prodHis&uyari=1")
+                return redirect("/main/manage?menu=prodHis&uyari=1")
 
 #-----------------------------------------------------< EDIT TEST PRODUCT HISTORY >-----------------------------------------------------
 
@@ -1029,9 +1029,9 @@ def edit(request):
                 d.url_database=req['url_db']
 
                 d.save()
-                return redirect("/main/manage?where=testHis")
+                return redirect("/main/manage?menu=testHis")
             else:
-                return redirect("/main/manage?where=testHis&uyari=1")
+                return redirect("/main/manage?menu=testHis&uyari=1")
 
 
 #-----------------------------------------------------< EDIT-GET >-----------------------------------------------------
