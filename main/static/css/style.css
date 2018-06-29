@@ -699,6 +699,7 @@ body,html{
   @media (min-width: 767px) {
     .nav-side-menu .menu-list .menu-content {
       display: block;
+      padding-top : 35px;
     }
   }
   body {
@@ -736,9 +737,10 @@ body,html{
   }
 
   .searchSide{
-    margin-left:15px; 
+    margin-left:8px; 
     border-radius: 25px;
     text-indent: 10px;
+    position:fixed;
   }
 
   .searchSide:focus{

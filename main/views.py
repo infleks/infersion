@@ -47,7 +47,7 @@ def display(request):
         return redirect('login')
     data = []
 
-    cuss = CustomerInfo.objects.all()
+    cuss = CustomerInfo.objects.all().order_by('customerName')
 
     for c in cuss:
         tempDict = {}
