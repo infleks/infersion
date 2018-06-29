@@ -241,7 +241,9 @@ th:first-child {
  
 th:last-child {
   border-top-right-radius:30px;
+  border-bottom-right-radius:30px;
   border-right:none;
+  border-left: 4px solid white;
 }
   
 tr {
@@ -759,4 +761,7 @@ input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+table.dataTable.no-footer{
+  border-bottom: none !important;
 }

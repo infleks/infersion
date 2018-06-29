@@ -61,6 +61,8 @@ function cusTableFunc(data, dataId, urlCus){
 
       var chldrn = $('#cusTable').find("tbody").children();
       var i = 0;
+
+      
        /* for (i = 0; i < chldrn.length; i++) {
         $(chldrn[i]).append(
           '<td style="cursor: pointer;"><a class="benima" href="/main/edit?what=cus&id='
