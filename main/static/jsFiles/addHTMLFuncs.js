@@ -57,8 +57,7 @@ function cusTableFunc(data, dataId, urlCus){
         ]
       });
 
-      $('#cusTable').find("thead").find("tr").append(
-        '<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href= '+urlCus+' > <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
+      $('#cusTable').find("thead").find("tr").append('<th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href= '+urlCus+' > <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
 
       var chldrn = $('#cusTable').find("tbody").children();
       var i = 0;
@@ -114,7 +113,7 @@ function prodHisTableFunc(data, dataId, urlProd) {
       ]
     });
 
-    $('#prodTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href= '+urlProd+' > <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
+    $('#prodTable').find("thead").find("tr").append('<th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href= '+urlProd+' > <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
     var chldrn = $('#prodTable').find("tbody").children();
      /* if( data['pArr'].length > 0){
       for (i = 0; i < chldrn.length; i++) {
@@ -173,7 +172,7 @@ function testHisTableFunc(data, dataId, urlTest) {
         ]
       });
 
-      $('#testTable').find("thead").find("tr").append('<th></th><th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href='+urlTest+'> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
+      $('#testTable').find("thead").find("tr").append('<th style="cursor: pointer;"><a style="color: whitesmoke; text-decoration: none;" href='+urlTest+'> <div><i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i>  Ekle</div></a></th>');
 
       var chldrn = $('#testTable').find("tbody").children();
       /*if( data['tpArr'].length > 0){
