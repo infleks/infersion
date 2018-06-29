@@ -555,7 +555,7 @@ def addProdMan(request):
         
         data.append(tempDict)
         dataToSend = {
-            'cus': CustomerInfo.objects.all(),
+            'cus': CustomerInfo.objects.all().order_by('customerName'),
             'prodMan': ProductManagerHistory.objects.all(),
             'techMan': TechnicalManagerHistory.objects.all(),
             'db': DatabaseInfo.objects.all(),
@@ -618,7 +618,7 @@ def addTechMan(request):
         
         data.append(tempDict)
         dataToSend = {
-            'cus': CustomerInfo.objects.all(),
+            'cus': CustomerInfo.objects.all().order_by('customerName'),
             'prodMan': ProductManagerHistory.objects.all(),
             'techMan': TechnicalManagerHistory.objects.all(),
             'db': DatabaseInfo.objects.all(),
@@ -651,7 +651,7 @@ def addProd(request):
 def addProdMod(request):
     if 'user_id' not in request.session.keys():
         return redirect('login')
-    prods=ProductInfo.objects.all()
+    prods=ProductInfo.objects.all().order_by('productName')
     dataToSend={
         'prods' : prods
     }
@@ -687,7 +687,7 @@ def addDB(request):
 def addDbVer(request):
     if 'user_id' not in request.session.keys():
         return redirect('login')
-    db=DatabaseInfo.objects.all()
+    db=DatabaseInfo.objects.all().order_by('databaseName')
     dataToSend={
         'db' : db,
     }
@@ -709,7 +709,7 @@ def addServer(request):
 def addServerVer(request):
     if 'user_id' not in request.session.keys():
         return redirect('login')
-    servers=ServerInfo.objects.all()
+    servers=ServerInfo.objects.all().order_by('serverName')
     dataToSend={
         'servers' : servers
     }
@@ -809,7 +809,7 @@ def edit(request):
                 p.prodManName = req['prodMan_name']
                 p.prodManEmail = req['prodMan_email']
                 p.prodManPhoneNumber = req['prodMan_phone']
-                p.customer=CustomerInfo.objects.get(pk=req['cus_id'])
+                p.customer=CustomerInfo.objects.get(pk=req['cus_id']).order_by('customerName')
                 p.whenIsProdManResponsible = req['prodMan_date']
                 p.save()
                 return redirect("/main/manage?menu=prodMans")
@@ -1053,7 +1053,7 @@ def edit(request):
         pk1 = request.GET['id']
         prodData = ProductManagerHistory.objects.get(pk=pk1)
         tarih = datetime.strftime(prodData.whenIsProdManResponsible, "%Y-%m-%d")        
-        cus=CustomerInfo.objects.all()
+        cus=CustomerInfo.objects.all().order_by('customerName')
         dataToSend = {
             'prodData': prodData,
             'cus' : cus,
@@ -1066,7 +1066,7 @@ def edit(request):
         pk1 = request.GET['id']
         techData = TechnicalManagerHistory.objects.get(pk=pk1)
         tarih = datetime.strftime(techData.whenIsTechManResponsible, "%Y-%m-%d")  
-        cus=CustomerInfo.objects.all()
+        cus=CustomerInfo.objects.all().order_by('customerName')
         dataToSend = {
             'techData': techData,
             'tarih' : tarih,
@@ -1087,7 +1087,7 @@ def edit(request):
     elif what == 'prodMod':
         pk1 = request.GET['id']
         prodModData = ProductModule.objects.get(pk=pk1)
-        prodMods=ProductModule.objects.all()
+        prodMods=ProductModule.objects.all().order_by('productName')
         dataToSend = {
             'prodModData': prodModData,
             'prodMods' : prodMods
@@ -1120,7 +1120,7 @@ def edit(request):
     elif what == 'dbVer':
         pk1 = request.GET['id']
         dbVerData = DatabaseVersion.objects.get(pk=pk1)
-        dbDatas=DatabaseInfo.objects.all()
+        dbDatas=DatabaseInfo.objects.all().order_by('databaseName')
         dataToSend = {
             'dbVerData': dbVerData,
             'dbDatas' : dbDatas
@@ -1140,7 +1140,7 @@ def edit(request):
     elif what == 'serverVer':
         pk1 = request.GET['id']
         serverVer = ServerVersion.objects.get(pk=pk1)
-        server = ServerInfo.objects.all()
+        server = ServerInfo.objects.all().order_by('serverName')
         dataToSend = {
             'server': server,
             'serverVer' : serverVer
@@ -1153,13 +1153,13 @@ def edit(request):
         prodHis = ProductHistory.objects.get(pk=pk1)
         cusId = prodHis.customer.pk
         prodHisDate = datetime.strftime(ProductHistory.objects.get(pk=pk1).prodInstallationTime, "%Y-%m-%dT%H:%M")
-        svHis = ServerVersion.objects.all()
-        dbHis= DatabaseVersion.objects.all()
+        svHis = ServerVersion.getModelsByTotalOrder()
+        dbHis= DatabaseVersion.getModelsByTotalOrder()
         c=CustomerInfo.objects.get(pk=cusId)
-        cus=CustomerInfo.objects.all()
+        cus=CustomerInfo.objects.all().order_by('customerName')
         prodMan = ProductManagerHistory.objects.filter(customer=c)
         techMan = TechnicalManagerHistory.objects.filter(customer=c)
-        prodVer= ProductVersion.objects.all()
+        prodVer= ProductVersion.getModelsByTotalOrder()
 
         
         dataToSend = {
@@ -1180,13 +1180,13 @@ def edit(request):
         testHis = TestProductHistory.objects.get(pk=pk1)
         cusId = testHis.customer.pk
         testHisDate = datetime.strftime(TestProductHistory.objects.get(pk=pk1).testInstallationTime, "%Y-%m-%dT%H:%M")
-        svHis = ServerVersion.objects.all()
-        dbHis= DatabaseVersion.objects.all()
+        svHis = ServerVersion.getModelsByTotalOrder()
+        dbHis= DatabaseVersion.getModelsByTotalOrder()
         c=CustomerInfo.objects.get(pk=cusId)
-        cus=CustomerInfo.objects.all()
+        cus=CustomerInfo.getModelsByTotalOrder()
         prodMan = ProductManagerHistory.objects.filter(customer=c)
         techMan = TechnicalManagerHistory.objects.filter(customer=c)
-        prodVer= ProductVersion.objects.all()
+        prodVer= ProductVersion.getModelsByTotalOrder()
 
         
         dataToSend = {
