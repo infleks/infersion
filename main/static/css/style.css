@@ -767,3 +767,6 @@ input::-webkit-inner-spin-button {
 table.dataTable.no-footer{
   border-bottom: none !important;
 }
+#prodtestTable > thead > tr > th:nth-child(8){
+  border-left:none; border-bottom-right-radius: 0px !important;
+}
