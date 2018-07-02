@@ -9,11 +9,9 @@
     <fieldset>
       <h4>Müşteri Adı :</h4>
       <select name="cus_id" class="form-control">
-        {% for c in cus %}
-          {% if c.customerSituation == "Aktif" %}
-            <option value={{c.pk}}>{{ c.customerName }}</option>
-          {% endif %}
-        {% endfor %}
+        {% for c in cus %} {% if c.customerSituation == "Aktif" %}
+        <option value={{c.pk}}>{{ c.customerName }}</option>
+        {% endif %} {% endfor %}
       </select>
 
     </fieldset>
@@ -35,10 +33,11 @@
         {% for d in dbHis %}
         <option value={{d.pk}}>{{d.database.databaseName}} {{ d.databaseVersionName }}</option>
         {% endfor %}
-      </select><br>
+      </select>
+      <br>
       <fieldset>
-          <h4>Veritabanı URL :</h4>
-          <input  type="text" tabindex="2" name="url_db">
+        <h4>Veritabanı URL :</h4>
+        <input type="text" tabindex="2" name="url_db">
       </fieldset>
       <fieldset>
         <h4>Sunucu Adı :</h4>
@@ -47,43 +46,44 @@
           <option value={{sv.pk}}>{{sv.server.serverName}} {{ sv.serverVersionName }}</option>
           {% endfor %}
         </select>
-        
+
       </fieldset>
 
       <fieldset>
-          <h4>Sunucu URL :</h4>
-          <input  type="text" tabindex="2" name="url_name">
+        <h4>Sunucu URL :</h4>
+        <input type="text" tabindex="2" name="url_name">
       </fieldset>
 
-    <fieldset>
-      <h4>Test Ürün Yüklenme Tarihi: </h4>
-      <input placeholder="Satış Tarihi" type="datetime-local" tabindex="2" name="testLoadTime_date" id="tarihi" required>
-    </fieldset>
-    <br>
-    <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
-    </fieldset>
+      <fieldset>
+        <h4>Test Ürün Yüklenme Tarihi: </h4>
+        <input placeholder="Satış Tarihi" type="datetime-local" tabindex="2" name="testLoadTime_date" id="tarihi" required>
+      </fieldset>
+      <br>
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Ekle</button>
+      </fieldset>
   </form>
 </div>
 <script>
-    window.onload = function () {
-      var date = new Date();
-      var month="";
-      if((date.getMonth() + 1)<10){
-        month = "0"+(date.getMonth() + 1);
-      }
-      else{
-        month=(date.getMonth() + 1);
-      }
-      var date = new Date();
-      var day="";
-      if((date.getDate() + 1)<10){
-        day = "0"+(date.getDate() + 1);
-      }
-      else{
-        day=(date.getDate() + 1);
-      }
-      document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + month + '-' + day+ 'T' + date.getHours() + ':' + date.getMinutes();
-      }
-  </script>
+  window.onload = function () {
+    var date = new Date();
+    /*var month="";
+    if((date.getMonth() + 1)<10){
+      month = "0"+(date.getMonth() + 1);
+    }
+    else{
+      month=(date.getMonth() + 1);
+    }
+    var date = new Date();
+    var day="";
+    if((date.getDate() + 1)<10){
+      day = "0"+(date.getDate() + 1);
+    }
+    else{
+      day=(date.getDate() + 1);
+    }
+    document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + month + '-' + day+ 'T' + date.getHours() + ':' + date.getMinutes(); */
+    document.getElementById("tarihi").defaultValue = date.toISOString().substring(0,16);
+  }
+</script>
 {% endblock %}
