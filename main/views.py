@@ -151,6 +151,11 @@ def manage(request):
 
     return render(request, 'add.html', dataToSend)"""
 
+    if 'user_id' not in request.session.keys():
+        return redirect('login')
+    users = UserInfo.objects.get(pk=request.session['user_id'])
+    if users.userPermission == "2":
+        return redirect('/main?uyari=2') 
     req = request.GET
     if 'menu' in req:
         if req['menu']=="customerInfo":
