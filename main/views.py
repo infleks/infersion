@@ -1188,7 +1188,7 @@ def edit(request):
         svHis = ServerVersion.getModelsByTotalOrder()
         dbHis= DatabaseVersion.getModelsByTotalOrder()
         c=CustomerInfo.objects.get(pk=cusId)
-        cus=CustomerInfo.getModelsByTotalOrder()
+        cus=CustomerInfo.objects.all().order_by('customerName')
         prodMan = ProductManagerHistory.objects.filter(customer=c)
         techMan = TechnicalManagerHistory.objects.filter(customer=c)
         prodVer= ProductVersion.getModelsByTotalOrder()
