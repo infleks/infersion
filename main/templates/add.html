@@ -136,7 +136,7 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=prodMan&id={{p.pk}}" style=" cursor: pointer;">
+          <a id="delete"  class="benima"  onclick="deleteControl({{p.pk}}, 'prodMan')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
         </td>
       </tr>
@@ -178,7 +178,7 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=techMan&id={{t.pk}}" style=" cursor: pointer;">
+          <a id="delete" class="benima" onclick="deleteControl({{t.pk}}, 'techMan')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px;  cursor: pointer;"></i>Sil</a>
         </td>
       </tr>
@@ -211,7 +211,7 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=prod&id={{p.pk}}" style=" cursor: pointer;">
+          <a id="delete" class="benima" onclick="deleteControl({{p.pk}}, 'prod')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
         </td>
       </tr>
@@ -246,7 +246,7 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=prodMod&id={{pm.pk}}" style=" cursor: pointer;">
+          <a id="delete" class="benima" onclick="deleteControl({{pm.pk}}, 'prodMod')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
         </td>
       </tr>
@@ -282,7 +282,40 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=prodVer&id={{pv.pk}}" style=" cursor: pointer;">
+          <a id="delete" class="benima" onclick="deleteControl({{pv.pk}}, 'prodVer')" style=" cursor: pointer;">
+            <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endif %}
+{% if where == "databases" %}
+<div id="databases" class="collapse show" style="margin: 90px 0px 0px 153px;">
+  <div style="width: 100%; text-align: left; padding: 0px 50px;">
+    <table class="table">
+      <tr>
+        <th scope="col">Veritabanı Adı</th>
+        <th></th>
+        <th style="cursor: pointer;">
+          <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDB'%}">
+            <div>
+              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
+          </a>
+        </th>
+      </tr>
+      {% for d in db %}
+      <tr>
+        <td>{{d.databaseName}}</td>
+        <td style="cursor: pointer;">
+          <a class="benima" href="/main/edit?what=db&id={{d.pk}}">
+            <div>
+              <i class="fas fa-edit" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Düzenle</div>
+          </a>
+        </td>
+        <td>
+          <a id="delete" class="benima" onclick="deleteControl({{d.pk}}, 'db')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
         </td>
       </tr>
@@ -318,43 +351,10 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=dbVer&id={{dv.pk}}" style=" cursor: pointer;">
+          <a id="delete" class="benima" onclick="deleteControl({{dv.pk}}, 'dbVer')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
         </td>
 
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
-</div>
-{% endif %}
-{% if where == "databases" %}
-<div id="databases" class="collapse show" style="margin: 90px 0px 0px 153px;">
-  <div style="width: 100%; text-align: left; padding: 0px 50px;">
-    <table class="table">
-      <tr>
-        <th scope="col">Veritabanı Adı</th>
-        <th></th>
-        <th style="cursor: pointer;">
-          <a style="color: whitesmoke; text-decoration: none;" href="{% url 'addDB'%}">
-            <div>
-              <i style="cursor: pointer; font-size:20px;" class="fas fa-plus-circle"></i> Ekle</div>
-          </a>
-        </th>
-      </tr>
-      {% for d in db %}
-      <tr>
-        <td>{{d.databaseName}}</td>
-        <td style="cursor: pointer;">
-          <a class="benima" href="/main/edit?what=db&id={{d.pk}}">
-            <div>
-              <i class="fas fa-edit" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Düzenle</div>
-          </a>
-        </td>
-        <td>
-          <a id="delete" class="benima" href="/main/delete?what=db&id={{d.pk}}" style=" cursor: pointer;">
-            <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
-        </td>
       </tr>
       {% endfor %}
     </table>
@@ -386,7 +386,7 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=sv&id={{s.pk}}" style=" cursor: pointer;">
+          <a id="delete" class="benima" onclick="deleteControl({{s.pk}}, 'server')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
         </td>
       </tr>
@@ -421,7 +421,7 @@
           </a>
         </td>
         <td>
-          <a id="delete" class="benima" href="/main/delete?what=svVer&id={{sv.pk}}" style=" cursor: pointer;">
+          <a id="delete" class="benima" onclick="deleteControl({{sv.pk}}, 'serverVer')" style=" cursor: pointer;">
             <i class="fas fa-trash-alt" style="color: #be5254; font-size:20px; cursor: pointer;"></i>Sil</a>
         </td>
       </tr>
@@ -460,6 +460,56 @@
 {% endif %}
 
 <script>
+
+  function deleteControl(pk, what) {
+      var txt;
+      var r = confirm("Silme işlemi diğer sayfaları da etkileyebilir. Silmek istediğinizden emin misiniz?");
+      if (r == true) {
+          txt = "You pressed OK!";
+          window.location = "/main/delete?what="+what+"&id="+pk
+      } else {
+          txt = "You pressed Cancel!";
+      }
+      document.getElementById("demo").innerHTML = txt;
+  }
+
+  function deleteControlForCustomerHis(pk) {
+      var txt;
+      var r = confirm("Silme işlemi diğer sayfaları da etkileyebilir. Silmek istediğinizden hala eminseniz tamama tıklayınız!");
+      if (r == true) {
+          txt = "You pressed OK!";
+          window.location = "/main/delete?what=customerInfo&id="+pk
+      } else {
+          txt = "You pressed Cancel!";
+      }
+      document.getElementById("demo").innerHTML = txt;
+  }
+
+  function deleteControlForProdHis(pk) {
+      var txt;
+      var r = confirm("Silmek istediğinizden  eminseniz tamama tıklayınız!");
+      if (r == true) {
+          txt = "You pressed OK!";
+          window.location = "/main/delete?what=prodHis&id="+pk
+      } else {
+          txt = "You pressed Cancel!";
+      }
+      document.getElementById("demo").innerHTML = txt;
+  }
+
+  function deleteControlForTestHis(pk) {
+      var txt;
+      var r = confirm("Silmek istediğinizden  eminseniz tamama tıklayınız!");
+      if (r == true) {
+          txt = "You pressed OK!";
+          window.location = "/main/delete?what=testHis&id="+pk
+      } else {
+          txt = "You pressed Cancel!";
+      }
+      document.getElementById("demo").innerHTML = txt;
+  }
+
+
   {% if where == "customerInfo" %}
   var urlCus = "{% url "addCus"%}";
   var data = JSON.parse('{{jsondata.0|safe}}');
@@ -517,7 +567,7 @@ function kapat(what) {
 
 $("#prodTable").find("tbody").children(10).attr("colspan",3);
 $("#testTable").find("tbody").children(10).attr("colspan",3);
-        
+      
 
 </script> 
 
