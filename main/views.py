@@ -1092,7 +1092,7 @@ def edit(request):
     elif what == 'prodMod':
         pk1 = request.GET['id']
         prodModData = ProductModule.objects.get(pk=pk1)
-        prodMods=ProductModule.objects.all().order_by('productName')
+        prodMods=ProductInfo.objects.all().order_by('productName')
         dataToSend = {
             'prodModData': prodModData,
             'prodMods' : prodMods

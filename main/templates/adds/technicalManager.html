@@ -40,6 +40,7 @@
     window.onload = function () {
       var date = new Date();
       var mounth="";
+      console.log(date.getMonth());
       if((date.getMonth() + 1)<10){
         mounth = "0"+(date.getMonth() + 1);
       }
@@ -47,12 +48,13 @@
         mounth=(date.getMonth() + 1);
       }
       var date = new Date();
+      console.log(date.getDate());
       var day="";
-      if((date.getDate() + 1)<10){
-        day = "0"+(date.getDate() + 1);
+      if((date.getDate() )<10){
+        day = "0"+(date.getDate() );
       }
       else{
-        day=(date.getDate() + 1);
+        day=(date.getDate() );
       }
       document.getElementById("tarihi").defaultValue = date.getFullYear() + '-' + mounth + '-' +  day;
       }
